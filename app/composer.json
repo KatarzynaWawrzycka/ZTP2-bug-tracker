@@ -94,6 +94,10 @@
             "./vendor/bin/php-cs-fixer fix tests/ --rules=@Symfony,@PSR1,@PSR2,@PSR12",
             "./vendor/bin/rector process src",
             "./vendor/bin/rector process tests"
+        ],
+        "init-app" : [
+            "./bin/console --no-interaction doctrine:migrations:migrate",
+            "./bin/console --no-interaction doctrine:fixtures:load"
         ]
     },
     "conflict": {
@@ -106,7 +110,9 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^4.3",
         "escapestudios/symfony2-coding-standard": "^3.18",
+        "fakerphp/faker": "^1.24",
         "friendsofphp/php-cs-fixer": "^3.94",
         "phpunit/phpunit": "^13.1",
         "rector/rector": "^2.4",
@@ -114,7 +120,7 @@
         "symfony/browser-kit": "7.4.*",
         "symfony/css-selector": "7.4.*",
         "symfony/debug-bundle": "7.4.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.67",
         "symfony/stopwatch": "7.4.*",
         "symfony/web-profiler-bundle": "7.4.*"
     }

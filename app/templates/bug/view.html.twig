@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.bug_details'|trans({'%id%': bug.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.bug_details'|trans({'%id%': bug.id|default('')}) }}</h1>
+    {% if bug is defined and bug|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ bug.id }}</dd>
+            <dt>{{ 'label.created_at'|trans }}</dt>
+            <dd>{{ bug.createdAt|date('Y/m/d') }}</dd>
+            <dt>{{ 'label.updated_at'|trans }}</dt>
+            <dd>{{ bug.updatedAt|date('Y/m/d') }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{  bug.title }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('bug_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
