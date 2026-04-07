@@ -1,0 +1,4 @@
+.idea
+app/var
+app/vendor
+*.cache
