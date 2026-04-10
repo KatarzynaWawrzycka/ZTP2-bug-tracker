@@ -16,6 +16,8 @@
             <dd>{{ bug.updatedAt|date('Y/m/d') }}</dd>
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  bug.title }}</dd>
+            <dt>{{ 'label.description'|trans }}</dt>
+            <dd>{{  bug.description }}</dd>
         </dl>
         <p>
             <a href="{{ url('bug_index') }}" title="{{ 'action.back_to_list'|trans }}">

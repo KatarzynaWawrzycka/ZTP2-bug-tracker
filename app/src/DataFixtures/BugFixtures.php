@@ -20,6 +20,8 @@ class BugFixtures extends AbstractBaseFixtures
         for ($i = 0; $i < 10; ++$i) {
             $bug = new Bug();
             $bug->setTitle($this->faker->sentence);
+            $text = implode(' ', $this->faker->sentences(mt_rand(3, 5)));
+            $bug->setDescription(mb_substr($text, 0, 255));
             $bug->setCreatedAt(
                 \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
