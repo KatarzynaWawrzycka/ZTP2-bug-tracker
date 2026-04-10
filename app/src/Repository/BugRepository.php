@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Bug;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -41,21 +42,50 @@ class BugRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('bug')
-            ->select('bug', 'category')
+            ->select(
+                'partial bug.{id, createdAt, updatedAt, title, description}',
+                'partial category.{id, title}'
+            )
             ->join('bug.category', 'category');
     }
 
-    // ODKOMENTUJ JAK DODASZ TAGI
-    //    /**
-    //     * Query all records.
-    //     *
-    //     * @return QueryBuilder Query builder
-    //     */
-    //    public function queryAll(): QueryBuilder
-    //    {
-    //        return $this->createQueryBuilder('task')
-    //            ->select('task', 'category', 'tags')
-    //            ->join('task.category', 'category')
-    //            ->leftJoin('task.tags', 'tags');
-    //    }
+    /**
+     * Count bugs by category.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of bugs in category
+     */
+    public function countByCategory(Category $category): int
+    {
+        $qb = $this->createQueryBuilder('bug');
+
+        return $qb->select($qb->expr()->countDistinct('bug.id'))
+            ->where('bug.category = :category')
+            ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Bug $bug Bug entity
+     */
+    public function save(Bug $bug): void
+    {
+        $this->getEntityManager()->persist($bug);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Bug $bug Bug entity
+     */
+    public function delete(Bug $bug): void
+    {
+        $this->getEntityManager()->remove($bug);
+        $this->getEntityManager()->flush();
+    }
 }

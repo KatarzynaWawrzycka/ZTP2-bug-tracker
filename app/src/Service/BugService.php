@@ -6,6 +6,7 @@
 
 namespace App\Service;
 
+use App\Entity\Bug;
 use App\Repository\BugRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -55,5 +56,29 @@ class BugService implements BugServiceInterface
                 'defaultSortDirection' => 'desc',
             ]
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Bug $bug Bug entity
+     */
+    public function save(Bug $bug): void
+    {
+        $bug->setUpdatedAt(new \DateTimeImmutable());
+        if (null === $bug->getId()) {
+            $bug->setCreatedAt(new \DateTimeImmutable());
+        }
+        $this->bugRepository->save($bug);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Bug $bug Bug entity
+     */
+    public function delete(Bug $bug): void
+    {
+        $this->bugRepository->delete($bug);
     }
 }

@@ -7,11 +7,15 @@
 namespace App\Controller;
 
 use App\Entity\Bug;
+use App\Form\Type\BugType;
 use App\Service\BugServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class BugController.
@@ -23,7 +27,7 @@ class BugController extends AbstractController
      * Constructor.
      *
      */
-    public function __construct(private readonly BugServiceInterface $bugService)
+    public function __construct(private readonly BugServiceInterface $bugService, private readonly TranslatorInterface $translator)
     {
     }
 
@@ -63,6 +67,129 @@ class BugController extends AbstractController
         return $this->render(
             'bug/view.html.twig',
             ['bug' => $bug]
+        );
+    }
+
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/create',
+        name: 'bug_create',
+        methods: ['GET', 'POST'],
+    )]
+    public function create(Request $request): Response
+    {
+        $bug = new Bug();
+        $form = $this->createForm(BugType::class, $bug);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->bugService->save($bug);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.created_successfully')
+            );
+
+            return $this->redirectToRoute('bug_index');
+        }
+
+        return $this->render(
+            'bug/create.html.twig',
+            ['form' => $form->createView()]
+        );
+    }
+
+    /**
+     * Edit action.
+     *
+     * @param Request $request HTTP request
+     * @param Bug    $bug    Bug entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/edit',
+        name: 'bug_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: ['GET', 'PUT']
+    )]
+    public function edit(Request $request, Bug $bug): Response
+    {
+        $form = $this->createForm(
+            BugType::class,
+            $bug,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('bug_edit', ['id' => $bug->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->bugService->save($bug);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.edited_successfully')
+            );
+
+            return $this->redirectToRoute('bug_index');
+        }
+
+        return $this->render(
+            'bug/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'bug' => $bug,
+            ]
+        );
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param Request $request HTTP request
+     * @param Bug     $bug     Bug entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/delete',
+        name: 'bug_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: ['GET', 'DELETE']
+    )]
+    public function delete(Request $request, Bug $bug): Response
+    {
+        $form = $this->createForm(FormType::class, $bug, [
+            'method' => 'DELETE',
+            'action' => $this->generateUrl('bug_delete', ['id' => $bug->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->bugService->delete($bug);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.deleted_successfully')
+            );
+
+            return $this->redirectToRoute('bug_index');
+        }
+
+        return $this->render(
+            'bug/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'bug' => $bug,
+            ]
         );
     }
 }

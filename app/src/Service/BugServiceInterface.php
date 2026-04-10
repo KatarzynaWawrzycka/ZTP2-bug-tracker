@@ -22,4 +22,17 @@ interface BugServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
+    /**
+     * Save entity.
+     *
+     * @param Bug $bug Bug entity
+     */
+    public function save(Bug $bug): void;
+
+    /**
+     * Delete entity.
+     *
+     * @param Bug $bug Bug entity
+     */
+    public function delete(Bug $bug): void;
 }
