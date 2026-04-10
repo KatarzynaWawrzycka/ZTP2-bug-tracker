@@ -65,10 +65,6 @@ class BugService implements BugServiceInterface
      */
     public function save(Bug $bug): void
     {
-        $bug->setUpdatedAt(new \DateTimeImmutable());
-        if (null === $bug->getId()) {
-            $bug->setCreatedAt(new \DateTimeImmutable());
-        }
         $this->bugRepository->save($bug);
     }
 
