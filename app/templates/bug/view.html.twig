@@ -18,6 +18,8 @@
             <dd>{{  bug.title }}</dd>
             <dt>{{ 'label.description'|trans }}</dt>
             <dd>{{  bug.description }}</dd>
+            <dt>{{ 'label.category'|trans }}</dt>
+            <dd>{{  bug.category.title }}</dd>
         </dl>
         <p>
             <a href="{{ url('bug_index') }}" title="{{ 'action.back_to_list'|trans }}">

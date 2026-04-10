@@ -1,36 +1,68 @@
 <?php
+
 /**
  * Bug fixtures.
  */
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\Bug;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
+use Faker\Generator;
 
 /**
  * Class BugFixtures.
+ *
+ * @psalm-suppress MissingConstructor
  */
-class BugFixtures extends AbstractBaseFixtures
+class BugFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
+     *
+     * @psalm-suppress PossiblyNullPropertyFetch
+     * @psalm-suppress PossiblyNullReference
+     * @psalm-suppress UnusedClosureParam
      */
     public function loadData(): void
     {
-        for ($i = 0; $i < 100; ++$i) {
-            $bug = new Bug();
-            $bug->setTitle($this->faker->sentence);
-            $text = implode(' ', $this->faker->sentences(mt_rand(3, 5)));
-            $bug->setDescription(mb_substr($text, 0, 255));
-            $bug->setCreatedAt(
-                \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
-            );
-            $bug->setUpdatedAt(
-                \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
-            );
-            $this->manager->persist($bug);
+        if (!$this->manager instanceof ObjectManager || !$this->faker instanceof Generator) {
+            return;
         }
 
-        $this->manager->flush();
+        $this->createMany(100, 'bug', function (int $i) {
+            $bug = new Bug();
+            $bug->setTitle($this->faker->realTextBetween(20, 35));
+            $bug->setDescription($this->faker->realText);
+            $bug->setCreatedAt(
+                \DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
+            $bug->setUpdatedAt(
+                \DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
+            $category = $this->getRandomReference('category', Category::class);
+            $bug->setCategory($category);
+
+            return $bug;
+        });
+    }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return string[] of dependencies
+     *
+     * @psalm-return array{0: CategoryFixtures::class}
+     */
+    public function getDependencies(): array
+    {
+        return [CategoryFixtures::class];
     }
 }
