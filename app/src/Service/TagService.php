@@ -31,9 +31,9 @@ class TagService implements TagServiceInterface
     /**
      * Constructor.
      *
-     * @param TagRepository $tagRepository Tag repository
-     * @param PaginatorInterface $paginator Paginator
-     * @param BugRepository $bugRepository
+     * @param TagRepository      $tagRepository Tag repository
+     * @param PaginatorInterface $paginator     Paginator
+     * @param BugRepository      $bugRepository
      */
     public function __construct(private readonly TagRepository $tagRepository, private readonly PaginatorInterface $paginator, private readonly BugRepository $bugRepository)
     {
@@ -58,6 +58,18 @@ class TagService implements TagServiceInterface
                 'defaultSortDirection' => 'desc',
             ]
         );
+    }
+
+    /**
+     * Find by title.
+     *
+     * @param string $title Tag title
+     *
+     * @return Tag|null Tag entity
+     */
+    public function findOneByTitle(string $title): ?Tag
+    {
+        return $this->tagRepository->findOneByTitle($title);
     }
 
     /**
