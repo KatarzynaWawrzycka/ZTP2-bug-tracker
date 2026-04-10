@@ -33,7 +33,7 @@ class TagFixtures extends AbstractBaseFixtures
         $this->createMany(20, 'tag', function (int $i) {
             $tag = new Tag();
             $tag->setTitle(
-                ucfirst($this->faker->unique()->chemicalElement())
+                ucfirst($this->faker->unique()->moon())
             );
             $tag->setCreatedAt(
                 \DateTimeImmutable::createFromMutable(

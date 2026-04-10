@@ -33,7 +33,7 @@ class CategoryFixtures extends AbstractBaseFixtures
         $this->createMany(20, 'category', function (int $i) {
             $category = new Category();
             $category->setTitle(
-                ucfirst($this->faker->unique()->moon())
+                ucfirst($this->faker->unique()->chemicalElement())
             );
             $category->setCreatedAt(
                 \DateTimeImmutable::createFromMutable(

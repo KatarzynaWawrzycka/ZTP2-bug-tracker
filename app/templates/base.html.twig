@@ -15,6 +15,16 @@
     {% endblock %}
 </head>
 <body>
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div>{{ 'logged_in_as'|trans }} {{ app.user.email }}</div>
+    <div>
+        <a href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
+    </div>
+{% else %}
+    <div>
+        <a href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
+    </div>
+{% endif %}
 <main role="main" class="container-fluid">
     <div class="container-fluid">
         {% include 'default/_flash_messages.html.twig' %}
