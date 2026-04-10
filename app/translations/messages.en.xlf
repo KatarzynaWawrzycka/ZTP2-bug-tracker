@@ -194,6 +194,10 @@
                 <source>action.remember_me</source>
                 <target>Remember me</target>
             </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>Author</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

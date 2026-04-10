@@ -9,6 +9,7 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Bug;
 use App\Entity\Tag;
+use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
@@ -51,10 +52,19 @@ class BugFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             $category = $this->getRandomReference('category', Category::class);
             $bug->setCategory($category);
 
-            $randomTags = $this->getRandomReferenceList('tag', Tag::class, random_int(2, 3));
-            foreach ($randomTags as $tag) {
+            /** @var Tag[] $tags */
+            $tags = $this->getRandomReferenceList(
+                'tag',
+                Tag::class,
+                $this->faker->numberBetween(0, 3)
+            );
+            foreach ($tags as $tag) {
                 $bug->addTag($tag);
             }
+
+            /** @var User $author */
+            $author = $this->getRandomReference('user', User::class);
+            $bug->setAuthor($author);
 
             return $bug;
         });
@@ -70,6 +80,6 @@ class BugFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class, TagFixtures::class];
+        return [CategoryFixtures::class, TagFixtures::class, UserFixtures::class];
     }
 }

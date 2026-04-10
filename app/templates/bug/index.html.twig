@@ -23,6 +23,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'bug.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'bug.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'bug.updatedAt') }}</th>
+                <th>{{ 'label.author'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'bug.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'bug.description') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.title') }}</th>
@@ -36,6 +37,7 @@
                     <td>{{ bug.id }}</td>
                     <td>{{ bug.createdAt|format_date('long') }}</td>
                     <td>{{ bug.updatedAt|format_date('long') }}</td>
+                    <td>{{ bug.author.email }}</td>
                     <td>{{ bug.title }}</td>
                     <td>{{ bug.description|slice(0, 50) ~ '...'}}</td>
                     <td>{{ bug.category.title }}</td>

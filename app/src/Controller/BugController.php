@@ -7,6 +7,7 @@
 namespace App\Controller;
 
 use App\Entity\Bug;
+use App\Entity\User;
 use App\Form\Type\BugType;
 use App\Service\BugServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +26,6 @@ class BugController extends AbstractController
 {
     /**
      * Constructor.
-     *
      */
     public function __construct(private readonly BugServiceInterface $bugService, private readonly TranslatorInterface $translator)
     {
@@ -84,7 +84,10 @@ class BugController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $bug = new Bug();
+        $bug->setAuthor($user);
         $form = $this->createForm(BugType::class, $bug);
         $form->handleRequest($request);
 
@@ -109,7 +112,7 @@ class BugController extends AbstractController
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Bug    $bug    Bug entity
+     * @param Bug     $bug     Bug entity
      *
      * @return Response HTTP response
      */
