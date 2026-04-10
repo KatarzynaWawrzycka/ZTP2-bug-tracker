@@ -6,24 +6,29 @@
 
 {% block body %}
     <h1>{{ 'title.bug_list'|trans }}</h1>
-    {% if bugs is defined and bugs|length %}
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ 'label.id'|trans }}</th>
-                <th>{{ 'label.created_at'|trans }}</th>
-                <th>{{ 'label.updated_at'|trans }}</th>
-                <th>{{ 'label.title'|trans }}</th>
-                <th>{{ 'label.description'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'bug.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'bug.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'bug.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'bug.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'bug.description') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for bug in bugs %}
+            {% for bug in pagination.items %}
                 <tr>
                     <td>{{ bug.id }}</td>
-                    <td>{{ bug.createdAt|date('Y/m/d') }}</td>
-                    <td>{{ bug.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ bug.createdAt|format_date('long') }}</td>
+                    <td>{{ bug.updatedAt|format_date('long') }}</td>
                     <td>{{ bug.title }}</td>
                     <td>{{ bug.description }}</td>
                     <td>
@@ -35,6 +40,11 @@
             {% endfor %}
             </tbody>
         </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
     {% else %}
         <p>
             {{ 'message.empty_list'|trans }}

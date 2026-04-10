@@ -17,7 +17,7 @@ class BugFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        for ($i = 0; $i < 10; ++$i) {
+        for ($i = 0; $i < 100; ++$i) {
             $bug = new Bug();
             $bug->setTitle($this->faker->sentence);
             $text = implode(' ', $this->faker->sentences(mt_rand(3, 5)));
