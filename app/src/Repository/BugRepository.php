@@ -40,6 +40,22 @@ class BugRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-        return $this->createQueryBuilder('bug');
+        return $this->createQueryBuilder('bug')
+            ->select('bug', 'category')
+            ->join('bug.category', 'category');
     }
+
+    // ODKOMENTUJ JAK DODASZ TAGI
+    //    /**
+    //     * Query all records.
+    //     *
+    //     * @return QueryBuilder Query builder
+    //     */
+    //    public function queryAll(): QueryBuilder
+    //    {
+    //        return $this->createQueryBuilder('task')
+    //            ->select('task', 'category', 'tags')
+    //            ->join('task.category', 'category')
+    //            ->leftJoin('task.tags', 'tags');
+    //    }
 }

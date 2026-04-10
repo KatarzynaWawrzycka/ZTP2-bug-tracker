@@ -7,11 +7,9 @@
 namespace App\Controller;
 
 use App\Entity\Bug;
-use App\Repository\BugRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\BugServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -22,10 +20,17 @@ use Symfony\Component\Routing\Attribute\Route;
 class BugController extends AbstractController
 {
     /**
+     * Constructor.
+     *
+     */
+    public function __construct(private readonly BugServiceInterface $bugService)
+    {
+    }
+
+    /**
      * Index action.
      *
-     * @param BugRepository      $bugRepository Bug repository
-     * @param PaginatorInterface $paginator     Paginator
+     * @param int $page Page number
      *
      * @return Response HTTP response
      */
@@ -33,18 +38,9 @@ class BugController extends AbstractController
         name: 'bug_index',
         methods: ['GET']
     )]
-    public function index(BugRepository $bugRepository, PaginatorInterface $paginator, #[MapQueryParameter] int $page = 1): Response
+    public function index(#[MapQueryParameter] int $page = 1): Response
     {
-        $pagination = $paginator->paginate(
-            $bugRepository->queryAll(),
-            $page,
-            BugRepository::PAGINATOR_ITEMS_PER_PAGE,
-            [
-                'sortFieldAllowList' => ['bug.id', 'bug.createdAt', 'bug.updatedAt', 'bug.title', 'bug.description'],
-                'defaultSortFieldName' => 'bug.updatedAt',
-                'defaultSortDirection' => 'desc',
-            ]
-        );
+        $pagination = $this->bugService->getPaginatedList($page);
 
         return $this->render('bug/index.html.twig', ['pagination' => $pagination]);
     }

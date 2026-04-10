@@ -74,8 +74,8 @@
                 <source>title.category_details</source>
                 <target>Category details</target>
             </trans-unit>
-            <trans-unit id="label.category">
-                <source>label.category</source>
+            <trans-unit id="label_category">
+                <source>label_category</source>
                 <target>Category</target>
             </trans-unit>
         </body>
