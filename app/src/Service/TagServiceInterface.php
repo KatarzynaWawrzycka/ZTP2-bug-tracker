@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Category service interface.
+ * Tag service interface.
  */
 
 namespace App\Service;
 
-use App\Entity\Category;
+use App\Entity\Tag;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
  * Interface TagServiceInterface.
  */
-interface CategoryServiceInterface
+interface TagServiceInterface
 {
     /**
      * Get paginated list.
@@ -26,24 +26,15 @@ interface CategoryServiceInterface
     /**
      * Save entity.
      *
-     * @param Category $category Category entity
+     * @param Tag $tag Tag entity
      */
-    public function save(Category $category): void;
+    public function save(Tag $tag): void;
 
     /**
      * Delete entity.
      *
-     * @param  Category $category
+     * @param  Tag $tag
      * @return void
      */
-    public function delete(Category $category): void;
-
-    /**
-     * Can Category be deleted?
-     *
-     * @param Category $category Category entity
-     *
-     * @return bool Result
-     */
-    public function canBeDeleted(Category $category): bool;
+    public function delete(Tag $tag): void;
 }
