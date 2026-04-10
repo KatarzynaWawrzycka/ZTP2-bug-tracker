@@ -6,6 +6,7 @@
 namespace App\Service;
 
 use App\Entity\Bug;
+use App\Entity\Category;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**

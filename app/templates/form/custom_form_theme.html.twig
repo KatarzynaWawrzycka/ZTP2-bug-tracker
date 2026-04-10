@@ -1,0 +1,15 @@
+{% block form_label %}
+    {% if label is not same as(false) %}
+        <label
+            {% if required %}class="required"{% endif %}
+            for="{{ id }}"
+            {% if required %}style="font-weight: bold;"{% endif %}
+        >
+            {{ label|trans }}
+
+            {% if required %}
+                <span style="color: red;">*</span>
+            {% endif %}
+        </label>
+    {% endif %}
+{% endblock %}
