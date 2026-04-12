@@ -7,9 +7,11 @@
 {% block body %}
     <h1>{{ 'title.category_list'|trans }}</h1>
 
-    <a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
-        {{ 'action.create'|trans }}
-    </a>
+    {% if is_granted('CATEGORY_CREATE') %}
+        <a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
+            {{ 'action.create'|trans }}
+        </a>
+    {% endif %}
 
     {% if pagination is defined and pagination.items|length %}
 
@@ -24,7 +26,9 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'category.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'category.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'category.title') }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
+                {% if is_granted('CATEGORY_CREATE') %}
+                    <th>{{ 'label.actions'|trans }}</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -35,15 +39,21 @@
                     <td>{{ category.updatedAt|format_date('long') }}</td>
                     <td>{{ category.title }}</td>
                     <td>
-                        <a href="{{ url('category_view', {id: category.id}) }}" title="{{ 'action.view'|trans }}">
-                            {{ 'action.view'|trans }}
-                        </a>
-                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'action.edit'|trans }}
-                        </a>
-                        <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'action.delete'|trans }}
-                        </a>
+                        {% if is_granted('CATEGORY_VIEW', category) %}
+                            <a href="{{ url('category_view', {id: category.id}) }}" title="{{ 'action.view'|trans }}">
+                                {{ 'action.view'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('CATEGORY_EDIT', category) %}
+                            <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
+                                {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('CATEGORY_DELETE', category) %}
+                            <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

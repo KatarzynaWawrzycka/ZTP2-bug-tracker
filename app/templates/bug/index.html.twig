@@ -43,11 +43,9 @@
                     <td>{{ bug.category.title }}</td>
                     <td>{{ bug.tags|length ? bug.tags|map(tag => tag.title)|join(', ') : '' }}</td>
                     <td>
-{#                        {% if is_granted('BUG_VIEW', bug) %}#}
-                            <a href="{{ url('bug_view', {id: bug.id}) }}" title="{{ 'action.view'|trans }}">
-                                {{ 'action.view'|trans }}
-                            </a>
-{#                        {% endif %}#}
+                        <a href="{{ url('bug_view', {id: bug.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
                         {% if is_granted('BUG_EDIT', bug) %}
                             <a href="{{ url('bug_edit', {id: bug.id}) }}" title="{{ 'action.edit'|trans }}">
                                 {{ 'action.edit'|trans }}

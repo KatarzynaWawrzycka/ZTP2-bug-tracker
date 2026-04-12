@@ -8,6 +8,7 @@ namespace App\Controller;
 
 use App\Form\Type\TagType;
 use App\Entity\Tag;
+use App\Security\Voter\TagVoter;
 use App\Service\TagServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -64,6 +66,7 @@ class TagController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET']
     )]
+    #[IsGranted(TagVoter::VIEW, subject: 'tag')]
     public function view(Tag $tag): Response
     {
         return $this->render(
@@ -121,6 +124,7 @@ class TagController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'PUT']
     )]
+    #[IsGranted(TagVoter::EDIT, subject: 'tag')]
     public function edit(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(
@@ -159,6 +163,7 @@ class TagController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'DELETE']
     )]
+    #[IsGranted(TagVoter::DELETE, subject: 'tag')]
     public function delete(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(FormType::class, $tag, [

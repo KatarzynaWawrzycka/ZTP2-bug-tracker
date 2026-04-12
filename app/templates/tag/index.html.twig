@@ -7,9 +7,11 @@
 {% block body %}
     <h1>{{ 'title.tag_list'|trans }}</h1>
 
-    <a href="{{ url('tag_create') }}" title="{{ 'action.create'|trans }}">
-        {{ 'action.create'|trans }}
-    </a>
+    {% if is_granted('TAG_CREATE') %}
+        <a href="{{ url('tag_create') }}" title="{{ 'action.create'|trans }}">
+            {{ 'action.create'|trans }}
+        </a>
+    {% endif %}
 
     {% if pagination is defined and pagination.items|length %}
 
@@ -24,7 +26,9 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'tag.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'tag.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'tag.title') }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
+                {% if is_granted('TAG_VIEW') %}
+                    <th>{{ 'label.actions'|trans }}</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -35,15 +39,21 @@
                     <td>{{ tag.updatedAt|format_date('long') }}</td>
                     <td>{{ tag.title }}</td>
                     <td>
-                        <a href="{{ url('tag_view', {id: tag.id}) }}" title="{{ 'action.view'|trans }}">
-                            {{ 'action.view'|trans }}
-                        </a>
-                        <a href="{{ url('tag_edit', {id: tag.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'action.edit'|trans }}
-                        </a>
-                        <a href="{{ url('tag_delete', {id: tag.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'action.delete'|trans }}
-                        </a>
+                        {% if is_granted('TAG_VIEW', tag) %}
+                            <a href="{{ url('tag_view', {id: tag.id}) }}" title="{{ 'action.view'|trans }}">
+                                {{ 'action.view'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('TAG_EDIT', tag) %}
+                            <a href="{{ url('tag_edit', {id: tag.id}) }}" title="{{ 'action.edit'|trans }}">
+                                {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('TAG_DELETE', tag) %}
+                            <a href="{{ url('tag_delete', {id: tag.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

@@ -8,6 +8,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
+use App\Security\Voter\CategoryVoter;
 use App\Service\CategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -64,6 +66,7 @@ class CategoryController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET']
     )]
+    #[IsGranted(CategoryVoter::VIEW, subject: 'category')]
     public function view(Category $category): Response
     {
         return $this->render(
@@ -84,6 +87,7 @@ class CategoryController extends AbstractController
         name: 'category_create',
         methods: ['GET', 'POST']
     )]
+    #[IsGranted(CategoryVoter::CREATE)]
     public function create(Request $request): Response
     {
         $category = new Category();
@@ -121,6 +125,7 @@ class CategoryController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'PUT']
     )]
+    #[IsGranted(CategoryVoter::EDIT, subject: 'category')]
     public function edit(Request $request, Category $category): Response
     {
         $form = $this->createForm(
@@ -167,6 +172,7 @@ class CategoryController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'DELETE']
     )]
+    #[IsGranted(CategoryVoter::DELETE, subject: 'category')]
     public function delete(Request $request, Category $category): Response
     {
         if (!$this->categoryService->canBeDeleted($category)) {

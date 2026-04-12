@@ -1,35 +1,44 @@
 <?php
 
 /**
- * Bug voter.
+ * Category voter.
  */
 
 namespace App\Security\Voter;
 
-use App\Entity\Bug;
+use App\Entity\Category;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Vote;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class BugVoter.
+ * Class CategoryVoter.
  */
-final class BugVoter extends Voter
+final class CategoryVoter extends Voter
 {
+    /**
+     * View permission.
+     *
+     * @var string
+     */
+    public const VIEW = 'CATEGORY_VIEW';
+
     /**
      * Delete permission.
      *
      * @var string
      */
-    public const DELETE = 'BUG_DELETE';
+    public const DELETE = 'CATEGORY_DELETE';
 
     /**
      * Edit permission.
      *
      * @var string
      */
-    public const EDIT = 'BUG_EDIT';
+    public const EDIT = 'CATEGORY_EDIT';
+
+    public const CREATE = 'CATEGORY_CREATE';
 
     /**
      * Determines if this voter supports the attribute and subject.
@@ -41,8 +50,8 @@ final class BugVoter extends Voter
      */
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return in_array($attribute, [self::DELETE, self::EDIT])
-            && $subject instanceof Bug;
+        return in_array($attribute, [self::DELETE, self::EDIT, self::VIEW, self::CREATE])
+            && ($attribute === self::CREATE || $subject instanceof Category);
     }
 
     /**
@@ -62,40 +71,7 @@ final class BugVoter extends Voter
         if (!$user instanceof UserInterface) {
             return false;
         }
-        if (!$subject instanceof Bug) {
-            return false;
-        }
 
-        return match ($attribute) {
-            self::EDIT => $this->canEdit($subject, $user),
-            self::DELETE => $this->canDelete($subject, $user),
-            default => false,
-        };
-    }
-
-    /**
-     * Checks if user can delete bug.
-     *
-     * @param Bug           $bug  Bug entity
-     * @param UserInterface $user User
-     *
-     * @return bool Result
-     */
-    private function canDelete(Bug $bug, UserInterface $user): bool
-    {
-        return $bug->getAuthor() === $user || in_array('ROLE_ADMIN', $user->getRoles(), true);
-    }
-
-    /**
-     * Checks if user can edit bug.
-     *
-     * @param Bug           $bug  Bug entity
-     * @param UserInterface $user User
-     *
-     * @return bool Result
-     */
-    private function canEdit(Bug $bug, UserInterface $user): bool
-    {
-        return $bug->getAuthor() === $user || in_array('ROLE_ADMIN', $user->getRoles(), true);
+        return in_array('ROLE_ADMIN', $user->getRoles(), true);
     }
 }
