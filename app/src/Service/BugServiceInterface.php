@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bug service interface.
  */
@@ -6,7 +7,7 @@
 namespace App\Service;
 
 use App\Entity\Bug;
-use App\Entity\Category;
+use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -21,7 +22,7 @@ interface BugServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page): PaginationInterface;
+    public function getPaginatedList(int $page, User $author): PaginationInterface;
 
     /**
      * Save entity.

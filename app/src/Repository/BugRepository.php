@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Bug;
 use App\Entity\Category;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -37,16 +38,22 @@ class BugRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return QueryBuilder Query builder
+     * @param User          $author  User entity
+     *
+     * @return QueryBuilder          Query builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(User $author): QueryBuilder
     {
         return $this->createQueryBuilder('bug')
             ->select(
                 'partial bug.{id, createdAt, updatedAt, title, description}',
-                'partial category.{id, title}'
+                'partial category.{id, title}',
+                'partial tags.{id, title}'
             )
-            ->join('bug.category', 'category');
+            ->join('bug.category', 'category')
+            ->leftJoin('bug.tags', 'tags')
+            ->andWhere('bug.author = :author')
+            ->setParameter('author', $author);
     }
 
     /**

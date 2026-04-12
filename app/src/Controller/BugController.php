@@ -44,7 +44,9 @@ class BugController extends AbstractController
     )]
     public function index(#[MapQueryParameter] int $page = 1): Response
     {
-        $pagination = $this->bugService->getPaginatedList($page);
+        /** @var User $author */
+        $author = $this->getUser();
+        $pagination = $this->bugService->getPaginatedList($page, $author);
 
         return $this->render('bug/index.html.twig', ['pagination' => $pagination]);
     }
@@ -64,6 +66,15 @@ class BugController extends AbstractController
     )]
     public function view(Bug $bug): Response
     {
+        if ($bug->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+
+            return $this->redirectToRoute('bug_index');
+        }
+
         return $this->render(
             'bug/view.html.twig',
             ['bug' => $bug]
@@ -145,6 +156,15 @@ class BugController extends AbstractController
             return $this->redirectToRoute('bug_index');
         }
 
+        if ($bug->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+
+            return $this->redirectToRoute('bug_index');
+        }
+
         return $this->render(
             'bug/edit.html.twig',
             [
@@ -182,6 +202,15 @@ class BugController extends AbstractController
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.deleted_successfully')
+            );
+
+            return $this->redirectToRoute('bug_index');
+        }
+
+        if ($bug->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
             );
 
             return $this->redirectToRoute('bug_index');
