@@ -7,10 +7,15 @@
 namespace App\Controller;
 
 use App\Entity\Bug;
+use App\Entity\Comment;
 use App\Entity\User;
 use App\Form\Type\BugType;
+use App\Form\Type\CommentType;
 use App\Security\Voter\BugVoter;
 use App\Service\BugServiceInterface;
+use App\Service\CommentService;
+use App\Service\CommentServiceInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +34,7 @@ class BugController extends AbstractController
     /**
      * Constructor.
      */
-    public function __construct(private readonly BugServiceInterface $bugService, private readonly TranslatorInterface $translator)
+    public function __construct(private readonly BugServiceInterface $bugService, private readonly TranslatorInterface $translator, private readonly CommentServiceInterface $commentService)
     {
     }
 
@@ -62,14 +67,50 @@ class BugController extends AbstractController
         '/{id}',
         name: 'bug_view',
         requirements: ['id' => '[1-9]\d*'],
-        methods: ['GET']
+        methods: ['GET', 'POST']
     )]
-    public function view(Bug $bug): Response
+    public function view(Bug $bug, Request $request): Response
     {
-        return $this->render(
-            'bug/view.html.twig',
-            ['bug' => $bug]
-        );
+        $comment = new Comment();
+        $securityUser = $this->getUser();
+
+        /** @var User|null $user */
+        $user = $securityUser instanceof User ? $securityUser : null;
+
+        if ($user) {
+            $comment->setAuthor($user);
+        }
+
+        $comment->setBug($bug);
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$user) {
+                throw $this->createAccessDeniedException('You must be logged in to comment.');
+            }
+
+            $comment->setAuthor($user);
+            $comment->setBug($bug);
+
+            $this->commentService->save($comment);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.created_successfully')
+            );
+
+            return $this->redirectToRoute('bug_view', [
+                'id' => $bug->getId(),
+            ]);
+        }
+
+        return $this->render('bug/view.html.twig', [
+            'bug' => $bug,
+            'form' => $form->createView(),
+            'comments' => $this->commentService->findByBug($bug),
+        ]);
     }
 
     /**

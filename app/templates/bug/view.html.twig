@@ -23,6 +23,39 @@
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  bug.category.title }}</dd>
         </dl>
+
+        <h2>{{ 'label.comments'|trans }}</h2>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">
+            {{ 'action.add_comment'|trans }}
+        </button>
+        {{ form_end(form) }}
+
+        {% if comments is defined and comments|length > 0 %}
+            <ul class="list-group mt-3">
+                {% for comment in comments %}
+                    <li class="list-group-item">
+                        <div>
+                            <strong>{{ comment.author.email }}</strong>
+                            <span class="text-muted">
+                        {{ comment.createdAt|format_date('short') }}
+                    </span>
+                        </div>
+
+                        <div class="mt-1">
+                            {{ comment.content }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">
+                {{ 'message.no_comments'|trans }}
+            </p>
+        {% endif %}
+
         <p>
             <a href="{{ url('bug_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
