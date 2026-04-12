@@ -9,6 +9,7 @@ namespace App\Controller;
 use App\Entity\Bug;
 use App\Entity\User;
 use App\Form\Type\BugType;
+use App\Security\Voter\BugVoter;
 use App\Service\BugServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -66,15 +68,6 @@ class BugController extends AbstractController
     )]
     public function view(Bug $bug): Response
     {
-        if ($bug->getAuthor() !== $this->getUser()) {
-            $this->addFlash(
-                'warning',
-                $this->translator->trans('message.record_not_found')
-            );
-
-            return $this->redirectToRoute('bug_index');
-        }
-
         return $this->render(
             'bug/view.html.twig',
             ['bug' => $bug]
@@ -133,6 +126,7 @@ class BugController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'PUT']
     )]
+    #[IsGranted(BugVoter::EDIT, subject: 'bug')]
     public function edit(Request $request, Bug $bug): Response
     {
         $form = $this->createForm(
@@ -151,15 +145,6 @@ class BugController extends AbstractController
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.edited_successfully')
-            );
-
-            return $this->redirectToRoute('bug_index');
-        }
-
-        if ($bug->getAuthor() !== $this->getUser()) {
-            $this->addFlash(
-                'warning',
-                $this->translator->trans('message.record_not_found')
             );
 
             return $this->redirectToRoute('bug_index');
@@ -188,6 +173,7 @@ class BugController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'DELETE']
     )]
+    #[IsGranted(BugVoter::DELETE, subject: 'bug')]
     public function delete(Request $request, Bug $bug): Response
     {
         $form = $this->createForm(FormType::class, $bug, [
@@ -202,15 +188,6 @@ class BugController extends AbstractController
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.deleted_successfully')
-            );
-
-            return $this->redirectToRoute('bug_index');
-        }
-
-        if ($bug->getAuthor() !== $this->getUser()) {
-            $this->addFlash(
-                'warning',
-                $this->translator->trans('message.record_not_found')
             );
 
             return $this->redirectToRoute('bug_index');

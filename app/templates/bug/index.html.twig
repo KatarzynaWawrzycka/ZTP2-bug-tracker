@@ -43,15 +43,21 @@
                     <td>{{ bug.category.title }}</td>
                     <td>{{ bug.tags|length ? bug.tags|map(tag => tag.title)|join(', ') : '' }}</td>
                     <td>
-                        <a href="{{ url('bug_view', {id: bug.id}) }}" title="{{ 'action.view'|trans }}">
-                            {{ 'action.view'|trans }}
-                        </a>
-                        <a href="{{ url('bug_edit', {id: bug.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'action.edit'|trans }}
-                        </a>
-                        <a href="{{ url('bug_delete', {id: bug.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'action.delete'|trans }}
-                        </a>
+{#                        {% if is_granted('BUG_VIEW', bug) %}#}
+                            <a href="{{ url('bug_view', {id: bug.id}) }}" title="{{ 'action.view'|trans }}">
+                                {{ 'action.view'|trans }}
+                            </a>
+{#                        {% endif %}#}
+                        {% if is_granted('BUG_EDIT', bug) %}
+                            <a href="{{ url('bug_edit', {id: bug.id}) }}" title="{{ 'action.edit'|trans }}">
+                                {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('BUG_DELETE', bug) %}
+                            <a href="{{ url('bug_delete', {id: bug.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
