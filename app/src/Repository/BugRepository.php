@@ -35,14 +35,19 @@ class BugRepository extends ServiceEntityRepository
         parent::__construct($registry, Bug::class);
     }
 
-    /**
-     * Query all records.
-     *
-     * @param User          $author  User entity
-     *
-     * @return QueryBuilder          Query builder
-     */
-    public function queryAll(User $author): QueryBuilder
+    public function queryAll(): QueryBuilder
+    {
+        return $this->createQueryBuilder('bug')
+            ->select(
+                'partial bug.{id, createdAt, updatedAt, title, description}',
+                'partial category.{id, title}',
+                'partial tags.{id, title}'
+            )
+            ->join('bug.category', 'category')
+            ->leftJoin('bug.tags', 'tags');
+    }
+
+    public function queryByAuthor(User $author): QueryBuilder
     {
         return $this->createQueryBuilder('bug')
             ->select(

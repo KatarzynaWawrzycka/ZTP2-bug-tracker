@@ -46,9 +46,7 @@ class BugController extends AbstractController
     )]
     public function index(#[MapQueryParameter] int $page = 1): Response
     {
-        /** @var User $author */
-        $author = $this->getUser();
-        $pagination = $this->bugService->getPaginatedList($page, $author);
+        $pagination = $this->bugService->getPaginatedList($page);
 
         return $this->render('bug/index.html.twig', ['pagination' => $pagination]);
     }

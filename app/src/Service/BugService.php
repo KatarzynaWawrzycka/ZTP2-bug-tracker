@@ -38,18 +38,14 @@ class BugService implements BugServiceInterface
     {
     }
 
-    /**
-     * Get paginated list.
-     *
-     * @param int  $page   Page number
-     * @param User $author Author
-     *
-     * @return PaginationInterface Paginated list
-     */
-    public function getPaginatedList(int $page, User $author): PaginationInterface
+    public function getPaginatedList(int $page, ?User $author = null): PaginationInterface
     {
+        $queryBuilder = $author
+            ? $this->bugRepository->queryByAuthor($author)
+            : $this->bugRepository->queryAll();
+
         return $this->paginator->paginate(
-            $this->bugRepository->queryAll($author),
+            $queryBuilder,
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE,
             [
