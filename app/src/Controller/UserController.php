@@ -134,7 +134,7 @@ class UserController extends AbstractController
 
                 $this->addFlash('success', 'Your account has been deleted.');
 
-                return $this->redirectToRoute('app_login'); // or homepage
+                return $this->redirectToRoute('app_login');
             } catch (\LogicException $e) {
                 $this->addFlash('warning', $e->getMessage());
 

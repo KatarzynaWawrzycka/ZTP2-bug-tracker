@@ -39,7 +39,7 @@ class BugRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('bug')
             ->select(
-                'partial bug.{id, createdAt, updatedAt, title, description}',
+                'partial bug.{id, createdAt, updatedAt, title, description, status}',
                 'partial category.{id, title}',
                 'partial tags.{id, title}'
             )
@@ -51,7 +51,7 @@ class BugRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('bug')
             ->select(
-                'partial bug.{id, createdAt, updatedAt, title, description}',
+                'partial bug.{id, createdAt, updatedAt, title, description, status}',
                 'partial category.{id, title}',
                 'partial tags.{id, title}'
             )

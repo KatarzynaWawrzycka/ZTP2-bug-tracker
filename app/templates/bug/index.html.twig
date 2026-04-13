@@ -28,6 +28,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'bug.description') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.title') }}</th>
                 <th>{{ 'label.tags'|trans }}</th>
+                <th>{{ 'label.status'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -42,6 +43,15 @@
                     <td>{{ bug.description|slice(0, 50) ~ '...'}}</td>
                     <td>{{ bug.category.title }}</td>
                     <td>{{ bug.tags|length ? bug.tags|map(tag => tag.title)|join(', ') : '' }}</td>
+                    <td>
+                        {% set status = bug.statusEnum %}
+
+                        {% if status %}
+                            {{ status.label|trans }}
+                        {% else %}
+                            <span class="text-muted">unknown</span>
+                        {% endif %}
+                    </td>
                     <td>
                         <a href="{{ url('bug_view', {id: bug.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}

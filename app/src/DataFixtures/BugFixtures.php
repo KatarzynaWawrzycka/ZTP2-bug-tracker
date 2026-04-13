@@ -13,6 +13,7 @@ use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
+use App\Entity\Enum\BugStatus;
 
 /**
  * Class BugFixtures.
@@ -65,6 +66,14 @@ class BugFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             /** @var User $author */
             $author = $this->getRandomReference('user', User::class);
             $bug->setAuthor($author);
+
+            $bug->setStatus(
+                $this->faker->randomElement([
+                    BugStatus::OPEN->value,
+                    BugStatus::CLOSED->value,
+                    BugStatus::ARCHIVED->value,
+                ])
+            );
 
             return $bug;
         });

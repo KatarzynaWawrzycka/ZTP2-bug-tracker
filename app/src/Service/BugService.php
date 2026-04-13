@@ -49,7 +49,7 @@ class BugService implements BugServiceInterface
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE,
             [
-                'sortFieldAllowList' => ['bug.id', 'bug.createdAt', 'bug.updatedAt', 'bug.title', 'bug.description', 'category.title'],
+                'sortFieldAllowList' => ['bug.id', 'bug.createdAt', 'bug.updatedAt', 'bug.title', 'bug.description', 'category.title', 'bug.status'],
                 'defaultSortFieldName' => 'bug.updatedAt',
                 'defaultSortDirection' => 'desc',
             ]

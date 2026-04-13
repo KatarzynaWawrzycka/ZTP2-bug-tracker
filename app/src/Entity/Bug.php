@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Enum\BugStatus;
 
 #[ORM\Entity(repositoryClass: BugRepository::class)]
 #[ORM\Table(name: 'bugs')]
@@ -90,6 +91,9 @@ class Bug
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
+
+    #[ORM\Column(type: 'integer', nullable: false)]
+    private int $status = BugStatus::OPEN->value;
 
     public function __construct()
     {
@@ -207,5 +211,29 @@ class Bug
         $this->author = $author;
 
         return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?int $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getStatusEnum(): ?BugStatus
+    {
+        return $this->status !== null
+            ? BugStatus::from($this->status)
+            : null;
+    }
+
+    public function setStatusEnum(BugStatus $status): void
+    {
+        $this->status = $status->value;
     }
 }
