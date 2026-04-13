@@ -31,7 +31,7 @@ class CommentRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('comment')
             ->andWhere('comment.bug = :bug')
             ->setParameter('bug', $bug)
-            ->orderBy('comment.createdAt', 'DESC')
+            ->orderBy('comment.updatedAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -44,6 +44,17 @@ class CommentRepository extends ServiceEntityRepository
     public function save(Comment $comment): void
     {
         $this->getEntityManager()->persist($comment);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Comment $comment Comment entity
+     */
+    public function delete(Comment $comment): void
+    {
+        $this->getEntityManager()->remove($comment);
         $this->getEntityManager()->flush();
     }
 }

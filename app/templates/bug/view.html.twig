@@ -40,13 +40,23 @@
                         <div>
                             <strong>{{ comment.author.email }}</strong>
                             <span class="text-muted">
-                        {{ comment.createdAt|format_date('short') }}
-                    </span>
+                                {{ comment.updatedAt|format_date('short') }}
+                            </span>
                         </div>
 
                         <div class="mt-1">
                             {{ comment.content }}
                         </div>
+                        {% if is_granted('COMMENT_EDIT', comment) %}
+                            <a href="{{ path('comment_edit', { bugId: bug.id, id: comment.id }) }}" title="{{ 'action.edit'|trans }}">
+                                {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('COMMENT_DELETE', comment) %}
+                            <a href="{{ url('comment_delete', {bugId: bug.id, id: comment.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>

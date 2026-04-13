@@ -41,4 +41,14 @@ class CommentService implements CommentServiceInterface
     {
         $this->commentRepository->save($comment);
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Comment $comment Comment entity
+     */
+    public function delete(Comment $comment): void
+    {
+        $this->commentRepository->delete($comment);
+    }
 }
