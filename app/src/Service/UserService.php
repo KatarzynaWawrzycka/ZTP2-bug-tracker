@@ -6,12 +6,14 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class UserService implements UserServiceInterface
 {
     private const PER_PAGE = 10;
 
-    public function __construct(private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator)
+    public function __construct(private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator, private readonly UserPasswordHasherInterface $passwordHasher)
     {
     }
 
@@ -64,5 +66,21 @@ class UserService implements UserServiceInterface
         }
 
         $this->userRepository->delete($user);
+    }
+
+    public function changePassword(User $user, string $plainPassword): void
+    {
+        $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
+
+        $user->setPassword($hashedPassword);
+
+        $this->userRepository->save($user);
+    }
+
+    public function changeEmail(User $user, string $email): void
+    {
+        $user->setEmail($email);
+
+        $this->userRepository->save($user);
     }
 }

@@ -33,4 +33,15 @@ interface UserServiceInterface
      * Delete user safely (with admin rules).
      */
     public function delete(User $user): void;
+
+    /**
+     * Change password.
+     *
+     * @param User   $user
+     * @param string $plainPassword
+     * @return void
+     */
+    public function changePassword(User $user, string $plainPassword): void;
+
+    public function changeEmail(User $user, string $email): void;
 }
