@@ -8,14 +8,13 @@ namespace App\Controller;
 
 use App\Entity\Bug;
 use App\Entity\Comment;
+use App\Entity\Enum\BugStatus;
 use App\Entity\User;
 use App\Form\Type\BugType;
 use App\Form\Type\CommentType;
 use App\Security\Voter\BugVoter;
 use App\Service\BugServiceInterface;
-use App\Service\CommentService;
 use App\Service\CommentServiceInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,6 +88,10 @@ class BugController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$user) {
                 throw $this->createAccessDeniedException('You must be logged in to comment.');
+            }
+
+            if ($bug->getStatusEnum() !== BugStatus::OPEN) {
+                throw $this->createAccessDeniedException('You can only comment on open bugs.');
             }
 
             $comment->setAuthor($user);
@@ -239,5 +242,20 @@ class BugController extends AbstractController
                 'bug' => $bug,
             ]
         );
+    }
+
+    #[Route(
+        '/{id}/status/{status}',
+        name: 'bug_change_status',
+        methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function changeStatus(Bug $bug, string $status): Response
+    {
+        $this->bugService->changeStatus(
+            $bug,
+            BugStatus::from((int) $status)
+        );
+
+        return $this->redirectToRoute('bug_view', ['id' => $bug->getId()]);
     }
 }

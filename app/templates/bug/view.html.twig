@@ -22,16 +22,62 @@
             <dd>{{  bug.description }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  bug.category.title }}</dd>
+            <dt>{{ 'label.status'|trans }}</dt>
+            <dd>{{  bug.statusEnum.name }}</dd>
         </dl>
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+            <h3>Status actions</h3>
+
+            {% if bug.statusEnum.name == 'OPEN' %}
+
+                <form method="post" action="{{ path('bug_change_status', {id: bug.id, status: 1}) }}">
+                    <button type="submit" class="btn btn-warning">
+                        Close bug
+                    </button>
+                </form>
+
+            {% elseif bug.statusEnum.name == 'CLOSED' %}
+
+                <form method="post" action="{{ path('bug_change_status', {id: bug.id, status: 0}) }}">
+                    <button type="submit" class="btn btn-success">
+                        Reopen bug
+                    </button>
+                </form>
+
+                <form method="post" action="{{ path('bug_change_status', {id: bug.id, status: 2}) }}">
+                    <button type="submit" class="btn btn-danger">
+                        Archive bug
+                    </button>
+                </form>
+
+            {% elseif bug.statusEnum.name == 'ARCHIVED' %}
+
+                <form method="post" action="{{ path('bug_change_status', {id: bug.id, status: 0}) }}">
+                    <button type="submit" class="btn btn-success">
+                        Reopen bug
+                    </button>
+                </form>
+
+            {% endif %}
+
+        {% endif %}
 
         <h2>{{ 'label.comments'|trans }}</h2>
 
+    {% if bug.statusEnum.name == 'OPEN' %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <button type="submit" class="btn btn-primary">
             {{ 'action.add_comment'|trans }}
         </button>
         {{ form_end(form) }}
+    {% else %}
+        <div class="alert alert-warning">
+            Comments are disabled because this bug is {{ bug.statusEnum.name|lower }}.
+        </div>
+    {% endif %}
 
         {% if comments is defined and comments|length > 0 %}
             <ul class="list-group mt-3">

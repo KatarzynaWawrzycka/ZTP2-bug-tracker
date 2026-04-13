@@ -7,6 +7,7 @@
 namespace App\Service;
 
 use App\Entity\Bug;
+use App\Entity\Enum\BugStatus;
 use App\Entity\User;
 use App\Repository\BugRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -54,6 +55,38 @@ class BugService implements BugServiceInterface
                 'defaultSortDirection' => 'desc',
             ]
         );
+    }
+
+    public function changeStatus(Bug $bug, BugStatus $targetStatus): void
+    {
+        $current = $bug->getStatusEnum();
+
+        if ($current === $targetStatus) {
+            return;
+        }
+
+        $allowedTransitions = match ($current) {
+            BugStatus::OPEN => [
+                BugStatus::CLOSED,
+            ],
+
+            BugStatus::CLOSED => [
+                BugStatus::OPEN,
+                BugStatus::ARCHIVED,
+            ],
+
+            BugStatus::ARCHIVED => [
+                BugStatus::OPEN,
+            ],
+        };
+
+        if (!in_array($targetStatus, $allowedTransitions, true)) {
+            throw new \LogicException(sprintf('Invalid status transition from %s to %s', $current?->name, $targetStatus->name));
+        }
+
+        $bug->setStatusEnum($targetStatus);
+
+        $this->bugRepository->save($bug);
     }
 
     /**

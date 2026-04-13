@@ -8,6 +8,7 @@ namespace App\Service;
 
 use App\Entity\Bug;
 use App\Entity\User;
+use App\Entity\Enum\BugStatus;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -23,6 +24,8 @@ interface BugServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page, ?User $author = null): PaginationInterface;
+
+    public function changeStatus(Bug $bug, BugStatus $targetStatus): void;
 
     /**
      * Save entity.

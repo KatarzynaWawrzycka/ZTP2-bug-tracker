@@ -7,6 +7,7 @@
 namespace App\Security\Voter;
 
 use App\Entity\Comment;
+use App\Entity\Enum\BugStatus;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Vote;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -83,7 +84,12 @@ final class CommentVoter extends Voter
      */
     private function canDelete(Comment $comment, UserInterface $user): bool
     {
-        return $comment->getAuthor() === $user || in_array('ROLE_ADMIN', $user->getRoles(), true);
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+            return true;
+        }
+
+        return $comment->getAuthor() === $user
+            && $comment->getBug()->getStatusEnum() === BugStatus::OPEN;
     }
 
     /**
@@ -96,6 +102,11 @@ final class CommentVoter extends Voter
      */
     private function canEdit(Comment $comment, UserInterface $user): bool
     {
-        return $comment->getAuthor() === $user || in_array('ROLE_ADMIN', $user->getRoles(), true);
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+            return true;
+        }
+
+        return $comment->getAuthor() === $user
+            && $comment->getBug()->getStatusEnum() === \App\Entity\Enum\BugStatus::OPEN;
     }
 }
