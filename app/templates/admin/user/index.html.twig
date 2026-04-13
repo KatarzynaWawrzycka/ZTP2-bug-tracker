@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.user_list'|trans }}</h1>
+
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'user.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'user.email') }}</th>
+                <th>{{ 'label.roles'|trans }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for user in pagination.items %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+
+                    <td>
+                        <a href="{{ url('admin_user_view', {id: user.id}) }}"
+                           title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
+
+                        {% if 'ROLE_ADMIN' in user.roles %}
+                            <form method="post"
+                                  action="{{ url('admin_user_toggle_role', {id: user.id}) }}"
+                                  style="display:inline;">
+                                <button class="btn btn-sm btn-warning"
+                                        type="submit">
+                                    {{ 'action.remove_admin'|trans }}
+                                </button>
+                            </form>
+                        {% else %}
+                            <form method="post"
+                                  action="{{ url('admin_user_toggle_role', {id: user.id}) }}"
+                                  style="display:inline;">
+                                <button class="btn btn-sm btn-success"
+                                        type="submit">
+                                    {{ 'action.make_admin'|trans }}
+                                </button>
+                            </form>
+                        {% endif %}
+
+                        <a href="{{ url('admin_user_delete', {id: user.id}) }}"
+                           title="{{ 'action.delete'|trans }}"
+                           class="btn btn-sm btn-danger">
+                            {{ 'action.delete'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {% include 'default/_single_alert_message.html.twig' with {
+                type: 'warning',
+                message: 'message.empty_list'|trans
+            } %}
+        </p>
+    {% endif %}
+    <a href="{{ url('admin_index') }}"
+       class="btn btn-secondary">
+        {{ 'action.back_to_list'|trans }}
+    </a>
+{% endblock %}

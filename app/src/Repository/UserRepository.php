@@ -2,8 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\Bug;
+use App\Entity\Comment;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -33,28 +37,109 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
-    //    /**
-    //     * @return User[] Returns an array of User objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('u.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function countAdmins(): int
+    {
+        return (int) $this->createQueryBuilder('user')
+            ->select('COUNT(user.id)')
+            ->where('user.roles LIKE :role')
+            ->setParameter('role', '%ROLE_ADMIN%')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
-    //    public function findOneBySomeField($value): ?User
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function queryAll(): QueryBuilder
+    {
+        return $this->createQueryBuilder('user')
+            ->orderBy('user.id', 'ASC');
+    }
+
+    public function findWithStats(int $id): array
+    {
+        $user = $this->createQueryBuilder('user')
+            ->where('user.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if (!$user) {
+            return [];
+        }
+
+        $bugCount = $this->getEntityManager()->createQueryBuilder()
+            ->select('COUNT(bug.id)')
+            ->from(Bug::class, 'bug')
+            ->where('bug.author = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $commentCount = $this->getEntityManager()->createQueryBuilder()
+            ->select('COUNT(comment.id)')
+            ->from(Comment::class, 'comment')
+            ->where('comment.author = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return [
+            'user' => $user,
+            'bugCount' => (int) $bugCount,
+            'commentCount' => (int) $commentCount,
+        ];
+    }
+
+    public function findAdmins(): array
+    {
+        return $this->createQueryBuilder('user')
+            ->where('user.roles LIKE :role')
+            ->setParameter('role', '%ROLE_ADMIN%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param User $user User entity
+     */
+    public function save(User $user): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->persist($user);
+        $em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param User $user User entity
+     */
+    public function delete(User $user): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->createQuery(
+            'DELETE FROM App\Entity\Comment c WHERE c.author = :user'
+        )
+            ->setParameter('user', $user)
+            ->execute();
+
+        $em->createQuery(
+            'DELETE FROM App\Entity\Comment c WHERE c.bug IN (
+            SELECT b FROM App\Entity\Bug b WHERE b.author = :user
+        )'
+        )
+            ->setParameter('user', $user)
+            ->execute();
+
+        $em->createQuery(
+            'DELETE FROM App\Entity\Bug b WHERE b.author = :user'
+        )
+            ->setParameter('user', $user)
+            ->execute();
+
+        $em->remove($user);
+        $em->flush();
+    }
 }

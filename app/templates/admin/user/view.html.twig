@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_details'|trans({'%id%': user.id}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.user_details'|trans({'%id%': user.id}) }}</h1>
+
+    <h2>{{ 'title.user_info'|trans }}</h2>
+
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>{{ 'label.id'|trans }}</th>
+            <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'label.email'|trans }}</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'label.roles'|trans }}</th>
+            <td>{{ user.roles|join(', ') }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>{{ 'title.user_stats'|trans }}</h2>
+
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>{{ 'label.bugs_count'|trans }}</th>
+            <td>{{ bugCount }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'label.comments_count'|trans }}</th>
+            <td>{{ commentCount }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>{{ 'title.user_actions'|trans }}</h2>
+
+    <div>
+
+        <a href="{{ url('admin_user_index') }}"
+           class="btn btn-secondary">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+
+        <form method="post"
+              action="{{ url('admin_user_toggle_role', {id: user.id}) }}"
+              style="display:inline;">
+            {% if 'ROLE_ADMIN' in user.roles %}
+                <button class="btn btn-warning" type="submit">
+                    {{ 'action.remove_admin'|trans }}
+                </button>
+            {% else %}
+                <button class="btn btn-success" type="submit">
+                    {{ 'action.make_admin'|trans }}
+                </button>
+            {% endif %}
+        </form>
+
+        <a href="{{ url('admin_user_delete', {id: user.id}) }}"
+           class="btn btn-danger">
+            {{ 'action.delete'|trans }}
+        </a>
+
+    </div>
+
+{% endblock %}

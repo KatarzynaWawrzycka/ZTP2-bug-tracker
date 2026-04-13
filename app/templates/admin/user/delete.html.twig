@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_delete'|trans({'%id%': user.id}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.user_delete'|trans({'%id%': user.id}) }}</h1>
+
+    {% include 'default/_single_alert_message.html.twig' with {
+        type: 'warning',
+        message: 'message.user_delete_warning'|trans
+    } %}
+
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>{{ 'label.id'|trans }}</th>
+            <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'label.email'|trans }}</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'label.roles'|trans }}</th>
+            <td>{{ user.roles|join(', ') }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    {% if canDelete is defined and canDelete == false %}
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'danger',
+            message: 'message.user_cannot_be_deleted'|trans
+        } %}
+    {% else %}
+
+        {{ form_start(form) }}
+
+        <div class="form-group row float-sm-right">
+            <input type="submit"
+                   value="{{ 'action.delete'|trans }}"
+                   class="btn btn-danger"/>
+        </div>
+
+        <div class="form-group row float-sm-left">
+            <a href="{{ url('admin_user_view', {id: user.id}) }}"
+               class="btn btn-link">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </div>
+
+        {{ form_end(form) }}
+
+    {% endif %}
+
+{% endblock %}
