@@ -22,6 +22,8 @@
             <dd>{{  bug.description }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  bug.category.title }}</dd>
+            <dt>{{ 'label.assigned_to'|trans }}</dt>
+            <dd>{{ bug.assignedTo ? bug.assignedTo.email : 'Unassigned'|trans }}</dd>
             <dt>{{ 'label.status'|trans }}</dt>
             <dd>{{  bug.statusEnum.name }}</dd>
         </dl>

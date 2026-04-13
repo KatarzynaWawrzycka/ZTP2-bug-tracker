@@ -6,14 +6,14 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
 use App\Entity\Bug;
+use App\Entity\Category;
+use App\Entity\Enum\BugStatus;
 use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
-use App\Entity\Enum\BugStatus;
 
 /**
  * Class BugFixtures.
@@ -74,6 +74,12 @@ class BugFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
                     BugStatus::ARCHIVED->value,
                 ])
             );
+
+            if ($this->faker->boolean(60)) {
+                /** @var User $admin */
+                $admin = $this->getRandomReference('admin', User::class);
+                $bug->setAssignedTo($admin);
+            }
 
             return $bug;
         });

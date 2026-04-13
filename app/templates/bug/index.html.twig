@@ -29,6 +29,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.title') }}</th>
                 <th>{{ 'label.tags'|trans }}</th>
                 <th>{{ 'label.status'|trans }}</th>
+                <th>{{ 'label.assigned_to'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -49,9 +50,10 @@
                         {% if status %}
                             {{ status.label|trans }}
                         {% else %}
-                            <span class="text-muted">unknown</span>
+                            <span class="text-muted">{{ status.unknown|trans }}</span>
                         {% endif %}
                     </td>
+                    <td>{{ bug.assignedTo ? bug.assignedTo.email : 'Unassigned'|trans }}</td>
                     <td>
                         <a href="{{ url('bug_view', {id: bug.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}

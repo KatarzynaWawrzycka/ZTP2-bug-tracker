@@ -95,6 +95,11 @@ class Bug
     #[ORM\Column(type: 'integer', nullable: false)]
     private int $status = BugStatus::OPEN->value;
 
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: true)]
+    #[Assert\Type(User::class)]
+    private ?User $assignedTo = null;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -235,5 +240,17 @@ class Bug
     public function setStatusEnum(BugStatus $status): void
     {
         $this->status = $status->value;
+    }
+
+    public function getAssignedTo(): ?User
+    {
+        return $this->assignedTo;
+    }
+
+    public function setAssignedTo(?User $assignedTo): static
+    {
+        $this->assignedTo = $assignedTo;
+
+        return $this;
     }
 }
