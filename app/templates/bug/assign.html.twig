@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.assign_bug'|trans({'%id%': bug.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>
+        {{ 'title.assign_bug'|trans({'%id%': bug.id|default('')}) }}
+    </h1>
+
+    <dl class="dl-horizontal">
+        <dt>{{ 'label.title'|trans }}</dt>
+        <dd>{{ bug.title }}</dd>
+
+        <dt>{{ 'label.description'|trans }}</dt>
+        <dd>{{ bug.description }}</dd>
+
+        <dt>{{ 'label.category'|trans }}</dt>
+        <dd>{{ bug.category.title }}</dd>
+
+        <dt>{{ 'label.author'|trans }}</dt>
+        <dd>{{ bug.author.email }}</dd>
+
+        <dt>{{ 'label.assigned_to'|trans }}</dt>
+        <dd>
+            {{ bug.assignedTo ? bug.assignedTo.email : 'Unassigned' }}
+        </dd>
+
+    </dl>
+
+    <hr>
+
+    <h2>{{ 'title.assign_bug'|trans }}</h2>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <button class="btn btn-primary">
+        {{ 'action.assign_bug'|trans }}
+    </button>
+    {{ form_end(form) }}
+
+    <p class="mt-3">
+        <a href="{{ path('bug_view', {id: bug.id}) }}">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </p>
+
+{% endblock %}

@@ -27,6 +27,8 @@ interface BugServiceInterface
 
     public function changeStatus(Bug $bug, BugStatus $targetStatus): void;
 
+    public function assign(Bug $bug, ?User $user): void;
+
     /**
      * Save entity.
      *

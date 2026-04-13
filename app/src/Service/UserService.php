@@ -83,4 +83,9 @@ class UserService implements UserServiceInterface
 
         $this->userRepository->save($user);
     }
+
+    public function findAdmins(): array
+    {
+        return $this->userRepository->findAdmins();
+    }
 }

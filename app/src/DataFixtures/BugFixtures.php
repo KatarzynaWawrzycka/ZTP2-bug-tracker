@@ -75,11 +75,9 @@ class BugFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
                 ])
             );
 
-            if ($this->faker->boolean(60)) {
-                /** @var User $admin */
-                $admin = $this->getRandomReference('admin', User::class);
-                $bug->setAssignedTo($admin);
-            }
+            /** @var User $assignedTo */
+            $admin = $this->getRandomReference('admin', User::class);
+            $bug->setAssignedTo($admin);
 
             return $bug;
         });

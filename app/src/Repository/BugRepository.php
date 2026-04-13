@@ -79,6 +79,15 @@ class BugRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function findAdmins(): array
+    {
+        return $this->createQueryBuilder('user')
+            ->where('user.roles LIKE :role')
+            ->setParameter('role', '%ROLE_ADMIN%')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * Save entity.
      *

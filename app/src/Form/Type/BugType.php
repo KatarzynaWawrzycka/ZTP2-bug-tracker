@@ -68,7 +68,7 @@ class BugType extends AbstractType
             TextType::class,
             [
                 'label' => 'label.description',
-                'required' => false,
+                'required' => true,
                 'attr' => ['max_length' => 255],
             ]
         );

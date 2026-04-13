@@ -10,11 +10,13 @@ use App\Entity\Bug;
 use App\Entity\Comment;
 use App\Entity\Enum\BugStatus;
 use App\Entity\User;
+use App\Form\Type\BugAssignType;
 use App\Form\Type\BugType;
 use App\Form\Type\CommentType;
 use App\Security\Voter\BugVoter;
 use App\Service\BugServiceInterface;
 use App\Service\CommentServiceInterface;
+use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +35,7 @@ class BugController extends AbstractController
     /**
      * Constructor.
      */
-    public function __construct(private readonly BugServiceInterface $bugService, private readonly TranslatorInterface $translator, private readonly CommentServiceInterface $commentService)
+    public function __construct(private readonly BugServiceInterface $bugService, private readonly TranslatorInterface $translator, private readonly CommentServiceInterface $commentService, private readonly UserServiceInterface $userService)
     {
     }
 
@@ -247,7 +249,8 @@ class BugController extends AbstractController
     #[Route(
         '/{id}/status/{status}',
         name: 'bug_change_status',
-        methods: ['POST'])]
+        methods: ['POST']
+    )]
     #[IsGranted('ROLE_ADMIN')]
     public function changeStatus(Bug $bug, string $status): Response
     {
@@ -257,5 +260,49 @@ class BugController extends AbstractController
         );
 
         return $this->redirectToRoute('bug_view', ['id' => $bug->getId()]);
+    }
+
+    #[Route(
+        '/{id}/assign',
+        name: 'bug_assign',
+        methods: ['GET', 'POST']
+    )]
+    #[IsGranted('ROLE_ADMIN')]
+    public function assign(Bug $bug, Request $request): Response
+    {
+        if ($bug->getStatusEnum() !== BugStatus::OPEN) {
+            $this->addFlash(
+                'warning',
+                'You can only assign open bugs.'
+            );
+
+            return $this->redirectToRoute('bug_view', [
+                'id' => $bug->getId(),
+            ]);
+        }
+
+        $admins = $this->userService->findAdmins();
+
+        $form = $this->createForm(BugAssignType::class, $bug, [
+            'admins' => $admins,
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->bugService->assign(
+                $bug,
+                $form->get('assignedTo')->getData()
+            );
+
+            return $this->redirectToRoute('bug_view', [
+                'id' => $bug->getId(),
+            ]);
+        }
+
+        return $this->render('bug/assign.html.twig', [
+            'form' => $form->createView(),
+            'bug' => $bug,
+        ]);
     }
 }

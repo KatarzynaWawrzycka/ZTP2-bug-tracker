@@ -89,6 +89,12 @@ class BugService implements BugServiceInterface
         $this->bugRepository->save($bug);
     }
 
+    public function assign(Bug $bug, ?User $user): void
+    {
+        $bug->setAssignedTo($user);
+        $this->bugRepository->save($bug);
+    }
+
     /**
      * Save entity.
      *

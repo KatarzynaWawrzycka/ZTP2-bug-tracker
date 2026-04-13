@@ -23,7 +23,26 @@
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  bug.category.title }}</dd>
             <dt>{{ 'label.assigned_to'|trans }}</dt>
-            <dd>{{ bug.assignedTo ? bug.assignedTo.email : 'Unassigned'|trans }}</dd>
+            <dd>
+                {{ bug.assignedTo ? bug.assignedTo.email : ('bug_unassigned'|trans) }}
+            </dd>
+
+            {% if is_granted('ROLE_ADMIN') %}
+
+                {% if bug.statusEnum.name == 'OPEN' %}
+
+                    <a href="{{ path('bug_assign', {id: bug.id}) }}" class="btn btn-secondary">
+                        {% if bug.assignedTo %}
+                            {{ 'action.reassign_bug'|trans }}
+                        {% else %}
+                            {{ 'action.assign_bug'|trans }}
+                        {% endif %}
+                    </a>
+
+                {% endif %}
+
+            {% endif %}
+
             <dt>{{ 'label.status'|trans }}</dt>
             <dd>{{  bug.statusEnum.name }}</dd>
         </dl>

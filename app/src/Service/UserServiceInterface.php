@@ -44,4 +44,6 @@ interface UserServiceInterface
     public function changePassword(User $user, string $plainPassword): void;
 
     public function changeEmail(User $user, string $email): void;
+
+    public function findAdmins(): array;
 }
