@@ -7,6 +7,7 @@ use App\Form\Type\UserEmailType;
 use App\Form\Type\UserPasswordType;
 use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -104,6 +105,44 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/change_password.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route(
+        '/delete',
+        name: 'user_delete',
+        methods: ['GET', 'DELETE'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function delete(Request $request): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $form = $this->createForm(FormType::class, $user, [
+            'method' => 'DELETE',
+            'action' => $this->generateUrl('user_delete'),
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->userService->delete($user);
+
+                $request->getSession()->invalidate();
+
+                $this->addFlash('success', 'Your account has been deleted.');
+
+                return $this->redirectToRoute('app_login'); // or homepage
+            } catch (\LogicException $e) {
+                $this->addFlash('warning', $e->getMessage());
+
+                return $this->redirectToRoute('user_profile');
+            }
+        }
+
+        return $this->render('user/delete.html.twig', [
             'form' => $form->createView(),
         ]);
     }
