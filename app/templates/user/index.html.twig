@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_profile'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.user_profile'|trans }}</h1>
+
+    {% if user is defined %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ user.id }}</dd>
+
+            <dt>{{ 'label.email'|trans }}</dt>
+            <dd>{{ user.email }}</dd>
+
+            <dt>{{ 'label.role'|trans }}</dt>
+            <dd>{{ user.roles|join(', ') }}</dd>
+
+            <dt>{{ 'label.bugs_count'|trans }}</dt>
+            <dd>{{ bugCount }}</dd>
+
+            <dt>{{ 'label.comments_count'|trans }}</dt>
+            <dd>{{ commentCount }}</dd>
+        </dl>
+
+        <p>
+            <a href="{{ url('user_change_email') }}" class="btn btn-outline-primary">
+                {{ 'action.change_email'|trans }}
+            </a>
+
+            <a href="{{ url('user_change_password') }}" class="btn btn-outline-primary">
+                {{ 'action.change_password'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {% include 'default/_single_alert_message.html.twig' with {
+                type: 'warning',
+                message: 'message.record_not_found'|trans
+            } %}
+        </p>
+    {% endif %}
+{% endblock %}
