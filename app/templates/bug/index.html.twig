@@ -7,9 +7,11 @@
 {% block body %}
     <h1>{{ 'title.bug_list'|trans }}</h1>
 
-    <a href="{{ url('bug_create') }}" title="{{ 'action.create'|trans }}">
-        {{ 'action.create'|trans }}
-    </a>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ url('bug_create') }}">
+            {{ 'action.create'|trans }}
+        </a>
+    {% endif %}
 
     {% if pagination is defined and pagination.items|length %}
 

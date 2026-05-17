@@ -7,6 +7,7 @@
 namespace App\Security\Voter;
 
 use App\Entity\Bug;
+use App\Entity\Enum\BugStatus;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Vote;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -32,6 +33,13 @@ final class BugVoter extends Voter
     public const EDIT = 'BUG_EDIT';
 
     /**
+     * Comment permission.
+     *
+     * @var string
+     */
+    public const COMMENT = 'BUG_COMMENT';
+
+    /**
      * Determines if this voter supports the attribute and subject.
      *
      * @param string $attribute An attribute
@@ -41,7 +49,7 @@ final class BugVoter extends Voter
      */
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return in_array($attribute, [self::DELETE, self::EDIT])
+        return in_array($attribute, [self::DELETE, self::EDIT, self::COMMENT])
             && $subject instanceof Bug;
     }
 
@@ -69,6 +77,7 @@ final class BugVoter extends Voter
         return match ($attribute) {
             self::EDIT => $this->canEdit($subject, $user),
             self::DELETE => $this->canDelete($subject, $user),
+            self::COMMENT => $this->canComment($subject, $user),
             default => false,
         };
     }
@@ -97,5 +106,22 @@ final class BugVoter extends Voter
     private function canEdit(Bug $bug, UserInterface $user): bool
     {
         return $bug->getAuthor() === $user || in_array('ROLE_ADMIN', $user->getRoles(), true);
+    }
+
+    /**
+     * Checks if user can comment bug.
+     *
+     * @param Bug           $bug  Bug entity
+     * @param UserInterface $user User
+     *
+     * @return bool Result
+     */
+    private function canComment(Bug $bug, UserInterface $user): bool
+    {
+        if (!$user instanceof UserInterface) {
+            return false;
+        }
+
+        return BugStatus::OPEN === $bug->getStatusEnum();
     }
 }

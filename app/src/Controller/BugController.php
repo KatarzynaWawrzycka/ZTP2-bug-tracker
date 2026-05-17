@@ -95,13 +95,7 @@ class BugController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$user) {
-                throw $this->createAccessDeniedException('You must be logged in to comment.');
-            }
-
-            if (BugStatus::OPEN !== $bug->getStatusEnum()) {
-                throw $this->createAccessDeniedException('You can only comment on open bugs.');
-            }
+            $this->denyAccessUnlessGranted(BugVoter::COMMENT, $bug);
 
             $comment->setAuthor($user);
             $comment->setBug($bug);
