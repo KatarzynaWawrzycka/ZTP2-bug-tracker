@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User service.
+ */
+
 namespace App\Service;
 
 use App\Entity\User;
@@ -8,13 +12,16 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-
+/**
+ * Class UserService.
+ */
 class UserService implements UserServiceInterface
 {
     private const PER_PAGE = 10;
 
     public function __construct(private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator, private readonly UserPasswordHasherInterface $passwordHasher)
     {
+
     }
 
     public function getPaginatedList(int $page): PaginationInterface
@@ -22,8 +29,7 @@ class UserService implements UserServiceInterface
         return $this->paginator->paginate(
             $this->userRepository->queryAll(),
             $page,
-            self::PER_PAGE
-        );
+            self::PER_PAGE );
     }
 
     public function getUserDetails(int $id): ?User
@@ -50,6 +56,8 @@ class UserService implements UserServiceInterface
                 throw new \LogicException('You are the last admin.');
             }
 
+            $this->userRepository->unassignBugs($user);
+
             $roles = array_filter($roles, fn ($r) => 'ROLE_ADMIN' !== $r);
         } else {
             $roles[] = 'ROLE_ADMIN';
@@ -61,7 +69,8 @@ class UserService implements UserServiceInterface
 
     public function delete(User $user): void
     {
-        if (in_array('ROLE_ADMIN', $user->getRoles(), true) && $this->countAdmins() <= 1) {
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true) && $this->countAdmins() <= 1)
+        {
             throw new \LogicException('You are the last admin.');
         }
 
@@ -71,17 +80,13 @@ class UserService implements UserServiceInterface
     public function changePassword(User $user, string $plainPassword): void
     {
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
-
         $user->setPassword($hashedPassword);
-
         $this->userRepository->save($user);
     }
 
     public function changeEmail(User $user, string $email): void
     {
-        $user->setEmail($email);
-
-        $this->userRepository->save($user);
+        $user->setEmail($email); $this->userRepository->save($user);
     }
 
     public function findAdmins(): array
@@ -94,7 +99,6 @@ class UserService implements UserServiceInterface
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);
         $user->setRoles(['ROLE_USER']);
-
         $this->userRepository->save($user);
     }
 }

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User repository.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Bug;
@@ -12,9 +16,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
-/**
- * @extends ServiceEntityRepository<User>
- */
+/** * @extends ServiceEntityRepository<User> */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
@@ -22,15 +24,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         parent::__construct($registry, User::class);
     }
 
-    /**
-     * Used to upgrade (rehash) the user's password automatically over time.
-     */
+    /** * Used to upgrade (rehash) the user's password automatically over time. */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
         }
-
         $user->setPassword($newHashedPassword);
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
@@ -64,7 +63,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             return [];
         }
 
-        $bugCount = $this->getEntityManager()->createQueryBuilder()
+        $bugCount = $this->getEntityManager()
+            ->createQueryBuilder()
             ->select('COUNT(bug.id)')
             ->from(Bug::class, 'bug')
             ->where('bug.author = :user')
@@ -72,19 +72,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getSingleScalarResult();
 
-        $commentCount = $this->getEntityManager()->createQueryBuilder()
+        $commentCount = $this->getEntityManager()
+            ->createQueryBuilder()
             ->select('COUNT(comment.id)')
             ->from(Comment::class, 'comment')
             ->where('comment.author = :user')
-            ->setParameter('user', $user)
-            ->getQuery()
+            ->setParameter('user', $user)->getQuery()
             ->getSingleScalarResult();
 
-        return [
-            'user' => $user,
-            'bugCount' => (int) $bugCount,
-            'commentCount' => (int) $commentCount,
-        ];
+        return ['user' => $user, 'bugCount' => (int) $bugCount, 'commentCount' => (int) $commentCount];
     }
 
     public function findAdmins(): array
@@ -92,57 +88,45 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $this->createQueryBuilder('user')
             ->where('user.roles LIKE :role')
             ->setParameter('role', '%ROLE_ADMIN%')
-            ->getQuery()
-            ->getResult();
+            ->getQuery()->getResult();
     }
 
-    /**
-     * Save entity.
-     *
-     * @param User $user User entity
-     */
+    public function unassignBugs(User $user): void
+    {
+        $this->getEntityManager()->createQuery(
+            'UPDATE App\Entity\Bug bug
+            SET bug.assignedTo = NULL
+            WHERE bug.assignedTo = :user'
+        )
+            ->setParameter('user', $user)
+            ->execute();
+    }
+
+    /** * Save entity. * * @param User $user User entity */
     public function save(User $user): void
     {
         $em = $this->getEntityManager();
-
         $em->persist($user);
         $em->flush();
     }
 
-    /**
-     * Delete entity.
-     *
-     * @param User $user User entity
-     */
+    /** * Delete entity. * * @param User $user User entity */
     public function delete(User $user): void
     {
         $em = $this->getEntityManager();
-
-        $em->createQuery(
-            'UPDATE App\Entity\Bug b
-                 SET b.assignedTo = NULL
-                 WHERE b.assignedTo = :user'
-        )
+        $em->createQuery('UPDATE App\Entity\Bug b SET b.assignedTo = NULL WHERE b.assignedTo = :user')
             ->setParameter('user', $user)
             ->execute();
 
-        $em->createQuery(
-            'DELETE FROM App\Entity\Comment c WHERE c.author = :user'
-        )
+        $em->createQuery('DELETE FROM App\Entity\Comment c WHERE c.author = :user')
             ->setParameter('user', $user)
             ->execute();
 
-        $em->createQuery(
-            'DELETE FROM App\Entity\Comment c WHERE c.bug IN (
-            SELECT b FROM App\Entity\Bug b WHERE b.author = :user
-        )'
-        )
+        $em->createQuery('DELETE FROM App\Entity\Comment c WHERE c.bug IN ( SELECT b FROM App\Entity\Bug b WHERE b.author = :user )')
             ->setParameter('user', $user)
             ->execute();
 
-        $em->createQuery(
-            'DELETE FROM App\Entity\Bug b WHERE b.author = :user'
-        )
+        $em->createQuery('DELETE FROM App\Entity\Bug b WHERE b.author = :user')
             ->setParameter('user', $user)
             ->execute();
 
