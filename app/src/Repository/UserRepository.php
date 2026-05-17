@@ -6,7 +6,6 @@ use App\Entity\Bug;
 use App\Entity\Comment;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -118,6 +117,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function delete(User $user): void
     {
         $em = $this->getEntityManager();
+
+        $em->createQuery(
+            'UPDATE App\Entity\Bug b
+                 SET b.assignedTo = NULL
+                 WHERE b.assignedTo = :user'
+        )
+            ->setParameter('user', $user)
+            ->execute();
 
         $em->createQuery(
             'DELETE FROM App\Entity\Comment c WHERE c.author = :user'

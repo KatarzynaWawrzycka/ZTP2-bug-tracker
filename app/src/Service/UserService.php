@@ -88,4 +88,13 @@ class UserService implements UserServiceInterface
     {
         return $this->userRepository->findAdmins();
     }
+
+    public function register(User $user, string $plainPassword): void
+    {
+        $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
+        $user->setPassword($hashedPassword);
+        $user->setRoles(['ROLE_USER']);
+
+        $this->userRepository->save($user);
+    }
 }

@@ -2,10 +2,15 @@
 
 namespace App\Repository;
 
+use App\Dto\BugListFiltersDto;
+use App\Dto\BugListInputFiltersDto;
 use App\Entity\Bug;
 use App\Entity\Category;
+use App\Entity\Enum\BugStatus;
+use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -35,9 +40,9 @@ class BugRepository extends ServiceEntityRepository
         parent::__construct($registry, Bug::class);
     }
 
-    public function queryAll(): QueryBuilder
+    public function queryAll(BugListFiltersDto $filters): QueryBuilder
     {
-        return $this->createQueryBuilder('bug')
+        $queryBuilder = $this->createQueryBuilder('bug')
             ->select(
                 'partial bug.{id, createdAt, updatedAt, title, description, status, assignedTo}',
                 'partial category.{id, title}',
@@ -45,6 +50,31 @@ class BugRepository extends ServiceEntityRepository
             )
             ->join('bug.category', 'category')
             ->leftJoin('bug.tags', 'tags');
+
+        return $this->applyFiltersToList($queryBuilder, $filters);
+    }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder       $queryBuilder Query builder
+     * @param BugListFiltersDto  $filters      Filters
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, BugListFiltersDto $filters): QueryBuilder
+    {
+        if ($filters->category instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters->category);
+        }
+
+        if ($filters->tag instanceof Tag) {
+            $queryBuilder->andWhere('tags IN (:tag)')
+                ->setParameter('tag', $filters->tag);
+        }
+
+        return $queryBuilder;
     }
 
     public function queryByAuthor(User $author): QueryBuilder

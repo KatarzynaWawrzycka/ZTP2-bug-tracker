@@ -6,6 +6,7 @@
 
 namespace App\Service;
 
+use App\Dto\BugListInputFiltersDto;
 use App\Entity\Bug;
 use App\Entity\User;
 use App\Entity\Enum\BugStatus;
@@ -23,7 +24,7 @@ interface BugServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page, ?User $author = null): PaginationInterface;
+    public function getPaginatedList(int $page, BugListInputFiltersDto $filters): PaginationInterface;
 
     public function changeStatus(Bug $bug, BugStatus $targetStatus): void;
 

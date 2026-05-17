@@ -46,4 +46,9 @@ interface UserServiceInterface
     public function changeEmail(User $user, string $email): void;
 
     public function findAdmins(): array;
+
+    /**
+     * Register new user.
+     */
+    public function register(User $user, string $plainPassword): void;
 }

@@ -42,8 +42,27 @@
                     <td>{{ bug.author.email }}</td>
                     <td>{{ bug.title }}</td>
                     <td>{{ bug.description|slice(0, 50) ~ '...'}}</td>
-                    <td>{{ bug.category.title }}</td>
-                    <td>{{ bug.tags|length ? bug.tags|map(tag => tag.title)|join(', ') : '' }}</td>
+                    <td>
+                        <a
+                           href="{{ url('bug_index', {'categoryId' : bug.category.id}) }}"
+                           title="{{ bug.category.title }}">
+                            {{ bug.category.title }}
+                        </a>
+                    </td>
+
+                    <td>
+                        {% if bug.tags is defined and bug.tags|length %}
+                            {% for tag in bug.tags %}
+                                <a
+                                   href="{{ url('bug_index', {'tagId' : tag.id}) }}"
+                                   title="{{ tag.title }}">
+                                    {{ tag.title }}
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            &nbsp;
+                        {% endif %}
+                    </td>
                     <td>
                         {% set status = bug.statusEnum %}
 

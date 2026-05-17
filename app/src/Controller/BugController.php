@@ -6,6 +6,7 @@
 
 namespace App\Controller;
 
+use App\Dto\BugListInputFiltersDto;
 use App\Entity\Bug;
 use App\Entity\Comment;
 use App\Entity\Enum\BugStatus;
@@ -13,6 +14,7 @@ use App\Entity\User;
 use App\Form\Type\BugAssignType;
 use App\Form\Type\BugType;
 use App\Form\Type\CommentType;
+use App\Resolver\BugListInputFiltersDtoResolver;
 use App\Security\Voter\BugVoter;
 use App\Service\BugServiceInterface;
 use App\Service\CommentServiceInterface;
@@ -22,6 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
+use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -42,7 +45,8 @@ class BugController extends AbstractController
     /**
      * Index action.
      *
-     * @param int $page Page number
+     * @param BugListInputFiltersDto $filters Input filters
+     * @param int                    $page    Page number
      *
      * @return Response HTTP response
      */
@@ -50,9 +54,12 @@ class BugController extends AbstractController
         name: 'bug_index',
         methods: ['GET']
     )]
-    public function index(#[MapQueryParameter] int $page = 1): Response
+    public function index(#[MapQueryString(resolver: BugListInputFiltersDtoResolver::class)] BugListInputFiltersDto $filters, #[MapQueryParameter] int $page = 1): Response
     {
-        $pagination = $this->bugService->getPaginatedList($page);
+        $pagination = $this->bugService->getPaginatedList(
+            $page,
+            $filters
+        );
 
         return $this->render('bug/index.html.twig', ['pagination' => $pagination]);
     }
@@ -92,7 +99,7 @@ class BugController extends AbstractController
                 throw $this->createAccessDeniedException('You must be logged in to comment.');
             }
 
-            if ($bug->getStatusEnum() !== BugStatus::OPEN) {
+            if (BugStatus::OPEN !== $bug->getStatusEnum()) {
                 throw $this->createAccessDeniedException('You can only comment on open bugs.');
             }
 
@@ -270,7 +277,7 @@ class BugController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function assign(Bug $bug, Request $request): Response
     {
-        if ($bug->getStatusEnum() !== BugStatus::OPEN) {
+        if (BugStatus::OPEN !== $bug->getStatusEnum()) {
             $this->addFlash(
                 'warning',
                 'You can only assign open bugs.'
