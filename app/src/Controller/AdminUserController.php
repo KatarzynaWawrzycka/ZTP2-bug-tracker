@@ -18,16 +18,16 @@ class AdminUserController extends AbstractController
 {
     public function __construct(private readonly UserServiceInterface $userService, private readonly TranslatorInterface $translator)
     {
-
     }
 
     /**
-     * List all users
+     * List all users.
      */
     #[Route(
         '',
         name: 'admin_user_index',
-        methods: ['GET'])]
+        methods: ['GET']
+    )]
     public function index(Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
@@ -61,12 +61,13 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * Toggle ROLE_ADMIN
+     * Toggle ROLE_ADMIN.
      */
     #[Route(
         '/{id}/toggle-role',
         name: 'admin_user_toggle_role',
-        methods: ['POST'])]
+        methods: ['POST']
+    )]
     public function toggleRole(User $user): Response
     {
         try {
@@ -93,7 +94,7 @@ class AdminUserController extends AbstractController
         $form = $this->createForm(FormType::class, $user, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('admin_user_delete', [
-                'id' => $user->getId()
+                'id' => $user->getId(),
             ]),
         ]);
 

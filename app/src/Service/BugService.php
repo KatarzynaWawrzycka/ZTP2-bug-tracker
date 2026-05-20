@@ -47,9 +47,8 @@ class BugService implements BugServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int                     $page    Page number
-     * @param User                    $author  Tasks author
-     * @param BugListInputFiltersDto  $filters Filters
+     * @param int                    $page    Page number
+     * @param BugListInputFiltersDto $filters Filters
      *
      * @return PaginationInterface<SlidingPagination> Paginated list
      */

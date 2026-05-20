@@ -36,7 +36,7 @@ class Comment
     private ?\DateTimeImmutable $updatedAt = null;
 
     /**
-     * Content
+     * Content.
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]

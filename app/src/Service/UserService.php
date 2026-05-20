@@ -21,7 +21,6 @@ class UserService implements UserServiceInterface
 
     public function __construct(private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator, private readonly UserPasswordHasherInterface $passwordHasher)
     {
-
     }
 
     public function getPaginatedList(int $page): PaginationInterface
@@ -29,7 +28,8 @@ class UserService implements UserServiceInterface
         return $this->paginator->paginate(
             $this->userRepository->queryAll(),
             $page,
-            self::PER_PAGE );
+            self::PER_PAGE
+        );
     }
 
     public function getUserDetails(int $id): ?User
@@ -69,8 +69,7 @@ class UserService implements UserServiceInterface
 
     public function delete(User $user): void
     {
-        if (in_array('ROLE_ADMIN', $user->getRoles(), true) && $this->countAdmins() <= 1)
-        {
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true) && $this->countAdmins() <= 1) {
             throw new \LogicException('You are the last admin.');
         }
 
@@ -86,7 +85,8 @@ class UserService implements UserServiceInterface
 
     public function changeEmail(User $user, string $email): void
     {
-        $user->setEmail($email); $this->userRepository->save($user);
+        $user->setEmail($email);
+        $this->userRepository->save($user);
     }
 
     public function findAdmins(): array

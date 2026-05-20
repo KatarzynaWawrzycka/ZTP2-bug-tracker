@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/wwwroot/app/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=14.0.0" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=14.0.0" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/home/wwwroot/app/src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row dashboard-row">
+    <div class="col-md-6">
+     <h3>Classes</h3>
+     <p class="text-muted small">Bubble size = executable lines. Hover for details, click to navigate.</p>
+     <div class="file-coverage-chart">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+ <style>
+  .bubble-success { fill: var(--phpunit-success-bar); opacity: 0.7; }
+  .bubble-warning { fill: var(--phpunit-warning-bar); opacity: 0.7; }
+  .bubble-danger { fill: var(--phpunit-danger-bar); opacity: 0.7; }
+  .bubble-success:hover, .bubble-warning:hover, .bubble-danger:hover { opacity: 1; stroke: var(--bs-emphasis-color); stroke-width: 1.5; }
+  .chart-grid { stroke: var(--bs-border-color); stroke-width: 0.5; stroke-dasharray: 4,4; opacity: 0.5; }
+  .chart-axis { stroke: var(--bs-border-color); stroke-width: 1; }
+  .chart-label { fill: var(--bs-body-color); font-size: 11px; font-family: var(--bs-font-sans-serif, sans-serif); }
+  .chart-title { fill: var(--bs-body-color); font-size: 12px; font-family: var(--bs-font-sans-serif, sans-serif); }
+ </style>
+ <line x1="60.0" y1="20" x2="60.0" y2="350" class="chart-grid"/>
+ <text x="60.0" y="368" text-anchor="middle" class="chart-label">0%</text>
+ <line x1="204.0" y1="20" x2="204.0" y2="350" class="chart-grid"/>
+ <text x="204.0" y="368" text-anchor="middle" class="chart-label">20%</text>
+ <line x1="348.0" y1="20" x2="348.0" y2="350" class="chart-grid"/>
+ <text x="348.0" y="368" text-anchor="middle" class="chart-label">40%</text>
+ <line x1="492.0" y1="20" x2="492.0" y2="350" class="chart-grid"/>
+ <text x="492.0" y="368" text-anchor="middle" class="chart-label">60%</text>
+ <line x1="636.0" y1="20" x2="636.0" y2="350" class="chart-grid"/>
+ <text x="636.0" y="368" text-anchor="middle" class="chart-label">80%</text>
+ <line x1="780.0" y1="20" x2="780.0" y2="350" class="chart-grid"/>
+ <text x="780.0" y="368" text-anchor="middle" class="chart-label">100%</text>
+ <line x1="60" y1="350.0" x2="780" y2="350.0" class="chart-grid"/>
+ <text x="52" y="350.0" text-anchor="end" dominant-baseline="middle" class="chart-label">0</text>
+ <line x1="60" y1="240.0" x2="780" y2="240.0" class="chart-grid"/>
+ <text x="52" y="240.0" text-anchor="end" dominant-baseline="middle" class="chart-label">10</text>
+ <line x1="60" y1="130.0" x2="780" y2="130.0" class="chart-grid"/>
+ <text x="52" y="130.0" text-anchor="end" dominant-baseline="middle" class="chart-label">20</text>
+ <line x1="60" y1="20.0" x2="780" y2="20.0" class="chart-grid"/>
+ <text x="52" y="20.0" text-anchor="end" dominant-baseline="middle" class="chart-label">30</text>
+ <line x1="60" y1="20" x2="60" y2="350" class="chart-axis"/>
+ <line x1="60" y1="350" x2="780" y2="350" class="chart-axis"/>
+ <text x="420.0" y="395" text-anchor="middle" class="chart-title">Line Coverage (%)</text>
+ <text x="15" y="185.0" text-anchor="middle" transform="rotate(-90, 15, 185.0)" class="chart-title">Cyclomatic Complexity</text>
+ <a href="Controller/BugController.php.html#35"><circle cx="60.0" cy="119.0" r="20.0" class="bubble-danger"><title>App\Controller\BugController — Coverage: 0.0% | Lines: 149 | Complexity: 21</title></circle></a>
+ <a href="Controller/CategoryController.php.html#25"><circle cx="60.0" cy="207.0" r="15.6" class="bubble-danger"><title>App\Controller\CategoryController — Coverage: 0.0% | Lines: 91 | Complexity: 13</title></circle></a>
+ <a href="Controller/TagController.php.html#25"><circle cx="60.0" cy="218.0" r="15.1" class="bubble-danger"><title>App\Controller\TagController — Coverage: 0.0% | Lines: 85 | Complexity: 12</title></circle></a>
+ <a href="Controller/UserController.php.html#16"><circle cx="60.0" cy="218.0" r="13.5" class="bubble-danger"><title>App\Controller\UserController — Coverage: 0.0% | Lines: 68 | Complexity: 12</title></circle></a>
+ <a href="Repository/UserRepository.php.html#20"><circle cx="104.3" cy="229.0" r="13.2" class="bubble-danger"><title>App\Repository\UserRepository — Coverage: 6.2% | Lines: 65 | Complexity: 11</title></circle></a>
+ <a href="Controller/CommentController.php.html#20"><circle cx="60.0" cy="251.0" r="13.0" class="bubble-danger"><title>App\Controller\CommentController — Coverage: 0.0% | Lines: 63 | Complexity: 9</title></circle></a>
+ <a href="Controller/AdminUserController.php.html#15"><circle cx="60.0" cy="240.0" r="12.3" class="bubble-danger"><title>App\Controller\AdminUserController — Coverage: 0.0% | Lines: 56 | Complexity: 10</title></circle></a>
+ <a href="Form/Type/BugType.php.html#21"><circle cx="60.0" cy="306.0" r="10.9" class="bubble-danger"><title>App\Form\Type\BugType — Coverage: 0.0% | Lines: 44 | Complexity: 4</title></circle></a>
+ <a href="Repository/BugRepository.php.html#17"><circle cx="522.9" cy="240.0" r="10.6" class="bubble-warning"><title>App\Repository\BugRepository — Coverage: 64.3% | Lines: 42 | Complexity: 10</title></circle></a>
+ <a href="Controller/AdminController.php.html#16"><circle cx="60.0" cy="262.0" r="10.2" class="bubble-danger"><title>App\Controller\AdminController — Coverage: 0.0% | Lines: 39 | Complexity: 8</title></circle></a>
+ <a href="DataFixtures/BugFixtures.php.html#23"><circle cx="60.0" cy="295.0" r="10.2" class="bubble-danger"><title>App\DataFixtures\BugFixtures — Coverage: 0.0% | Lines: 39 | Complexity: 5</title></circle></a>
+ <a href="Entity/Bug.php.html#13"><circle cx="447.7" cy="53.0" r="10.2" class="bubble-warning"><title>App\Entity\Bug — Coverage: 53.8% | Lines: 39 | Complexity: 27</title></circle></a>
+ <a href="Service/BugService.php.html#22"><circle cx="743.1" cy="196.0" r="10.2" class="bubble-success"><title>App\Service\BugService — Coverage: 94.9% | Lines: 39 | Complexity: 14</title></circle></a>
+ <a href="DataFixtures/AbstractBaseFixtures.php.html#19"><circle cx="60.0" cy="229.0" r="9.6" class="bubble-danger"><title>App\DataFixtures\AbstractBaseFixtures — Coverage: 0.0% | Lines: 34 | Complexity: 11</title></circle></a>
+ <a href="Service/UserService.php.html#18"><circle cx="60.0" cy="185.0" r="9.1" class="bubble-danger"><title>App\Service\UserService — Coverage: 0.0% | Lines: 31 | Complexity: 15</title></circle></a>
+ <a href="Form/Type/RegistrationType.php.html#14"><circle cx="60.0" cy="328.0" r="9.0" class="bubble-danger"><title>App\Form\Type\RegistrationType — Coverage: 0.0% | Lines: 30 | Complexity: 2</title></circle></a>
+ <a href="DataFixtures/UserFixtures.php.html#20"><circle cx="60.0" cy="306.0" r="8.5" class="bubble-danger"><title>App\DataFixtures\UserFixtures — Coverage: 0.0% | Lines: 27 | Complexity: 4</title></circle></a>
+ <a href="Controller/SecurityController.php.html#22"><circle cx="60.0" cy="273.0" r="8.4" class="bubble-danger"><title>App\Controller\SecurityController — Coverage: 0.0% | Lines: 26 | Complexity: 7</title></circle></a>
+ <a href="Form/Type/UserPasswordType.php.html#13"><circle cx="60.0" cy="328.0" r="8.0" class="bubble-danger"><title>App\Form\Type\UserPasswordType — Coverage: 0.0% | Lines: 24 | Complexity: 2</title></circle></a>
+ <a href="DataFixtures/CommentFixtures.php.html#21"><circle cx="60.0" cy="306.0" r="7.7" class="bubble-danger"><title>App\DataFixtures\CommentFixtures — Coverage: 0.0% | Lines: 22 | Complexity: 4</title></circle></a>
+ <a href="Security/Voter/CommentVoter.php.html#19"><circle cx="60.0" cy="196.0" r="7.3" class="bubble-danger"><title>App\Security\Voter\CommentVoter — Coverage: 0.0% | Lines: 20 | Complexity: 14</title></circle></a>
+ <a href="DataFixtures/CategoryFixtures.php.html#18"><circle cx="60.0" cy="317.0" r="7.1" class="bubble-danger"><title>App\DataFixtures\CategoryFixtures — Coverage: 0.0% | Lines: 19 | Complexity: 3</title></circle></a>
+ <a href="DataFixtures/TagFixtures.php.html#18"><circle cx="60.0" cy="317.0" r="7.1" class="bubble-danger"><title>App\DataFixtures\TagFixtures — Coverage: 0.0% | Lines: 19 | Complexity: 3</title></circle></a>
+ <a href="Form/DataTransformer/TagsDataTransformer.php.html#19"><circle cx="60.0" cy="262.0" r="7.0" class="bubble-danger"><title>App\Form\DataTransformer\TagsDataTransformer — Coverage: 0.0% | Lines: 18 | Complexity: 8</title></circle></a>
+ <a href="Security/Voter/BugVoter.php.html#19"><circle cx="60.0" cy="185.0" r="7.0" class="bubble-danger"><title>App\Security\Voter\BugVoter — Coverage: 0.0% | Lines: 18 | Complexity: 15</title></circle></a>
+ <a href="Service/CategoryService.php.html#20"><circle cx="700.0" cy="273.0" r="7.0" class="bubble-warning"><title>App\Service\CategoryService — Coverage: 88.9% | Lines: 18 | Complexity: 7</title></circle></a>
+ <a href="Entity/Comment.php.html#10"><circle cx="465.0" cy="229.0" r="6.6" class="bubble-warning"><title>App\Entity\Comment — Coverage: 56.2% | Lines: 16 | Complexity: 11</title></circle></a>
+ <a href="Form/Type/UserEmailType.php.html#12"><circle cx="60.0" cy="328.0" r="6.6" class="bubble-danger"><title>App\Form\Type\UserEmailType — Coverage: 0.0% | Lines: 16 | Complexity: 2</title></circle></a>
+ <a href="Service/TagService.php.html#19"><circle cx="780.0" cy="284.0" r="6.3" class="bubble-success"><title>App\Service\TagService — Coverage: 100.0% | Lines: 15 | Complexity: 6</title></circle></a>
+ <a href="Entity/Tag.php.html#14"><circle cx="281.5" cy="251.0" r="5.9" class="bubble-danger"><title>App\Entity\Tag — Coverage: 30.8% | Lines: 13 | Complexity: 9</title></circle></a>
+ <a href="Entity/User.php.html#19"><circle cx="256.4" cy="251.0" r="5.4" class="bubble-danger"><title>App\Entity\User — Coverage: 27.3% | Lines: 11 | Complexity: 9</title></circle></a>
+ <a href="Form/Type/BugAssignType.php.html#12"><circle cx="60.0" cy="328.0" r="5.4" class="bubble-danger"><title>App\Form\Type\BugAssignType — Coverage: 0.0% | Lines: 11 | Complexity: 2</title></circle></a>
+ <a href="Form/Type/CategoryType.php.html#18"><circle cx="60.0" cy="317.0" r="5.4" class="bubble-danger"><title>App\Form\Type\CategoryType — Coverage: 0.0% | Lines: 11 | Complexity: 3</title></circle></a>
+ <a href="Form/Type/CommentType.php.html#18"><circle cx="60.0" cy="317.0" r="5.4" class="bubble-danger"><title>App\Form\Type\CommentType — Coverage: 0.0% | Lines: 11 | Complexity: 3</title></circle></a>
+ <a href="Form/Type/TagType.php.html#18"><circle cx="60.0" cy="317.0" r="5.4" class="bubble-danger"><title>App\Form\Type\TagType — Coverage: 0.0% | Lines: 11 | Complexity: 3</title></circle></a>
+ <a href="Repository/CommentRepository.php.html#13"><circle cx="780.0" cy="306.0" r="5.4" class="bubble-success"><title>App\Repository\CommentRepository — Coverage: 100.0% | Lines: 11 | Complexity: 4</title></circle></a>
+ <a href="Entity/Category.php.html#18"><circle cx="204.0" cy="251.0" r="5.2" class="bubble-danger"><title>App\Entity\Category — Coverage: 20.0% | Lines: 10 | Complexity: 9</title></circle></a>
+ <a href="Security/AccessDeniedHandler.php.html#12"><circle cx="60.0" cy="317.0" r="4.3" class="bubble-danger"><title>App\Security\AccessDeniedHandler — Coverage: 0.0% | Lines: 7 | Complexity: 3</title></circle></a>
+ <a href="Repository/CategoryRepository.php.html#19"><circle cx="780.0" cy="306.0" r="4.0" class="bubble-success"><title>App\Repository\CategoryRepository — Coverage: 100.0% | Lines: 6 | Complexity: 4</title></circle></a>
+ <a href="Repository/TagRepository.php.html#17"><circle cx="780.0" cy="306.0" r="4.0" class="bubble-success"><title>App\Repository\TagRepository — Coverage: 100.0% | Lines: 6 | Complexity: 4</title></circle></a>
+ <a href="Resolver/BugListInputFiltersDtoResolver.php.html#17"><circle cx="60.0" cy="317.0" r="4.0" class="bubble-danger"><title>App\Resolver\BugListInputFiltersDtoResolver — Coverage: 0.0% | Lines: 6 | Complexity: 3</title></circle></a>
+ <a href="Security/Voter/CategoryVoter.php.html#18"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Security\Voter\CategoryVoter — Coverage: 0.0% | Lines: 6 | Complexity: 5</title></circle></a>
+ <a href="Security/Voter/TagVoter.php.html#18"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Security\Voter\TagVoter — Coverage: 0.0% | Lines: 6 | Complexity: 5</title></circle></a>
+ <a href="Entity/Enum/BugStatus.php.html#5"><circle cx="60.0" cy="306.0" r="4.0" class="bubble-danger"><title>App\Entity\Enum\BugStatus — Coverage: 0.0% | Lines: 5 | Complexity: 4</title></circle></a>
+ <a href="Entity/Enum/UserRole.php.html#12"><circle cx="60.0" cy="317.0" r="4.0" class="bubble-danger"><title>App\Entity\Enum\UserRole — Coverage: 0.0% | Lines: 4 | Complexity: 3</title></circle></a>
+ <a href="Service/CommentService.php.html#12"><circle cx="780.0" cy="306.0" r="4.0" class="bubble-success"><title>App\Service\CommentService — Coverage: 100.0% | Lines: 4 | Complexity: 4</title></circle></a>
+ <a href="Dto/BugListFiltersDto.php.html#15"><circle cx="780.0" cy="339.0" r="4.0" class="bubble-success"><title>App\Dto\BugListFiltersDto — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Dto/BugListInputFiltersDto.php.html#12"><circle cx="780.0" cy="339.0" r="4.0" class="bubble-success"><title>App\Dto\BugListInputFiltersDto — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+</svg>
+     </div>
+    </div>
+    <div class="col-md-6 dashboard-column">
+     <h3>&nbsp;</h3>
+     <p class="text-muted small">Sorted by descending CRAP (Change Risk Anti-Patterns) index.</p>
+     <div class="scrollbox">
+<table class="table">
+ <thead>
+  <tr>
+   <th>Class</th>
+   <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+   <th class="text-right">Coverage</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td><a href="Controller/BugController.php.html#35">App\Controller\BugController</a></td><td class="text-right">462</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/BugVoter.php.html#19">App\Security\Voter\BugVoter</a></td><td class="text-right">240</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#18">App\Service\UserService</a></td><td class="text-right">240</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/CommentVoter.php.html#19">App\Security\Voter\CommentVoter</a></td><td class="text-right">210</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CategoryController.php.html#25">App\Controller\CategoryController</a></td><td class="text-right">182</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/TagController.php.html#25">App\Controller\TagController</a></td><td class="text-right">156</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/UserController.php.html#16">App\Controller\UserController</a></td><td class="text-right">156</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/AbstractBaseFixtures.php.html#19">App\DataFixtures\AbstractBaseFixtures</a></td><td class="text-right">132</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#20">App\Repository\UserRepository</a></td><td class="text-right">111.01</td><td class="text-right">6.2%</td></tr>
+  <tr><td><a href="Controller/AdminUserController.php.html#15">App\Controller\AdminUserController</a></td><td class="text-right">110</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#13">App\Entity\Bug</a></td><td class="text-right">98.67</td><td class="text-right">53.8%</td></tr>
+  <tr><td><a href="Controller/CommentController.php.html#20">App\Controller\CommentController</a></td><td class="text-right">90</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/AdminController.php.html#16">App\Controller\AdminController</a></td><td class="text-right">72</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/DataTransformer/TagsDataTransformer.php.html#19">App\Form\DataTransformer\TagsDataTransformer</a></td><td class="text-right">72</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/SecurityController.php.html#22">App\Controller\SecurityController</a></td><td class="text-right">56</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#18">App\Entity\Category</a></td><td class="text-right">50.47</td><td class="text-right">20.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#19">App\Entity\User</a></td><td class="text-right">40.16</td><td class="text-right">27.3%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#14">App\Entity\Tag</a></td><td class="text-right">35.88</td><td class="text-right">30.8%</td></tr>
+  <tr><td><a href="DataFixtures/BugFixtures.php.html#23">App\DataFixtures\BugFixtures</a></td><td class="text-right">30</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/CategoryVoter.php.html#18">App\Security\Voter\CategoryVoter</a></td><td class="text-right">30</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/TagVoter.php.html#18">App\Security\Voter\TagVoter</a></td><td class="text-right">30</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#10">App\Entity\Comment</a></td><td class="text-right">21.13</td><td class="text-right">56.2%</td></tr>
+  <tr><td><a href="DataFixtures/CommentFixtures.php.html#21">App\DataFixtures\CommentFixtures</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/UserFixtures.php.html#20">App\DataFixtures\UserFixtures</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Enum/BugStatus.php.html#5">App\Entity\Enum\BugStatus</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/BugType.php.html#21">App\Form\Type\BugType</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#17">App\Repository\BugRepository</a></td><td class="text-right">14.56</td><td class="text-right">64.3%</td></tr>
+  <tr><td><a href="Service/BugService.php.html#22">App\Service\BugService</a></td><td class="text-right">14.03</td><td class="text-right">94.9%</td></tr>
+  <tr><td><a href="DataFixtures/CategoryFixtures.php.html#18">App\DataFixtures\CategoryFixtures</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/TagFixtures.php.html#18">App\DataFixtures\TagFixtures</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Enum/UserRole.php.html#12">App\Entity\Enum\UserRole</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/CategoryType.php.html#18">App\Form\Type\CategoryType</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/CommentType.php.html#18">App\Form\Type\CommentType</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/TagType.php.html#18">App\Form\Type\TagType</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Resolver/BugListInputFiltersDtoResolver.php.html#17">App\Resolver\BugListInputFiltersDtoResolver</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/AccessDeniedHandler.php.html#12">App\Security\AccessDeniedHandler</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/CategoryService.php.html#20">App\Service\CategoryService</a></td><td class="text-right">7.07</td><td class="text-right">88.9%</td></tr>
+  <tr><td><a href="Form/Type/BugAssignType.php.html#12">App\Form\Type\BugAssignType</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/RegistrationType.php.html#14">App\Form\Type\RegistrationType</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/UserEmailType.php.html#12">App\Form\Type\UserEmailType</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/UserPasswordType.php.html#13">App\Form\Type\UserPasswordType</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/TagService.php.html#19">App\Service\TagService</a></td><td class="text-right">6</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CategoryRepository.php.html#19">App\Repository\CategoryRepository</a></td><td class="text-right">4</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CommentRepository.php.html#13">App\Repository\CommentRepository</a></td><td class="text-right">4</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/TagRepository.php.html#17">App\Repository\TagRepository</a></td><td class="text-right">4</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CommentService.php.html#12">App\Service\CommentService</a></td><td class="text-right">4</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Dto/BugListFiltersDto.php.html#15">App\Dto\BugListFiltersDto</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Dto/BugListInputFiltersDto.php.html#12">App\Dto\BugListInputFiltersDto</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Kernel.php.html#8">App\Kernel</a></td><td class="text-right">0</td><td class="text-right">100.0%</td></tr>
+ </tbody>
+</table>
+     </div>
+    </div>
+   </div>
+   <div class="row dashboard-row">
+    <div class="col-md-6">
+     <h3>Methods</h3>
+     <p class="text-muted small">Bubble size = executable lines. Hover for details, click to navigate.</p>
+     <div class="file-coverage-chart">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+ <style>
+  .bubble-success { fill: var(--phpunit-success-bar); opacity: 0.7; }
+  .bubble-warning { fill: var(--phpunit-warning-bar); opacity: 0.7; }
+  .bubble-danger { fill: var(--phpunit-danger-bar); opacity: 0.7; }
+  .bubble-success:hover, .bubble-warning:hover, .bubble-danger:hover { opacity: 1; stroke: var(--bs-emphasis-color); stroke-width: 1.5; }
+  .chart-grid { stroke: var(--bs-border-color); stroke-width: 0.5; stroke-dasharray: 4,4; opacity: 0.5; }
+  .chart-axis { stroke: var(--bs-border-color); stroke-width: 1; }
+  .chart-label { fill: var(--bs-body-color); font-size: 11px; font-family: var(--bs-font-sans-serif, sans-serif); }
+  .chart-title { fill: var(--bs-body-color); font-size: 12px; font-family: var(--bs-font-sans-serif, sans-serif); }
+ </style>
+ <line x1="60.0" y1="20" x2="60.0" y2="350" class="chart-grid"/>
+ <text x="60.0" y="368" text-anchor="middle" class="chart-label">0%</text>
+ <line x1="204.0" y1="20" x2="204.0" y2="350" class="chart-grid"/>
+ <text x="204.0" y="368" text-anchor="middle" class="chart-label">20%</text>
+ <line x1="348.0" y1="20" x2="348.0" y2="350" class="chart-grid"/>
+ <text x="348.0" y="368" text-anchor="middle" class="chart-label">40%</text>
+ <line x1="492.0" y1="20" x2="492.0" y2="350" class="chart-grid"/>
+ <text x="492.0" y="368" text-anchor="middle" class="chart-label">60%</text>
+ <line x1="636.0" y1="20" x2="636.0" y2="350" class="chart-grid"/>
+ <text x="636.0" y="368" text-anchor="middle" class="chart-label">80%</text>
+ <line x1="780.0" y1="20" x2="780.0" y2="350" class="chart-grid"/>
+ <text x="780.0" y="368" text-anchor="middle" class="chart-label">100%</text>
+ <line x1="60" y1="350.0" x2="780" y2="350.0" class="chart-grid"/>
+ <text x="52" y="350.0" text-anchor="end" dominant-baseline="middle" class="chart-label">0</text>
+ <line x1="60" y1="267.5" x2="780" y2="267.5" class="chart-grid"/>
+ <text x="52" y="267.5" text-anchor="end" dominant-baseline="middle" class="chart-label">2</text>
+ <line x1="60" y1="185.0" x2="780" y2="185.0" class="chart-grid"/>
+ <text x="52" y="185.0" text-anchor="end" dominant-baseline="middle" class="chart-label">4</text>
+ <line x1="60" y1="102.5" x2="780" y2="102.5" class="chart-grid"/>
+ <text x="52" y="102.5" text-anchor="end" dominant-baseline="middle" class="chart-label">6</text>
+ <line x1="60" y1="20.0" x2="780" y2="20.0" class="chart-grid"/>
+ <text x="52" y="20.0" text-anchor="end" dominant-baseline="middle" class="chart-label">8</text>
+ <line x1="60" y1="20" x2="60" y2="350" class="chart-axis"/>
+ <line x1="60" y1="350" x2="780" y2="350" class="chart-axis"/>
+ <text x="420.0" y="395" text-anchor="middle" class="chart-title">Line Coverage (%)</text>
+ <text x="15" y="185.0" text-anchor="middle" transform="rotate(-90, 15, 185.0)" class="chart-title">Cyclomatic Complexity</text>
+ <a href="Form/Type/BugType.php.html#43"><circle cx="60.0" cy="308.8" r="20.0" class="bubble-danger"><title>App\Form\Type\BugType::buildForm — Coverage: 0.0% | Lines: 41 | Complexity: 1</title></circle></a>
+ <a href="DataFixtures/BugFixtures.php.html#32"><circle cx="60.0" cy="185.0" r="19.3" class="bubble-danger"><title>App\DataFixtures\BugFixtures::loadData — Coverage: 0.0% | Lines: 38 | Complexity: 4</title></circle></a>
+ <a href="Controller/CommentController.php.html#32"><circle cx="60.0" cy="185.0" r="17.9" class="bubble-danger"><title>App\Controller\CommentController::edit — Coverage: 0.0% | Lines: 33 | Complexity: 4</title></circle></a>
+ <a href="Controller/BugController.php.html#74"><circle cx="60.0" cy="143.8" r="17.1" class="bubble-danger"><title>App\Controller\BugController::view — Coverage: 0.0% | Lines: 30 | Complexity: 5</title></circle></a>
+ <a href="Controller/CategoryController.php.html#169"><circle cx="60.0" cy="185.0" r="17.1" class="bubble-danger"><title>App\Controller\CategoryController::delete — Coverage: 0.0% | Lines: 30 | Complexity: 4</title></circle></a>
+ <a href="Controller/BugController.php.html#266"><circle cx="60.0" cy="185.0" r="16.8" class="bubble-danger"><title>App\Controller\BugController::assign — Coverage: 0.0% | Lines: 29 | Complexity: 4</title></circle></a>
+ <a href="Controller/CommentController.php.html#82"><circle cx="60.0" cy="185.0" r="16.8" class="bubble-danger"><title>App\Controller\CommentController::delete — Coverage: 0.0% | Lines: 29 | Complexity: 4</title></circle></a>
+ <a href="Controller/BugController.php.html#168"><circle cx="60.0" cy="226.2" r="16.5" class="bubble-danger"><title>App\Controller\BugController::edit — Coverage: 0.0% | Lines: 28 | Complexity: 3</title></circle></a>
+ <a href="Controller/CategoryController.php.html#122"><circle cx="60.0" cy="226.2" r="16.5" class="bubble-danger"><title>App\Controller\CategoryController::edit — Coverage: 0.0% | Lines: 28 | Complexity: 3</title></circle></a>
+ <a href="Controller/TagController.php.html#121"><circle cx="60.0" cy="226.2" r="16.5" class="bubble-danger"><title>App\Controller\TagController::edit — Coverage: 0.0% | Lines: 28 | Complexity: 3</title></circle></a>
+ <a href="Form/Type/RegistrationType.php.html#16"><circle cx="60.0" cy="308.8" r="16.2" class="bubble-danger"><title>App\Form\Type\RegistrationType::buildForm — Coverage: 0.0% | Lines: 27 | Complexity: 1</title></circle></a>
+ <a href="DataFixtures/UserFixtures.php.html#38"><circle cx="60.0" cy="226.2" r="15.9" class="bubble-danger"><title>App\DataFixtures\UserFixtures::loadData — Coverage: 0.0% | Lines: 26 | Complexity: 3</title></circle></a>
+ <a href="Controller/BugController.php.html#215"><circle cx="60.0" cy="226.2" r="15.3" class="bubble-danger"><title>App\Controller\BugController::delete — Coverage: 0.0% | Lines: 24 | Complexity: 3</title></circle></a>
+ <a href="Controller/TagController.php.html#160"><circle cx="60.0" cy="226.2" r="15.3" class="bubble-danger"><title>App\Controller\TagController::delete — Coverage: 0.0% | Lines: 24 | Complexity: 3</title></circle></a>
+ <a href="Form/Type/UserPasswordType.php.html#15"><circle cx="60.0" cy="308.8" r="15.0" class="bubble-danger"><title>App\Form\Type\UserPasswordType::buildForm — Coverage: 0.0% | Lines: 23 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#54"><circle cx="60.0" cy="267.5" r="15.0" class="bubble-danger"><title>App\Repository\UserRepository::findWithStats — Coverage: 0.0% | Lines: 23 | Complexity: 2</title></circle></a>
+ <a href="Controller/AdminUserController.php.html#86"><circle cx="60.0" cy="185.0" r="14.7" class="bubble-danger"><title>App\Controller\AdminUserController::delete — Coverage: 0.0% | Lines: 22 | Complexity: 4</title></circle></a>
+ <a href="Controller/UserController.php.html#114"><circle cx="60.0" cy="185.0" r="14.3" class="bubble-danger"><title>App\Controller\UserController::delete — Coverage: 0.0% | Lines: 21 | Complexity: 4</title></circle></a>
+ <a href="DataFixtures/CommentFixtures.php.html#30"><circle cx="60.0" cy="226.2" r="14.3" class="bubble-danger"><title>App\DataFixtures\CommentFixtures::loadData — Coverage: 0.0% | Lines: 21 | Complexity: 3</title></circle></a>
+ <a href="Controller/BugController.php.html#129"><circle cx="60.0" cy="226.2" r="14.0" class="bubble-danger"><title>App\Controller\BugController::create — Coverage: 0.0% | Lines: 20 | Complexity: 3</title></circle></a>
+ <a href="DataFixtures/CategoryFixtures.php.html#27"><circle cx="60.0" cy="226.2" r="13.6" class="bubble-danger"><title>App\DataFixtures\CategoryFixtures::loadData — Coverage: 0.0% | Lines: 19 | Complexity: 3</title></circle></a>
+ <a href="DataFixtures/TagFixtures.php.html#27"><circle cx="60.0" cy="226.2" r="13.6" class="bubble-danger"><title>App\DataFixtures\TagFixtures::loadData — Coverage: 0.0% | Lines: 19 | Complexity: 3</title></circle></a>
+ <a href="Service/BugService.php.html#71"><circle cx="704.2" cy="102.5" r="13.6" class="bubble-warning"><title>App\Service\BugService::changeStatus — Coverage: 89.5% | Lines: 19 | Complexity: 6</title></circle></a>
+ <a href="Controller/AdminController.php.html#69"><circle cx="60.0" cy="226.2" r="13.3" class="bubble-danger"><title>App\Controller\AdminController::changePassword — Coverage: 0.0% | Lines: 18 | Complexity: 3</title></circle></a>
+ <a href="Controller/CategoryController.php.html#85"><circle cx="60.0" cy="226.2" r="13.3" class="bubble-danger"><title>App\Controller\CategoryController::create — Coverage: 0.0% | Lines: 18 | Complexity: 3</title></circle></a>
+ <a href="Controller/TagController.php.html#85"><circle cx="60.0" cy="226.2" r="13.3" class="bubble-danger"><title>App\Controller\TagController::create — Coverage: 0.0% | Lines: 18 | Complexity: 3</title></circle></a>
+ <a href="Controller/UserController.php.html#83"><circle cx="60.0" cy="226.2" r="13.3" class="bubble-danger"><title>App\Controller\UserController::changePassword — Coverage: 0.0% | Lines: 18 | Complexity: 3</title></circle></a>
+ <a href="Controller/AdminController.php.html#35"><circle cx="60.0" cy="226.2" r="12.9" class="bubble-danger"><title>App\Controller\AdminController::changeEmail — Coverage: 0.0% | Lines: 17 | Complexity: 3</title></circle></a>
+ <a href="Controller/UserController.php.html#49"><circle cx="60.0" cy="226.2" r="12.9" class="bubble-danger"><title>App\Controller\UserController::changeEmail — Coverage: 0.0% | Lines: 17 | Complexity: 3</title></circle></a>
+ <a href="Controller/SecurityController.php.html#28"><circle cx="60.0" cy="226.2" r="12.5" class="bubble-danger"><title>App\Controller\SecurityController::register — Coverage: 0.0% | Lines: 16 | Complexity: 3</title></circle></a>
+ <a href="Form/Type/UserEmailType.php.html#14"><circle cx="60.0" cy="308.8" r="12.1" class="bubble-danger"><title>App\Form\Type\UserEmailType::buildForm — Coverage: 0.0% | Lines: 15 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#114"><circle cx="60.0" cy="308.8" r="12.1" class="bubble-danger"><title>App\Repository\UserRepository::delete — Coverage: 0.0% | Lines: 15 | Complexity: 1</title></circle></a>
+ <a href="Controller/AdminUserController.php.html#42"><circle cx="60.0" cy="267.5" r="11.3" class="bubble-danger"><title>App\Controller\AdminUserController::view — Coverage: 0.0% | Lines: 13 | Complexity: 2</title></circle></a>
+ <a href="DataFixtures/AbstractBaseFixtures.php.html#130"><circle cx="60.0" cy="185.0" r="10.8" class="bubble-danger"><title>App\DataFixtures\AbstractBaseFixtures::getReferenceNameListByClassName — Coverage: 0.0% | Lines: 12 | Complexity: 4</title></circle></a>
+ <a href="Controller/AdminUserController.php.html#66"><circle cx="60.0" cy="267.5" r="10.4" class="bubble-danger"><title>App\Controller\AdminUserController::toggleRole — Coverage: 0.0% | Lines: 11 | Complexity: 2</title></circle></a>
+ <a href="Controller/UserController.php.html#27"><circle cx="60.0" cy="308.8" r="10.4" class="bubble-danger"><title>App\Controller\UserController::profile — Coverage: 0.0% | Lines: 11 | Complexity: 1</title></circle></a>
+ <a href="Form/DataTransformer/TagsDataTransformer.php.html#59"><circle cx="60.0" cy="185.0" r="10.4" class="bubble-danger"><title>App\Form\DataTransformer\TagsDataTransformer::reverseTransform — Coverage: 0.0% | Lines: 11 | Complexity: 4</title></circle></a>
+ <a href="Security/Voter/BugVoter.php.html#67"><circle cx="60.0" cy="61.2" r="10.4" class="bubble-danger"><title>App\Security\Voter\BugVoter::voteOnAttribute — Coverage: 0.0% | Lines: 11 | Complexity: 7</title></circle></a>
+ <a href="Service/BugService.php.html#55"><circle cx="780.0" cy="308.8" r="10.4" class="bubble-success"><title>App\Service\BugService::getPaginatedList — Coverage: 100.0% | Lines: 11 | Complexity: 1</title></circle></a>
+ <a href="Repository/BugRepository.php.html#77"><circle cx="60.0" cy="308.8" r="9.9" class="bubble-danger"><title>App\Repository\BugRepository::queryByAuthor — Coverage: 0.0% | Lines: 10 | Complexity: 1</title></circle></a>
+ <a href="Security/Voter/CommentVoter.php.html#60"><circle cx="60.0" cy="102.5" r="9.9" class="bubble-danger"><title>App\Security\Voter\CommentVoter::voteOnAttribute — Coverage: 0.0% | Lines: 10 | Complexity: 6</title></circle></a>
+ <a href="Service/CategoryService.php.html#50"><circle cx="780.0" cy="308.8" r="9.9" class="bubble-success"><title>App\Service\CategoryService::getPaginatedList — Coverage: 100.0% | Lines: 10 | Complexity: 1</title></circle></a>
+ <a href="Service/TagService.php.html#49"><circle cx="780.0" cy="308.8" r="9.9" class="bubble-success"><title>App\Service\TagService::getPaginatedList — Coverage: 100.0% | Lines: 10 | Complexity: 1</title></circle></a>
+ <a href="Controller/AdminUserController.php.html#26"><circle cx="60.0" cy="308.8" r="9.4" class="bubble-danger"><title>App\Controller\AdminUserController::index — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="Controller/BugController.php.html#250"><circle cx="60.0" cy="308.8" r="9.4" class="bubble-danger"><title>App\Controller\BugController::changeStatus — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="Controller/CategoryController.php.html#63"><circle cx="60.0" cy="308.8" r="9.4" class="bubble-danger"><title>App\Controller\CategoryController::view — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="Controller/TagController.php.html#63"><circle cx="60.0" cy="308.8" r="9.4" class="bubble-danger"><title>App\Controller\TagController::view — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/CategoryType.php.html#31"><circle cx="60.0" cy="308.8" r="9.4" class="bubble-danger"><title>App\Form\Type\CategoryType::buildForm — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/CommentType.php.html#31"><circle cx="60.0" cy="308.8" r="9.4" class="bubble-danger"><title>App\Form\Type\CommentType::buildForm — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/TagType.php.html#31"><circle cx="60.0" cy="308.8" r="9.4" class="bubble-danger"><title>App\Form\Type\TagType::buildForm — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="Repository/BugRepository.php.html#40"><circle cx="780.0" cy="308.8" r="9.4" class="bubble-success"><title>App\Repository\BugRepository::queryAll — Coverage: 100.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="Service/UserService.php.html#50"><circle cx="60.0" cy="226.2" r="9.4" class="bubble-danger"><title>App\Service\UserService::toggleAdminRole — Coverage: 0.0% | Lines: 9 | Complexity: 3</title></circle></a>
+ <a href="Controller/BugController.php.html#53"><circle cx="60.0" cy="308.8" r="8.8" class="bubble-danger"><title>App\Controller\BugController::index — Coverage: 0.0% | Lines: 8 | Complexity: 1</title></circle></a>
+ <a href="Controller/SecurityController.php.html#63"><circle cx="60.0" cy="267.5" r="8.8" class="bubble-danger"><title>App\Controller\SecurityController::login — Coverage: 0.0% | Lines: 8 | Complexity: 2</title></circle></a>
+ <a href="DataFixtures/AbstractBaseFixtures.php.html#66"><circle cx="60.0" cy="226.2" r="8.3" class="bubble-danger"><title>App\DataFixtures\AbstractBaseFixtures::createMany — Coverage: 0.0% | Lines: 7 | Complexity: 3</title></circle></a>
+ <a href="Form/Type/BugAssignType.php.html#14"><circle cx="60.0" cy="308.8" r="8.3" class="bubble-danger"><title>App\Form\Type\BugAssignType::buildForm — Coverage: 0.0% | Lines: 7 | Complexity: 1</title></circle></a>
+ <a href="Repository/BugRepository.php.html#62"><circle cx="780.0" cy="226.2" r="8.3" class="bubble-success"><title>App\Repository\BugRepository::applyFiltersToList — Coverage: 100.0% | Lines: 7 | Complexity: 3</title></circle></a>
+ <a href="DataFixtures/AbstractBaseFixtures.php.html#110"><circle cx="60.0" cy="267.5" r="7.7" class="bubble-danger"><title>App\DataFixtures\AbstractBaseFixtures::getRandomReferenceList — Coverage: 0.0% | Lines: 6 | Complexity: 2</title></circle></a>
+ <a href="Form/DataTransformer/TagsDataTransformer.php.html#37"><circle cx="60.0" cy="226.2" r="7.7" class="bubble-danger"><title>App\Form\DataTransformer\TagsDataTransformer::transform — Coverage: 0.0% | Lines: 6 | Complexity: 3</title></circle></a>
+ <a href="Repository/BugRepository.php.html#98"><circle cx="780.0" cy="308.8" r="7.7" class="bubble-success"><title>App\Repository\BugRepository::countByCategory — Coverage: 100.0% | Lines: 6 | Complexity: 1</title></circle></a>
+ <a href="Repository/CommentRepository.php.html#28"><circle cx="780.0" cy="308.8" r="7.7" class="bubble-success"><title>App\Repository\CommentRepository::findByBug — Coverage: 100.0% | Lines: 6 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#38"><circle cx="60.0" cy="308.8" r="7.7" class="bubble-danger"><title>App\Repository\UserRepository::countAdmins — Coverage: 0.0% | Lines: 6 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#94"><circle cx="60.0" cy="308.8" r="7.7" class="bubble-danger"><title>App\Repository\UserRepository::unassignBugs — Coverage: 0.0% | Lines: 6 | Complexity: 1</title></circle></a>
+ <a href="Resolver/BugListInputFiltersDtoResolver.php.html#27"><circle cx="60.0" cy="226.2" r="7.7" class="bubble-danger"><title>App\Resolver\BugListInputFiltersDtoResolver::resolve — Coverage: 0.0% | Lines: 6 | Complexity: 3</title></circle></a>
+ <a href="Security/AccessDeniedHandler.php.html#20"><circle cx="60.0" cy="267.5" r="7.7" class="bubble-danger"><title>App\Security\AccessDeniedHandler::handle — Coverage: 0.0% | Lines: 6 | Complexity: 2</title></circle></a>
+ <a href="Controller/CategoryController.php.html#45"><circle cx="60.0" cy="308.8" r="7.0" class="bubble-danger"><title>App\Controller\CategoryController::index — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="Controller/TagController.php.html#45"><circle cx="60.0" cy="308.8" r="7.0" class="bubble-danger"><title>App\Controller\TagController::index — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="DataFixtures/AbstractBaseFixtures.php.html#36"><circle cx="60.0" cy="308.8" r="7.0" class="bubble-danger"><title>App\DataFixtures\AbstractBaseFixtures::load — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="Entity/Enum/BugStatus.php.html#11"><circle cx="60.0" cy="185.0" r="7.0" class="bubble-danger"><title>App\Entity\Enum\BugStatus::label — Coverage: 0.0% | Lines: 5 | Complexity: 4</title></circle></a>
+ <a href="Repository/BugRepository.php.html#109"><circle cx="60.0" cy="308.8" r="7.0" class="bubble-danger"><title>App\Repository\BugRepository::findAdmins — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#28"><circle cx="60.0" cy="267.5" r="7.0" class="bubble-danger"><title>App\Repository\UserRepository::upgradePassword — Coverage: 0.0% | Lines: 5 | Complexity: 2</title></circle></a>
+ <a href="Service/UserService.php.html#26"><circle cx="60.0" cy="308.8" r="7.0" class="bubble-danger"><title>App\Service\UserService::getPaginatedList — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="Entity/Enum/UserRole.php.html#22"><circle cx="60.0" cy="226.2" r="6.2" class="bubble-danger"><title>App\Entity\Enum\UserRole::label — Coverage: 0.0% | Lines: 4 | Complexity: 3</title></circle></a>
+ <a href="Form/Type/BugAssignType.php.html#25"><circle cx="60.0" cy="308.8" r="6.2" class="bubble-danger"><title>App\Form\Type\BugAssignType::configureOptions — Coverage: 0.0% | Lines: 4 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#86"><circle cx="60.0" cy="308.8" r="6.2" class="bubble-danger"><title>App\Repository\UserRepository::findAdmins — Coverage: 0.0% | Lines: 4 | Complexity: 1</title></circle></a>
+ <a href="Security/Voter/CategoryVoter.php.html#68"><circle cx="60.0" cy="267.5" r="6.2" class="bubble-danger"><title>App\Security\Voter\CategoryVoter::voteOnAttribute — Coverage: 0.0% | Lines: 4 | Complexity: 2</title></circle></a>
+ <a href="Security/Voter/CommentVoter.php.html#85"><circle cx="60.0" cy="226.2" r="6.2" class="bubble-danger"><title>App\Security\Voter\CommentVoter::canDelete — Coverage: 0.0% | Lines: 4 | Complexity: 3</title></circle></a>
+ <a href="Security/Voter/CommentVoter.php.html#103"><circle cx="60.0" cy="226.2" r="6.2" class="bubble-danger"><title>App\Security\Voter\CommentVoter::canEdit — Coverage: 0.0% | Lines: 4 | Complexity: 3</title></circle></a>
+ <a href="Security/Voter/TagVoter.php.html#67"><circle cx="60.0" cy="267.5" r="6.2" class="bubble-danger"><title>App\Security\Voter\TagVoter::voteOnAttribute — Coverage: 0.0% | Lines: 4 | Complexity: 2</title></circle></a>
+ <a href="Service/BugService.php.html#136"><circle cx="780.0" cy="226.2" r="6.2" class="bubble-success"><title>App\Service\BugService::prepareFilters — Coverage: 100.0% | Lines: 4 | Complexity: 3</title></circle></a>
+ <a href="Service/CategoryService.php.html#89"><circle cx="420.0" cy="267.5" r="6.2" class="bubble-danger"><title>App\Service\CategoryService::canBeDeleted — Coverage: 50.0% | Lines: 4 | Complexity: 2</title></circle></a>
+ <a href="Service/UserService.php.html#97"><circle cx="60.0" cy="308.8" r="6.2" class="bubble-danger"><title>App\Service\UserService::register — Coverage: 0.0% | Lines: 4 | Complexity: 1</title></circle></a>
+ <a href="Controller/AdminController.php.html#27"><circle cx="60.0" cy="308.8" r="5.4" class="bubble-danger"><title>App\Controller\AdminController::index — Coverage: 0.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="DataFixtures/AbstractBaseFixtures.php.html#93"><circle cx="60.0" cy="308.8" r="5.4" class="bubble-danger"><title>App\DataFixtures\AbstractBaseFixtures::getRandomReference — Coverage: 0.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#191"><circle cx="780.0" cy="267.5" r="5.4" class="bubble-success"><title>App\Entity\Bug::addTag — Coverage: 100.0% | Lines: 3 | Complexity: 2</title></circle></a>
+ <a href="Entity/Bug.php.html#231"><circle cx="780.0" cy="267.5" r="5.4" class="bubble-success"><title>App\Entity\Bug::getStatusEnum — Coverage: 100.0% | Lines: 3 | Complexity: 2</title></circle></a>
+ <a href="Entity/User.php.html#104"><circle cx="60.0" cy="308.8" r="5.4" class="bubble-danger"><title>App\Entity\User::getRoles — Coverage: 0.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/RegistrationType.php.html#47"><circle cx="60.0" cy="308.8" r="5.4" class="bubble-danger"><title>App\Form\Type\RegistrationType::configureOptions — Coverage: 0.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#106"><circle cx="780.0" cy="308.8" r="5.4" class="bubble-success"><title>App\Repository\UserRepository::save — Coverage: 100.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="Security/Voter/BugVoter.php.html#119"><circle cx="60.0" cy="267.5" r="5.4" class="bubble-danger"><title>App\Security\Voter\BugVoter::canComment — Coverage: 0.0% | Lines: 3 | Complexity: 2</title></circle></a>
+ <a href="Service/UserService.php.html#70"><circle cx="60.0" cy="226.2" r="5.4" class="bubble-danger"><title>App\Service\UserService::delete — Coverage: 0.0% | Lines: 3 | Complexity: 3</title></circle></a>
+ <a href="Service/UserService.php.html#79"><circle cx="60.0" cy="308.8" r="5.4" class="bubble-danger"><title>App\Service\UserService::changePassword — Coverage: 0.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#116"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Bug::setCreatedAt — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#128"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Bug::setUpdatedAt — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#140"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Bug::setTitle — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#152"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Bug::setDescription — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#164"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Bug::setCategory — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#176"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Bug::setSlug — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#200"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Bug::removeTag — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#212"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Bug::setAuthor — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#224"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Bug::setStatus — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#248"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Bug::setAssignedTo — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#141"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Category::setSlug — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#68"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Comment::setCreatedAt — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#80"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Comment::setUpdatedAt — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#92"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Comment::setContent — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#104"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Comment::setBug — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#116"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Comment::setAuthor — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#72"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Tag::setCreatedAt — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#84"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Tag::setUpdatedAt — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#96"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Entity\Tag::setTitle — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#108"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Entity\Tag::setSlug — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/BugRepository.php.html#123"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Repository\BugRepository::save — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/BugRepository.php.html#134"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Repository\BugRepository::delete — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/CategoryRepository.php.html#46"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Repository\CategoryRepository::save — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/CategoryRepository.php.html#57"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Repository\CategoryRepository::delete — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/CommentRepository.php.html#43"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Repository\CommentRepository::save — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/CommentRepository.php.html#54"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Repository\CommentRepository::delete — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/TagRepository.php.html#44"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Repository\TagRepository::save — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/TagRepository.php.html#55"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Repository\TagRepository::delete — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#48"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Repository\UserRepository::queryAll — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Security/Voter/BugVoter.php.html#50"><circle cx="60.0" cy="267.5" r="4.4" class="bubble-danger"><title>App\Security\Voter\BugVoter::supports — Coverage: 0.0% | Lines: 2 | Complexity: 2</title></circle></a>
+ <a href="Security/Voter/CategoryVoter.php.html#51"><circle cx="60.0" cy="226.2" r="4.4" class="bubble-danger"><title>App\Security\Voter\CategoryVoter::supports — Coverage: 0.0% | Lines: 2 | Complexity: 3</title></circle></a>
+ <a href="Security/Voter/CommentVoter.php.html#43"><circle cx="60.0" cy="267.5" r="4.4" class="bubble-danger"><title>App\Security\Voter\CommentVoter::supports — Coverage: 0.0% | Lines: 2 | Complexity: 2</title></circle></a>
+ <a href="Security/Voter/TagVoter.php.html#50"><circle cx="60.0" cy="226.2" r="4.4" class="bubble-danger"><title>App\Security\Voter\TagVoter::supports — Coverage: 0.0% | Lines: 2 | Complexity: 3</title></circle></a>
+ <a href="Service/BugService.php.html#103"><circle cx="780.0" cy="308.8" r="4.4" class="bubble-success"><title>App\Service\BugService::assign — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Service/UserService.php.html#86"><circle cx="60.0" cy="308.8" r="4.4" class="bubble-danger"><title>App\Service\UserService::changeEmail — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="Controller/AdminController.php.html#20"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\AdminController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Controller/AdminUserController.php.html#19"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\AdminUserController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Controller/BugController.php.html#41"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\BugController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Controller/CategoryController.php.html#34"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\CategoryController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Controller/CommentController.php.html#23"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\CommentController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Controller/SecurityController.php.html#24"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\SecurityController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Controller/SecurityController.php.html#85"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\SecurityController::logout — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Controller/TagController.php.html#34"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\TagController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Controller/UserController.php.html#20"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Controller\UserController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="DataFixtures/AbstractBaseFixtures.php.html#48"><circle cx="60.0" cy="350.0" r="4.0" class="bubble-danger"><title>App\DataFixtures\AbstractBaseFixtures::loadData — Coverage: 0.0% | Lines: 1 | Complexity: 0</title></circle></a>
+ <a href="DataFixtures/BugFixtures.php.html#94"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\DataFixtures\BugFixtures::getDependencies — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="DataFixtures/CommentFixtures.php.html#70"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\DataFixtures\CommentFixtures::getDependencies — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="DataFixtures/UserFixtures.php.html#27"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\DataFixtures\UserFixtures::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Dto/BugListFiltersDto.php.html#23"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Dto\BugListFiltersDto::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Dto/BugListInputFiltersDto.php.html#20"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Dto\BugListInputFiltersDto::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#101"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Bug::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#106"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Bug::getId — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#111"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Bug::getCreatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#123"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Bug::getUpdatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#135"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Bug::getTitle — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#147"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Bug::getDescription — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#159"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Bug::getCategory — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#171"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Bug::getSlug — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#186"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Bug::getTags — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#207"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Bug::getAuthor — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#219"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Bug::getStatus — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#238"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Bug::setStatusEnum — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Bug.php.html#243"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Bug::getAssignedTo — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#71"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Category::getId — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#81"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Category::getTitle — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#91"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Category::setTitle — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#101"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Category::getCreatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#111"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Category::setCreatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#121"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Category::getUpdatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#131"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Category::setUpdatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Category.php.html#136"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Category::getSlug — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#58"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Comment::getId — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#63"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Comment::getCreatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#75"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Comment::getUpdatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#87"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Comment::getContent — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#99"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Comment::getBug — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Comment.php.html#111"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Comment::getAuthor — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#62"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Tag::getId — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#67"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Tag::getCreatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#79"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Tag::getUpdatedAt — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#91"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\Tag::getTitle — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/Tag.php.html#103"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\Tag::getSlug — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/User.php.html#60"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\User::getId — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/User.php.html#70"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\User::getEmail — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/User.php.html#80"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\User::setEmail — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/User.php.html#92"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\User::getUserIdentifier — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/User.php.html#117"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\User::setRoles — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/User.php.html#129"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\User::getPassword — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/User.php.html#139"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Entity\User::setPassword — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Entity/User.php.html#149"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Entity\User::eraseCredentials — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/DataTransformer/TagsDataTransformer.php.html#26"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\DataTransformer\TagsDataTransformer::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/BugType.php.html#28"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\BugType::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/BugType.php.html#94"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\BugType::configureOptions — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/BugType.php.html#109"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\BugType::getBlockPrefix — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/CategoryType.php.html#49"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\CategoryType::configureOptions — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/CategoryType.php.html#62"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\CategoryType::getBlockPrefix — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/CommentType.php.html#49"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\CommentType::configureOptions — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/CommentType.php.html#64"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\CommentType::getBlockPrefix — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/TagType.php.html#49"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\TagType::configureOptions — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/TagType.php.html#62"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\TagType::getBlockPrefix — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/UserEmailType.php.html#33"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\UserEmailType::configureOptions — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Form/Type/UserPasswordType.php.html#42"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Form\Type\UserPasswordType::configureOptions — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Repository/BugRepository.php.html#35"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Repository\BugRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Repository/CategoryRepository.php.html#26"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Repository\CategoryRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Repository/CategoryRepository.php.html#36"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Repository\CategoryRepository::queryAll — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Repository/CommentRepository.php.html#20"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Repository\CommentRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Repository/TagRepository.php.html#24"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Repository\TagRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Repository/TagRepository.php.html#34"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Repository\TagRepository::queryAll — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Repository/UserRepository.php.html#22"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Repository\UserRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Security/AccessDeniedHandler.php.html#14"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Security\AccessDeniedHandler::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Security/Voter/BugVoter.php.html#93"><circle cx="60.0" cy="267.5" r="4.0" class="bubble-danger"><title>App\Security\Voter\BugVoter::canDelete — Coverage: 0.0% | Lines: 1 | Complexity: 2</title></circle></a>
+ <a href="Security/Voter/BugVoter.php.html#106"><circle cx="60.0" cy="267.5" r="4.0" class="bubble-danger"><title>App\Security\Voter\BugVoter::canEdit — Coverage: 0.0% | Lines: 1 | Complexity: 2</title></circle></a>
+ <a href="Service/BugService.php.html#43"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\BugService::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/BugService.php.html#114"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\BugService::save — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/BugService.php.html#124"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\BugService::delete — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/CategoryService.php.html#39"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\CategoryService::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/CategoryService.php.html#69"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\CategoryService::save — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/CategoryService.php.html#77"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\CategoryService::delete — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/CategoryService.php.html#109"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\CategoryService::findOneById — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/CommentService.php.html#19"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\CommentService::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/CommentService.php.html#30"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\CommentService::findByBug — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/CommentService.php.html#40"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\CommentService::save — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/CommentService.php.html#50"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\CommentService::delete — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/TagService.php.html#38"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\TagService::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/TagService.php.html#70"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\TagService::findOneByTitle — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/TagService.php.html#80"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\TagService::save — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/TagService.php.html#88"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\TagService::delete — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/TagService.php.html#102"><circle cx="780.0" cy="308.8" r="4.0" class="bubble-success"><title>App\Service\TagService::findOneById — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/UserService.php.html#22"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Service\UserService::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/UserService.php.html#35"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Service\UserService::getUserDetails — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/UserService.php.html#40"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Service\UserService::countAdmins — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/UserService.php.html#45"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Service\UserService::findWithStats — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="Service/UserService.php.html#92"><circle cx="60.0" cy="308.8" r="4.0" class="bubble-danger"><title>App\Service\UserService::findAdmins — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+</svg>
+     </div>
+    </div>
+    <div class="col-md-6 dashboard-column">
+     <h3>&nbsp;</h3>
+     <p class="text-muted small">Sorted by descending CRAP (Change Risk Anti-Patterns) index.</p>
+     <div class="scrollbox">
+<table class="table">
+ <thead>
+  <tr>
+   <th>Method</th>
+   <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+   <th class="text-right">Coverage</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td><a href="Security/Voter/BugVoter.php.html#67">App\Security\Voter\BugVoter::voteOnAttribute</a></td><td class="text-right">56</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/CommentVoter.php.html#60">App\Security\Voter\CommentVoter::voteOnAttribute</a></td><td class="text-right">42</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/BugController.php.html#74">App\Controller\BugController::view</a></td><td class="text-right">30</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/AdminUserController.php.html#86">App\Controller\AdminUserController::delete</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/BugController.php.html#266">App\Controller\BugController::assign</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CategoryController.php.html#169">App\Controller\CategoryController::delete</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CommentController.php.html#32">App\Controller\CommentController::edit</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CommentController.php.html#82">App\Controller\CommentController::delete</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/UserController.php.html#114">App\Controller\UserController::delete</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/AbstractBaseFixtures.php.html#130">App\DataFixtures\AbstractBaseFixtures::getReferenceNameListByClassName</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/BugFixtures.php.html#32">App\DataFixtures\BugFixtures::loadData</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Enum/BugStatus.php.html#11">App\Entity\Enum\BugStatus::label</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/DataTransformer/TagsDataTransformer.php.html#59">App\Form\DataTransformer\TagsDataTransformer::reverseTransform</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/AdminController.php.html#35">App\Controller\AdminController::changeEmail</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/AdminController.php.html#69">App\Controller\AdminController::changePassword</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/BugController.php.html#129">App\Controller\BugController::create</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/BugController.php.html#168">App\Controller\BugController::edit</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/BugController.php.html#215">App\Controller\BugController::delete</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CategoryController.php.html#85">App\Controller\CategoryController::create</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CategoryController.php.html#122">App\Controller\CategoryController::edit</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/SecurityController.php.html#28">App\Controller\SecurityController::register</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/TagController.php.html#85">App\Controller\TagController::create</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/TagController.php.html#121">App\Controller\TagController::edit</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/TagController.php.html#160">App\Controller\TagController::delete</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/UserController.php.html#49">App\Controller\UserController::changeEmail</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/UserController.php.html#83">App\Controller\UserController::changePassword</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/AbstractBaseFixtures.php.html#66">App\DataFixtures\AbstractBaseFixtures::createMany</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/CategoryFixtures.php.html#27">App\DataFixtures\CategoryFixtures::loadData</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/CommentFixtures.php.html#30">App\DataFixtures\CommentFixtures::loadData</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/TagFixtures.php.html#27">App\DataFixtures\TagFixtures::loadData</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/UserFixtures.php.html#38">App\DataFixtures\UserFixtures::loadData</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Enum/UserRole.php.html#22">App\Entity\Enum\UserRole::label</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/DataTransformer/TagsDataTransformer.php.html#37">App\Form\DataTransformer\TagsDataTransformer::transform</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Resolver/BugListInputFiltersDtoResolver.php.html#27">App\Resolver\BugListInputFiltersDtoResolver::resolve</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/CategoryVoter.php.html#51">App\Security\Voter\CategoryVoter::supports</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/CommentVoter.php.html#85">App\Security\Voter\CommentVoter::canDelete</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/CommentVoter.php.html#103">App\Security\Voter\CommentVoter::canEdit</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/TagVoter.php.html#50">App\Security\Voter\TagVoter::supports</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#50">App\Service\UserService::toggleAdminRole</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#70">App\Service\UserService::delete</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/BugService.php.html#71">App\Service\BugService::changeStatus</a></td><td class="text-right">6.04</td><td class="text-right">89.5%</td></tr>
+  <tr><td><a href="Controller/AdminUserController.php.html#42">App\Controller\AdminUserController::view</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/AdminUserController.php.html#66">App\Controller\AdminUserController::toggleRole</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/SecurityController.php.html#63">App\Controller\SecurityController::login</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/AbstractBaseFixtures.php.html#110">App\DataFixtures\AbstractBaseFixtures::getRandomReferenceList</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#28">App\Repository\UserRepository::upgradePassword</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#54">App\Repository\UserRepository::findWithStats</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/AccessDeniedHandler.php.html#20">App\Security\AccessDeniedHandler::handle</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/BugVoter.php.html#50">App\Security\Voter\BugVoter::supports</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/BugVoter.php.html#93">App\Security\Voter\BugVoter::canDelete</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/BugVoter.php.html#106">App\Security\Voter\BugVoter::canEdit</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/BugVoter.php.html#119">App\Security\Voter\BugVoter::canComment</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/CategoryVoter.php.html#68">App\Security\Voter\CategoryVoter::voteOnAttribute</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/CommentVoter.php.html#43">App\Security\Voter\CommentVoter::supports</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/Voter/TagVoter.php.html#67">App\Security\Voter\TagVoter::voteOnAttribute</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#62">App\Repository\BugRepository::applyFiltersToList</a></td><td class="text-right">3</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/BugService.php.html#136">App\Service\BugService::prepareFilters</a></td><td class="text-right">3</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CategoryService.php.html#89">App\Service\CategoryService::canBeDeleted</a></td><td class="text-right">2.50</td><td class="text-right">50.0%</td></tr>
+  <tr><td><a href="Controller/AdminController.php.html#20">App\Controller\AdminController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/AdminController.php.html#27">App\Controller\AdminController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/AdminUserController.php.html#19">App\Controller\AdminUserController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/AdminUserController.php.html#26">App\Controller\AdminUserController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/BugController.php.html#41">App\Controller\BugController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/BugController.php.html#53">App\Controller\BugController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/BugController.php.html#250">App\Controller\BugController::changeStatus</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CategoryController.php.html#34">App\Controller\CategoryController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CategoryController.php.html#45">App\Controller\CategoryController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CategoryController.php.html#63">App\Controller\CategoryController::view</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/CommentController.php.html#23">App\Controller\CommentController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/SecurityController.php.html#24">App\Controller\SecurityController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/SecurityController.php.html#85">App\Controller\SecurityController::logout</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/TagController.php.html#34">App\Controller\TagController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/TagController.php.html#45">App\Controller\TagController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/TagController.php.html#63">App\Controller\TagController::view</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/UserController.php.html#20">App\Controller\UserController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Controller/UserController.php.html#27">App\Controller\UserController::profile</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/AbstractBaseFixtures.php.html#36">App\DataFixtures\AbstractBaseFixtures::load</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/AbstractBaseFixtures.php.html#93">App\DataFixtures\AbstractBaseFixtures::getRandomReference</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/BugFixtures.php.html#94">App\DataFixtures\BugFixtures::getDependencies</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/CommentFixtures.php.html#70">App\DataFixtures\CommentFixtures::getDependencies</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="DataFixtures/UserFixtures.php.html#27">App\DataFixtures\UserFixtures::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#111">App\Entity\Bug::getCreatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#116">App\Entity\Bug::setCreatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#123">App\Entity\Bug::getUpdatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#128">App\Entity\Bug::setUpdatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#147">App\Entity\Bug::getDescription</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#159">App\Entity\Bug::getCategory</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#171">App\Entity\Bug::getSlug</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#176">App\Entity\Bug::setSlug</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#186">App\Entity\Bug::getTags</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#191">App\Entity\Bug::addTag</a></td><td class="text-right">2</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#200">App\Entity\Bug::removeTag</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#207">App\Entity\Bug::getAuthor</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#219">App\Entity\Bug::getStatus</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#224">App\Entity\Bug::setStatus</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#231">App\Entity\Bug::getStatusEnum</a></td><td class="text-right">2</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#81">App\Entity\Category::getTitle</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#101">App\Entity\Category::getCreatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#111">App\Entity\Category::setCreatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#121">App\Entity\Category::getUpdatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#131">App\Entity\Category::setUpdatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#136">App\Entity\Category::getSlug</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#141">App\Entity\Category::setSlug</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#63">App\Entity\Comment::getCreatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#68">App\Entity\Comment::setCreatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#75">App\Entity\Comment::getUpdatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#80">App\Entity\Comment::setUpdatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#111">App\Entity\Comment::getAuthor</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#67">App\Entity\Tag::getCreatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#72">App\Entity\Tag::setCreatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#79">App\Entity\Tag::getUpdatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#84">App\Entity\Tag::setUpdatedAt</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#103">App\Entity\Tag::getSlug</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#108">App\Entity\Tag::setSlug</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#60">App\Entity\User::getId</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#70">App\Entity\User::getEmail</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#92">App\Entity\User::getUserIdentifier</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#104">App\Entity\User::getRoles</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#129">App\Entity\User::getPassword</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#149">App\Entity\User::eraseCredentials</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/DataTransformer/TagsDataTransformer.php.html#26">App\Form\DataTransformer\TagsDataTransformer::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/BugAssignType.php.html#14">App\Form\Type\BugAssignType::buildForm</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/BugAssignType.php.html#25">App\Form\Type\BugAssignType::configureOptions</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/BugType.php.html#28">App\Form\Type\BugType::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/BugType.php.html#43">App\Form\Type\BugType::buildForm</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/BugType.php.html#94">App\Form\Type\BugType::configureOptions</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/BugType.php.html#109">App\Form\Type\BugType::getBlockPrefix</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/CategoryType.php.html#31">App\Form\Type\CategoryType::buildForm</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/CategoryType.php.html#49">App\Form\Type\CategoryType::configureOptions</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/CategoryType.php.html#62">App\Form\Type\CategoryType::getBlockPrefix</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/CommentType.php.html#31">App\Form\Type\CommentType::buildForm</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/CommentType.php.html#49">App\Form\Type\CommentType::configureOptions</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/CommentType.php.html#64">App\Form\Type\CommentType::getBlockPrefix</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/RegistrationType.php.html#16">App\Form\Type\RegistrationType::buildForm</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/RegistrationType.php.html#47">App\Form\Type\RegistrationType::configureOptions</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/TagType.php.html#31">App\Form\Type\TagType::buildForm</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/TagType.php.html#49">App\Form\Type\TagType::configureOptions</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/TagType.php.html#62">App\Form\Type\TagType::getBlockPrefix</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/UserEmailType.php.html#14">App\Form\Type\UserEmailType::buildForm</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/UserEmailType.php.html#33">App\Form\Type\UserEmailType::configureOptions</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/UserPasswordType.php.html#15">App\Form\Type\UserPasswordType::buildForm</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Form/Type/UserPasswordType.php.html#42">App\Form\Type\UserPasswordType::configureOptions</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#77">App\Repository\BugRepository::queryByAuthor</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#109">App\Repository\BugRepository::findAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#38">App\Repository\UserRepository::countAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#48">App\Repository\UserRepository::queryAll</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#86">App\Repository\UserRepository::findAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#94">App\Repository\UserRepository::unassignBugs</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#114">App\Repository\UserRepository::delete</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Security/AccessDeniedHandler.php.html#14">App\Security\AccessDeniedHandler::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#22">App\Service\UserService::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#26">App\Service\UserService::getPaginatedList</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#35">App\Service\UserService::getUserDetails</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#40">App\Service\UserService::countAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#45">App\Service\UserService::findWithStats</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#79">App\Service\UserService::changePassword</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#86">App\Service\UserService::changeEmail</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#92">App\Service\UserService::findAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Service/UserService.php.html#97">App\Service\UserService::register</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="Dto/BugListFiltersDto.php.html#23">App\Dto\BugListFiltersDto::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Dto/BugListInputFiltersDto.php.html#20">App\Dto\BugListInputFiltersDto::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#101">App\Entity\Bug::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#106">App\Entity\Bug::getId</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#135">App\Entity\Bug::getTitle</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#140">App\Entity\Bug::setTitle</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#152">App\Entity\Bug::setDescription</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#164">App\Entity\Bug::setCategory</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#212">App\Entity\Bug::setAuthor</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#238">App\Entity\Bug::setStatusEnum</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#243">App\Entity\Bug::getAssignedTo</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Bug.php.html#248">App\Entity\Bug::setAssignedTo</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#71">App\Entity\Category::getId</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Category.php.html#91">App\Entity\Category::setTitle</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#58">App\Entity\Comment::getId</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#87">App\Entity\Comment::getContent</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#92">App\Entity\Comment::setContent</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#99">App\Entity\Comment::getBug</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#104">App\Entity\Comment::setBug</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Comment.php.html#116">App\Entity\Comment::setAuthor</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#62">App\Entity\Tag::getId</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#91">App\Entity\Tag::getTitle</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/Tag.php.html#96">App\Entity\Tag::setTitle</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#80">App\Entity\User::setEmail</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#117">App\Entity\User::setRoles</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Entity/User.php.html#139">App\Entity\User::setPassword</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#35">App\Repository\BugRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#40">App\Repository\BugRepository::queryAll</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#98">App\Repository\BugRepository::countByCategory</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#123">App\Repository\BugRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/BugRepository.php.html#134">App\Repository\BugRepository::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CategoryRepository.php.html#26">App\Repository\CategoryRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CategoryRepository.php.html#36">App\Repository\CategoryRepository::queryAll</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CategoryRepository.php.html#46">App\Repository\CategoryRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CategoryRepository.php.html#57">App\Repository\CategoryRepository::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CommentRepository.php.html#20">App\Repository\CommentRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CommentRepository.php.html#28">App\Repository\CommentRepository::findByBug</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CommentRepository.php.html#43">App\Repository\CommentRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/CommentRepository.php.html#54">App\Repository\CommentRepository::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/TagRepository.php.html#24">App\Repository\TagRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/TagRepository.php.html#34">App\Repository\TagRepository::queryAll</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/TagRepository.php.html#44">App\Repository\TagRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/TagRepository.php.html#55">App\Repository\TagRepository::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#22">App\Repository\UserRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Repository/UserRepository.php.html#106">App\Repository\UserRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/BugService.php.html#43">App\Service\BugService::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/BugService.php.html#55">App\Service\BugService::getPaginatedList</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/BugService.php.html#103">App\Service\BugService::assign</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/BugService.php.html#114">App\Service\BugService::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/BugService.php.html#124">App\Service\BugService::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CategoryService.php.html#39">App\Service\CategoryService::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CategoryService.php.html#50">App\Service\CategoryService::getPaginatedList</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CategoryService.php.html#69">App\Service\CategoryService::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CategoryService.php.html#77">App\Service\CategoryService::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CategoryService.php.html#109">App\Service\CategoryService::findOneById</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CommentService.php.html#19">App\Service\CommentService::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CommentService.php.html#30">App\Service\CommentService::findByBug</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CommentService.php.html#40">App\Service\CommentService::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/CommentService.php.html#50">App\Service\CommentService::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/TagService.php.html#38">App\Service\TagService::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/TagService.php.html#49">App\Service\TagService::getPaginatedList</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/TagService.php.html#70">App\Service\TagService::findOneByTitle</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/TagService.php.html#80">App\Service\TagService::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/TagService.php.html#88">App\Service\TagService::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="Service/TagService.php.html#102">App\Service\TagService::findOneById</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="DataFixtures/AbstractBaseFixtures.php.html#48">App\DataFixtures\AbstractBaseFixtures::loadData</a></td><td class="text-right">0</td><td class="text-right">0.0%</td></tr>
+ </tbody>
+</table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 14.0.0</a> using <a href="https://www.php.net/" target="_top">PHP 8.5.6</a> and <a href="https://phpunit.de/">PHPUnit 13.1.0</a> at Wed May 20 1:07:22 UTC 2026.</small>
+    </p>
+   </footer>
+  </div>
+ </body>
+</html>

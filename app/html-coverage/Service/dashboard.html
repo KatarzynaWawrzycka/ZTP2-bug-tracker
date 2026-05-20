@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/wwwroot/app/src/Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=14.0.0" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=14.0.0" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/home/wwwroot/app/src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Service</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row dashboard-row">
+    <div class="col-md-6">
+     <h3>Classes</h3>
+     <p class="text-muted small">Bubble size = executable lines. Hover for details, click to navigate.</p>
+     <div class="file-coverage-chart">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+ <style>
+  .bubble-success { fill: var(--phpunit-success-bar); opacity: 0.7; }
+  .bubble-warning { fill: var(--phpunit-warning-bar); opacity: 0.7; }
+  .bubble-danger { fill: var(--phpunit-danger-bar); opacity: 0.7; }
+  .bubble-success:hover, .bubble-warning:hover, .bubble-danger:hover { opacity: 1; stroke: var(--bs-emphasis-color); stroke-width: 1.5; }
+  .chart-grid { stroke: var(--bs-border-color); stroke-width: 0.5; stroke-dasharray: 4,4; opacity: 0.5; }
+  .chart-axis { stroke: var(--bs-border-color); stroke-width: 1; }
+  .chart-label { fill: var(--bs-body-color); font-size: 11px; font-family: var(--bs-font-sans-serif, sans-serif); }
+  .chart-title { fill: var(--bs-body-color); font-size: 12px; font-family: var(--bs-font-sans-serif, sans-serif); }
+ </style>
+ <line x1="60.0" y1="20" x2="60.0" y2="350" class="chart-grid"/>
+ <text x="60.0" y="368" text-anchor="middle" class="chart-label">0%</text>
+ <line x1="204.0" y1="20" x2="204.0" y2="350" class="chart-grid"/>
+ <text x="204.0" y="368" text-anchor="middle" class="chart-label">20%</text>
+ <line x1="348.0" y1="20" x2="348.0" y2="350" class="chart-grid"/>
+ <text x="348.0" y="368" text-anchor="middle" class="chart-label">40%</text>
+ <line x1="492.0" y1="20" x2="492.0" y2="350" class="chart-grid"/>
+ <text x="492.0" y="368" text-anchor="middle" class="chart-label">60%</text>
+ <line x1="636.0" y1="20" x2="636.0" y2="350" class="chart-grid"/>
+ <text x="636.0" y="368" text-anchor="middle" class="chart-label">80%</text>
+ <line x1="780.0" y1="20" x2="780.0" y2="350" class="chart-grid"/>
+ <text x="780.0" y="368" text-anchor="middle" class="chart-label">100%</text>
+ <line x1="60" y1="350.0" x2="780" y2="350.0" class="chart-grid"/>
+ <text x="52" y="350.0" text-anchor="end" dominant-baseline="middle" class="chart-label">0</text>
+ <line x1="60" y1="267.5" x2="780" y2="267.5" class="chart-grid"/>
+ <text x="52" y="267.5" text-anchor="end" dominant-baseline="middle" class="chart-label">5</text>
+ <line x1="60" y1="185.0" x2="780" y2="185.0" class="chart-grid"/>
+ <text x="52" y="185.0" text-anchor="end" dominant-baseline="middle" class="chart-label">10</text>
+ <line x1="60" y1="102.5" x2="780" y2="102.5" class="chart-grid"/>
+ <text x="52" y="102.5" text-anchor="end" dominant-baseline="middle" class="chart-label">15</text>
+ <line x1="60" y1="20.0" x2="780" y2="20.0" class="chart-grid"/>
+ <text x="52" y="20.0" text-anchor="end" dominant-baseline="middle" class="chart-label">20</text>
+ <line x1="60" y1="20" x2="60" y2="350" class="chart-axis"/>
+ <line x1="60" y1="350" x2="780" y2="350" class="chart-axis"/>
+ <text x="420.0" y="395" text-anchor="middle" class="chart-title">Line Coverage (%)</text>
+ <text x="15" y="185.0" text-anchor="middle" transform="rotate(-90, 15, 185.0)" class="chart-title">Cyclomatic Complexity</text>
+ <a href="BugService.php.html#22"><circle cx="743.1" cy="119.0" r="20.0" class="bubble-success"><title>App\Service\BugService — Coverage: 94.9% | Lines: 39 | Complexity: 14</title></circle></a>
+ <a href="UserService.php.html#18"><circle cx="60.0" cy="102.5" r="17.8" class="bubble-danger"><title>App\Service\UserService — Coverage: 0.0% | Lines: 31 | Complexity: 15</title></circle></a>
+ <a href="CategoryService.php.html#20"><circle cx="700.0" cy="234.5" r="13.6" class="bubble-warning"><title>App\Service\CategoryService — Coverage: 88.9% | Lines: 18 | Complexity: 7</title></circle></a>
+ <a href="TagService.php.html#19"><circle cx="780.0" cy="251.0" r="12.4" class="bubble-success"><title>App\Service\TagService — Coverage: 100.0% | Lines: 15 | Complexity: 6</title></circle></a>
+ <a href="CommentService.php.html#12"><circle cx="780.0" cy="284.0" r="6.4" class="bubble-success"><title>App\Service\CommentService — Coverage: 100.0% | Lines: 4 | Complexity: 4</title></circle></a>
+</svg>
+     </div>
+    </div>
+    <div class="col-md-6 dashboard-column">
+     <h3>&nbsp;</h3>
+     <p class="text-muted small">Sorted by descending CRAP (Change Risk Anti-Patterns) index.</p>
+     <div class="scrollbox">
+<table class="table">
+ <thead>
+  <tr>
+   <th>Class</th>
+   <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+   <th class="text-right">Coverage</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td><a href="UserService.php.html#18">App\Service\UserService</a></td><td class="text-right">240</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugService.php.html#22">App\Service\BugService</a></td><td class="text-right">14.03</td><td class="text-right">94.9%</td></tr>
+  <tr><td><a href="CategoryService.php.html#20">App\Service\CategoryService</a></td><td class="text-right">7.07</td><td class="text-right">88.9%</td></tr>
+  <tr><td><a href="TagService.php.html#19">App\Service\TagService</a></td><td class="text-right">6</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentService.php.html#12">App\Service\CommentService</a></td><td class="text-right">4</td><td class="text-right">100.0%</td></tr>
+ </tbody>
+</table>
+     </div>
+    </div>
+   </div>
+   <div class="row dashboard-row">
+    <div class="col-md-6">
+     <h3>Methods</h3>
+     <p class="text-muted small">Bubble size = executable lines. Hover for details, click to navigate.</p>
+     <div class="file-coverage-chart">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+ <style>
+  .bubble-success { fill: var(--phpunit-success-bar); opacity: 0.7; }
+  .bubble-warning { fill: var(--phpunit-warning-bar); opacity: 0.7; }
+  .bubble-danger { fill: var(--phpunit-danger-bar); opacity: 0.7; }
+  .bubble-success:hover, .bubble-warning:hover, .bubble-danger:hover { opacity: 1; stroke: var(--bs-emphasis-color); stroke-width: 1.5; }
+  .chart-grid { stroke: var(--bs-border-color); stroke-width: 0.5; stroke-dasharray: 4,4; opacity: 0.5; }
+  .chart-axis { stroke: var(--bs-border-color); stroke-width: 1; }
+  .chart-label { fill: var(--bs-body-color); font-size: 11px; font-family: var(--bs-font-sans-serif, sans-serif); }
+  .chart-title { fill: var(--bs-body-color); font-size: 12px; font-family: var(--bs-font-sans-serif, sans-serif); }
+ </style>
+ <line x1="60.0" y1="20" x2="60.0" y2="350" class="chart-grid"/>
+ <text x="60.0" y="368" text-anchor="middle" class="chart-label">0%</text>
+ <line x1="204.0" y1="20" x2="204.0" y2="350" class="chart-grid"/>
+ <text x="204.0" y="368" text-anchor="middle" class="chart-label">20%</text>
+ <line x1="348.0" y1="20" x2="348.0" y2="350" class="chart-grid"/>
+ <text x="348.0" y="368" text-anchor="middle" class="chart-label">40%</text>
+ <line x1="492.0" y1="20" x2="492.0" y2="350" class="chart-grid"/>
+ <text x="492.0" y="368" text-anchor="middle" class="chart-label">60%</text>
+ <line x1="636.0" y1="20" x2="636.0" y2="350" class="chart-grid"/>
+ <text x="636.0" y="368" text-anchor="middle" class="chart-label">80%</text>
+ <line x1="780.0" y1="20" x2="780.0" y2="350" class="chart-grid"/>
+ <text x="780.0" y="368" text-anchor="middle" class="chart-label">100%</text>
+ <line x1="60" y1="350.0" x2="780" y2="350.0" class="chart-grid"/>
+ <text x="52" y="350.0" text-anchor="end" dominant-baseline="middle" class="chart-label">0</text>
+ <line x1="60" y1="267.5" x2="780" y2="267.5" class="chart-grid"/>
+ <text x="52" y="267.5" text-anchor="end" dominant-baseline="middle" class="chart-label">2</text>
+ <line x1="60" y1="185.0" x2="780" y2="185.0" class="chart-grid"/>
+ <text x="52" y="185.0" text-anchor="end" dominant-baseline="middle" class="chart-label">4</text>
+ <line x1="60" y1="102.5" x2="780" y2="102.5" class="chart-grid"/>
+ <text x="52" y="102.5" text-anchor="end" dominant-baseline="middle" class="chart-label">6</text>
+ <line x1="60" y1="20.0" x2="780" y2="20.0" class="chart-grid"/>
+ <text x="52" y="20.0" text-anchor="end" dominant-baseline="middle" class="chart-label">8</text>
+ <line x1="60" y1="20" x2="60" y2="350" class="chart-axis"/>
+ <line x1="60" y1="350" x2="780" y2="350" class="chart-axis"/>
+ <text x="420.0" y="395" text-anchor="middle" class="chart-title">Line Coverage (%)</text>
+ <text x="15" y="185.0" text-anchor="middle" transform="rotate(-90, 15, 185.0)" class="chart-title">Cyclomatic Complexity</text>
+ <a href="BugService.php.html#71"><circle cx="704.2" cy="102.5" r="20.0" class="bubble-warning"><title>App\Service\BugService::changeStatus — Coverage: 89.5% | Lines: 19 | Complexity: 6</title></circle></a>
+ <a href="BugService.php.html#55"><circle cx="780.0" cy="308.8" r="15.2" class="bubble-success"><title>App\Service\BugService::getPaginatedList — Coverage: 100.0% | Lines: 11 | Complexity: 1</title></circle></a>
+ <a href="CategoryService.php.html#50"><circle cx="780.0" cy="308.8" r="14.5" class="bubble-success"><title>App\Service\CategoryService::getPaginatedList — Coverage: 100.0% | Lines: 10 | Complexity: 1</title></circle></a>
+ <a href="TagService.php.html#49"><circle cx="780.0" cy="308.8" r="14.5" class="bubble-success"><title>App\Service\TagService::getPaginatedList — Coverage: 100.0% | Lines: 10 | Complexity: 1</title></circle></a>
+ <a href="UserService.php.html#50"><circle cx="60.0" cy="226.2" r="13.8" class="bubble-danger"><title>App\Service\UserService::toggleAdminRole — Coverage: 0.0% | Lines: 9 | Complexity: 3</title></circle></a>
+ <a href="UserService.php.html#26"><circle cx="60.0" cy="308.8" r="10.3" class="bubble-danger"><title>App\Service\UserService::getPaginatedList — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="BugService.php.html#136"><circle cx="780.0" cy="226.2" r="9.2" class="bubble-success"><title>App\Service\BugService::prepareFilters — Coverage: 100.0% | Lines: 4 | Complexity: 3</title></circle></a>
+ <a href="CategoryService.php.html#89"><circle cx="420.0" cy="267.5" r="9.2" class="bubble-danger"><title>App\Service\CategoryService::canBeDeleted — Coverage: 50.0% | Lines: 4 | Complexity: 2</title></circle></a>
+ <a href="UserService.php.html#97"><circle cx="60.0" cy="308.8" r="9.2" class="bubble-danger"><title>App\Service\UserService::register — Coverage: 0.0% | Lines: 4 | Complexity: 1</title></circle></a>
+ <a href="UserService.php.html#70"><circle cx="60.0" cy="226.2" r="7.9" class="bubble-danger"><title>App\Service\UserService::delete — Coverage: 0.0% | Lines: 3 | Complexity: 3</title></circle></a>
+ <a href="UserService.php.html#79"><circle cx="60.0" cy="308.8" r="7.9" class="bubble-danger"><title>App\Service\UserService::changePassword — Coverage: 0.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="BugService.php.html#103"><circle cx="780.0" cy="308.8" r="6.5" class="bubble-success"><title>App\Service\BugService::assign — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="UserService.php.html#86"><circle cx="60.0" cy="308.8" r="6.5" class="bubble-danger"><title>App\Service\UserService::changeEmail — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="BugService.php.html#43"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\BugService::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="BugService.php.html#114"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\BugService::save — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="BugService.php.html#124"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\BugService::delete — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CategoryService.php.html#39"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\CategoryService::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CategoryService.php.html#69"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\CategoryService::save — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CategoryService.php.html#77"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\CategoryService::delete — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CategoryService.php.html#109"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\CategoryService::findOneById — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CommentService.php.html#19"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\CommentService::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CommentService.php.html#30"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\CommentService::findByBug — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CommentService.php.html#40"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\CommentService::save — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CommentService.php.html#50"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\CommentService::delete — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="TagService.php.html#38"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\TagService::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="TagService.php.html#70"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\TagService::findOneByTitle — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="TagService.php.html#80"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\TagService::save — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="TagService.php.html#88"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\TagService::delete — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="TagService.php.html#102"><circle cx="780.0" cy="308.8" r="4.6" class="bubble-success"><title>App\Service\TagService::findOneById — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="UserService.php.html#22"><circle cx="60.0" cy="308.8" r="4.6" class="bubble-danger"><title>App\Service\UserService::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="UserService.php.html#35"><circle cx="60.0" cy="308.8" r="4.6" class="bubble-danger"><title>App\Service\UserService::getUserDetails — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="UserService.php.html#40"><circle cx="60.0" cy="308.8" r="4.6" class="bubble-danger"><title>App\Service\UserService::countAdmins — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="UserService.php.html#45"><circle cx="60.0" cy="308.8" r="4.6" class="bubble-danger"><title>App\Service\UserService::findWithStats — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="UserService.php.html#92"><circle cx="60.0" cy="308.8" r="4.6" class="bubble-danger"><title>App\Service\UserService::findAdmins — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+</svg>
+     </div>
+    </div>
+    <div class="col-md-6 dashboard-column">
+     <h3>&nbsp;</h3>
+     <p class="text-muted small">Sorted by descending CRAP (Change Risk Anti-Patterns) index.</p>
+     <div class="scrollbox">
+<table class="table">
+ <thead>
+  <tr>
+   <th>Method</th>
+   <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+   <th class="text-right">Coverage</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td><a href="UserService.php.html#50">App\Service\UserService::toggleAdminRole</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#70">App\Service\UserService::delete</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugService.php.html#71">App\Service\BugService::changeStatus</a></td><td class="text-right">6.04</td><td class="text-right">89.5%</td></tr>
+  <tr><td><a href="BugService.php.html#136">App\Service\BugService::prepareFilters</a></td><td class="text-right">3</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryService.php.html#89">App\Service\CategoryService::canBeDeleted</a></td><td class="text-right">2.50</td><td class="text-right">50.0%</td></tr>
+  <tr><td><a href="UserService.php.html#22">App\Service\UserService::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#26">App\Service\UserService::getPaginatedList</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#35">App\Service\UserService::getUserDetails</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#40">App\Service\UserService::countAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#45">App\Service\UserService::findWithStats</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#79">App\Service\UserService::changePassword</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#86">App\Service\UserService::changeEmail</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#92">App\Service\UserService::findAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserService.php.html#97">App\Service\UserService::register</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugService.php.html#43">App\Service\BugService::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugService.php.html#55">App\Service\BugService::getPaginatedList</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugService.php.html#103">App\Service\BugService::assign</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugService.php.html#114">App\Service\BugService::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugService.php.html#124">App\Service\BugService::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryService.php.html#39">App\Service\CategoryService::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryService.php.html#50">App\Service\CategoryService::getPaginatedList</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryService.php.html#69">App\Service\CategoryService::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryService.php.html#77">App\Service\CategoryService::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryService.php.html#109">App\Service\CategoryService::findOneById</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentService.php.html#19">App\Service\CommentService::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentService.php.html#30">App\Service\CommentService::findByBug</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentService.php.html#40">App\Service\CommentService::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentService.php.html#50">App\Service\CommentService::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagService.php.html#38">App\Service\TagService::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagService.php.html#49">App\Service\TagService::getPaginatedList</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagService.php.html#70">App\Service\TagService::findOneByTitle</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagService.php.html#80">App\Service\TagService::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagService.php.html#88">App\Service\TagService::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagService.php.html#102">App\Service\TagService::findOneById</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+ </tbody>
+</table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 14.0.0</a> using <a href="https://www.php.net/" target="_top">PHP 8.5.6</a> and <a href="https://phpunit.de/">PHPUnit 13.1.0</a> at Wed May 20 1:07:22 UTC 2026.</small>
+    </p>
+   </footer>
+  </div>
+ </body>
+</html>

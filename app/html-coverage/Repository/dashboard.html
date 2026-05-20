@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/wwwroot/app/src/Repository</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=14.0.0" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=14.0.0" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/home/wwwroot/app/src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Repository</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row dashboard-row">
+    <div class="col-md-6">
+     <h3>Classes</h3>
+     <p class="text-muted small">Bubble size = executable lines. Hover for details, click to navigate.</p>
+     <div class="file-coverage-chart">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+ <style>
+  .bubble-success { fill: var(--phpunit-success-bar); opacity: 0.7; }
+  .bubble-warning { fill: var(--phpunit-warning-bar); opacity: 0.7; }
+  .bubble-danger { fill: var(--phpunit-danger-bar); opacity: 0.7; }
+  .bubble-success:hover, .bubble-warning:hover, .bubble-danger:hover { opacity: 1; stroke: var(--bs-emphasis-color); stroke-width: 1.5; }
+  .chart-grid { stroke: var(--bs-border-color); stroke-width: 0.5; stroke-dasharray: 4,4; opacity: 0.5; }
+  .chart-axis { stroke: var(--bs-border-color); stroke-width: 1; }
+  .chart-label { fill: var(--bs-body-color); font-size: 11px; font-family: var(--bs-font-sans-serif, sans-serif); }
+  .chart-title { fill: var(--bs-body-color); font-size: 12px; font-family: var(--bs-font-sans-serif, sans-serif); }
+ </style>
+ <line x1="60.0" y1="20" x2="60.0" y2="350" class="chart-grid"/>
+ <text x="60.0" y="368" text-anchor="middle" class="chart-label">0%</text>
+ <line x1="204.0" y1="20" x2="204.0" y2="350" class="chart-grid"/>
+ <text x="204.0" y="368" text-anchor="middle" class="chart-label">20%</text>
+ <line x1="348.0" y1="20" x2="348.0" y2="350" class="chart-grid"/>
+ <text x="348.0" y="368" text-anchor="middle" class="chart-label">40%</text>
+ <line x1="492.0" y1="20" x2="492.0" y2="350" class="chart-grid"/>
+ <text x="492.0" y="368" text-anchor="middle" class="chart-label">60%</text>
+ <line x1="636.0" y1="20" x2="636.0" y2="350" class="chart-grid"/>
+ <text x="636.0" y="368" text-anchor="middle" class="chart-label">80%</text>
+ <line x1="780.0" y1="20" x2="780.0" y2="350" class="chart-grid"/>
+ <text x="780.0" y="368" text-anchor="middle" class="chart-label">100%</text>
+ <line x1="60" y1="350.0" x2="780" y2="350.0" class="chart-grid"/>
+ <text x="52" y="350.0" text-anchor="end" dominant-baseline="middle" class="chart-label">0</text>
+ <line x1="60" y1="240.0" x2="780" y2="240.0" class="chart-grid"/>
+ <text x="52" y="240.0" text-anchor="end" dominant-baseline="middle" class="chart-label">5</text>
+ <line x1="60" y1="130.0" x2="780" y2="130.0" class="chart-grid"/>
+ <text x="52" y="130.0" text-anchor="end" dominant-baseline="middle" class="chart-label">10</text>
+ <line x1="60" y1="20.0" x2="780" y2="20.0" class="chart-grid"/>
+ <text x="52" y="20.0" text-anchor="end" dominant-baseline="middle" class="chart-label">15</text>
+ <line x1="60" y1="20" x2="60" y2="350" class="chart-axis"/>
+ <line x1="60" y1="350" x2="780" y2="350" class="chart-axis"/>
+ <text x="420.0" y="395" text-anchor="middle" class="chart-title">Line Coverage (%)</text>
+ <text x="15" y="185.0" text-anchor="middle" transform="rotate(-90, 15, 185.0)" class="chart-title">Cyclomatic Complexity</text>
+ <a href="UserRepository.php.html#20"><circle cx="104.3" cy="108.0" r="20.0" class="bubble-danger"><title>App\Repository\UserRepository — Coverage: 6.2% | Lines: 65 | Complexity: 11</title></circle></a>
+ <a href="BugRepository.php.html#17"><circle cx="522.9" cy="130.0" r="16.1" class="bubble-warning"><title>App\Repository\BugRepository — Coverage: 64.3% | Lines: 42 | Complexity: 10</title></circle></a>
+ <a href="CommentRepository.php.html#13"><circle cx="780.0" cy="262.0" r="8.2" class="bubble-success"><title>App\Repository\CommentRepository — Coverage: 100.0% | Lines: 11 | Complexity: 4</title></circle></a>
+ <a href="CategoryRepository.php.html#19"><circle cx="780.0" cy="262.0" r="6.1" class="bubble-success"><title>App\Repository\CategoryRepository — Coverage: 100.0% | Lines: 6 | Complexity: 4</title></circle></a>
+ <a href="TagRepository.php.html#17"><circle cx="780.0" cy="262.0" r="6.1" class="bubble-success"><title>App\Repository\TagRepository — Coverage: 100.0% | Lines: 6 | Complexity: 4</title></circle></a>
+</svg>
+     </div>
+    </div>
+    <div class="col-md-6 dashboard-column">
+     <h3>&nbsp;</h3>
+     <p class="text-muted small">Sorted by descending CRAP (Change Risk Anti-Patterns) index.</p>
+     <div class="scrollbox">
+<table class="table">
+ <thead>
+  <tr>
+   <th>Class</th>
+   <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+   <th class="text-right">Coverage</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td><a href="UserRepository.php.html#20">App\Repository\UserRepository</a></td><td class="text-right">111.01</td><td class="text-right">6.2%</td></tr>
+  <tr><td><a href="BugRepository.php.html#17">App\Repository\BugRepository</a></td><td class="text-right">14.56</td><td class="text-right">64.3%</td></tr>
+  <tr><td><a href="CategoryRepository.php.html#19">App\Repository\CategoryRepository</a></td><td class="text-right">4</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentRepository.php.html#13">App\Repository\CommentRepository</a></td><td class="text-right">4</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagRepository.php.html#17">App\Repository\TagRepository</a></td><td class="text-right">4</td><td class="text-right">100.0%</td></tr>
+ </tbody>
+</table>
+     </div>
+    </div>
+   </div>
+   <div class="row dashboard-row">
+    <div class="col-md-6">
+     <h3>Methods</h3>
+     <p class="text-muted small">Bubble size = executable lines. Hover for details, click to navigate.</p>
+     <div class="file-coverage-chart">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+ <style>
+  .bubble-success { fill: var(--phpunit-success-bar); opacity: 0.7; }
+  .bubble-warning { fill: var(--phpunit-warning-bar); opacity: 0.7; }
+  .bubble-danger { fill: var(--phpunit-danger-bar); opacity: 0.7; }
+  .bubble-success:hover, .bubble-warning:hover, .bubble-danger:hover { opacity: 1; stroke: var(--bs-emphasis-color); stroke-width: 1.5; }
+  .chart-grid { stroke: var(--bs-border-color); stroke-width: 0.5; stroke-dasharray: 4,4; opacity: 0.5; }
+  .chart-axis { stroke: var(--bs-border-color); stroke-width: 1; }
+  .chart-label { fill: var(--bs-body-color); font-size: 11px; font-family: var(--bs-font-sans-serif, sans-serif); }
+  .chart-title { fill: var(--bs-body-color); font-size: 12px; font-family: var(--bs-font-sans-serif, sans-serif); }
+ </style>
+ <line x1="60.0" y1="20" x2="60.0" y2="350" class="chart-grid"/>
+ <text x="60.0" y="368" text-anchor="middle" class="chart-label">0%</text>
+ <line x1="204.0" y1="20" x2="204.0" y2="350" class="chart-grid"/>
+ <text x="204.0" y="368" text-anchor="middle" class="chart-label">20%</text>
+ <line x1="348.0" y1="20" x2="348.0" y2="350" class="chart-grid"/>
+ <text x="348.0" y="368" text-anchor="middle" class="chart-label">40%</text>
+ <line x1="492.0" y1="20" x2="492.0" y2="350" class="chart-grid"/>
+ <text x="492.0" y="368" text-anchor="middle" class="chart-label">60%</text>
+ <line x1="636.0" y1="20" x2="636.0" y2="350" class="chart-grid"/>
+ <text x="636.0" y="368" text-anchor="middle" class="chart-label">80%</text>
+ <line x1="780.0" y1="20" x2="780.0" y2="350" class="chart-grid"/>
+ <text x="780.0" y="368" text-anchor="middle" class="chart-label">100%</text>
+ <line x1="60" y1="350.0" x2="780" y2="350.0" class="chart-grid"/>
+ <text x="52" y="350.0" text-anchor="end" dominant-baseline="middle" class="chart-label">0</text>
+ <line x1="60" y1="267.5" x2="780" y2="267.5" class="chart-grid"/>
+ <text x="52" y="267.5" text-anchor="end" dominant-baseline="middle" class="chart-label">1</text>
+ <line x1="60" y1="185.0" x2="780" y2="185.0" class="chart-grid"/>
+ <text x="52" y="185.0" text-anchor="end" dominant-baseline="middle" class="chart-label">2</text>
+ <line x1="60" y1="102.5" x2="780" y2="102.5" class="chart-grid"/>
+ <text x="52" y="102.5" text-anchor="end" dominant-baseline="middle" class="chart-label">3</text>
+ <line x1="60" y1="20.0" x2="780" y2="20.0" class="chart-grid"/>
+ <text x="52" y="20.0" text-anchor="end" dominant-baseline="middle" class="chart-label">4</text>
+ <line x1="60" y1="20" x2="60" y2="350" class="chart-axis"/>
+ <line x1="60" y1="350" x2="780" y2="350" class="chart-axis"/>
+ <text x="420.0" y="395" text-anchor="middle" class="chart-title">Line Coverage (%)</text>
+ <text x="15" y="185.0" text-anchor="middle" transform="rotate(-90, 15, 185.0)" class="chart-title">Cyclomatic Complexity</text>
+ <a href="UserRepository.php.html#54"><circle cx="60.0" cy="185.0" r="20.0" class="bubble-danger"><title>App\Repository\UserRepository::findWithStats — Coverage: 0.0% | Lines: 23 | Complexity: 2</title></circle></a>
+ <a href="UserRepository.php.html#114"><circle cx="60.0" cy="267.5" r="16.2" class="bubble-danger"><title>App\Repository\UserRepository::delete — Coverage: 0.0% | Lines: 15 | Complexity: 1</title></circle></a>
+ <a href="BugRepository.php.html#77"><circle cx="60.0" cy="267.5" r="13.2" class="bubble-danger"><title>App\Repository\BugRepository::queryByAuthor — Coverage: 0.0% | Lines: 10 | Complexity: 1</title></circle></a>
+ <a href="BugRepository.php.html#40"><circle cx="780.0" cy="267.5" r="12.5" class="bubble-success"><title>App\Repository\BugRepository::queryAll — Coverage: 100.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="BugRepository.php.html#62"><circle cx="780.0" cy="102.5" r="11.0" class="bubble-success"><title>App\Repository\BugRepository::applyFiltersToList — Coverage: 100.0% | Lines: 7 | Complexity: 3</title></circle></a>
+ <a href="BugRepository.php.html#98"><circle cx="780.0" cy="267.5" r="10.2" class="bubble-success"><title>App\Repository\BugRepository::countByCategory — Coverage: 100.0% | Lines: 6 | Complexity: 1</title></circle></a>
+ <a href="CommentRepository.php.html#28"><circle cx="780.0" cy="267.5" r="10.2" class="bubble-success"><title>App\Repository\CommentRepository::findByBug — Coverage: 100.0% | Lines: 6 | Complexity: 1</title></circle></a>
+ <a href="UserRepository.php.html#38"><circle cx="60.0" cy="267.5" r="10.2" class="bubble-danger"><title>App\Repository\UserRepository::countAdmins — Coverage: 0.0% | Lines: 6 | Complexity: 1</title></circle></a>
+ <a href="UserRepository.php.html#94"><circle cx="60.0" cy="267.5" r="10.2" class="bubble-danger"><title>App\Repository\UserRepository::unassignBugs — Coverage: 0.0% | Lines: 6 | Complexity: 1</title></circle></a>
+ <a href="BugRepository.php.html#109"><circle cx="60.0" cy="267.5" r="9.3" class="bubble-danger"><title>App\Repository\BugRepository::findAdmins — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="UserRepository.php.html#28"><circle cx="60.0" cy="185.0" r="9.3" class="bubble-danger"><title>App\Repository\UserRepository::upgradePassword — Coverage: 0.0% | Lines: 5 | Complexity: 2</title></circle></a>
+ <a href="UserRepository.php.html#86"><circle cx="60.0" cy="267.5" r="8.3" class="bubble-danger"><title>App\Repository\UserRepository::findAdmins — Coverage: 0.0% | Lines: 4 | Complexity: 1</title></circle></a>
+ <a href="UserRepository.php.html#106"><circle cx="780.0" cy="267.5" r="7.2" class="bubble-success"><title>App\Repository\UserRepository::save — Coverage: 100.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="BugRepository.php.html#123"><circle cx="780.0" cy="267.5" r="5.9" class="bubble-success"><title>App\Repository\BugRepository::save — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="BugRepository.php.html#134"><circle cx="780.0" cy="267.5" r="5.9" class="bubble-success"><title>App\Repository\BugRepository::delete — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="CategoryRepository.php.html#46"><circle cx="780.0" cy="267.5" r="5.9" class="bubble-success"><title>App\Repository\CategoryRepository::save — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="CategoryRepository.php.html#57"><circle cx="780.0" cy="267.5" r="5.9" class="bubble-success"><title>App\Repository\CategoryRepository::delete — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="CommentRepository.php.html#43"><circle cx="780.0" cy="267.5" r="5.9" class="bubble-success"><title>App\Repository\CommentRepository::save — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="CommentRepository.php.html#54"><circle cx="780.0" cy="267.5" r="5.9" class="bubble-success"><title>App\Repository\CommentRepository::delete — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="TagRepository.php.html#44"><circle cx="780.0" cy="267.5" r="5.9" class="bubble-success"><title>App\Repository\TagRepository::save — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="TagRepository.php.html#55"><circle cx="780.0" cy="267.5" r="5.9" class="bubble-success"><title>App\Repository\TagRepository::delete — Coverage: 100.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="UserRepository.php.html#48"><circle cx="60.0" cy="267.5" r="5.9" class="bubble-danger"><title>App\Repository\UserRepository::queryAll — Coverage: 0.0% | Lines: 2 | Complexity: 1</title></circle></a>
+ <a href="BugRepository.php.html#35"><circle cx="780.0" cy="267.5" r="4.2" class="bubble-success"><title>App\Repository\BugRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CategoryRepository.php.html#26"><circle cx="780.0" cy="267.5" r="4.2" class="bubble-success"><title>App\Repository\CategoryRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CategoryRepository.php.html#36"><circle cx="780.0" cy="267.5" r="4.2" class="bubble-success"><title>App\Repository\CategoryRepository::queryAll — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CommentRepository.php.html#20"><circle cx="780.0" cy="267.5" r="4.2" class="bubble-success"><title>App\Repository\CommentRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="TagRepository.php.html#24"><circle cx="780.0" cy="267.5" r="4.2" class="bubble-success"><title>App\Repository\TagRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="TagRepository.php.html#34"><circle cx="780.0" cy="267.5" r="4.2" class="bubble-success"><title>App\Repository\TagRepository::queryAll — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="UserRepository.php.html#22"><circle cx="780.0" cy="267.5" r="4.2" class="bubble-success"><title>App\Repository\UserRepository::__construct — Coverage: 100.0% | Lines: 1 | Complexity: 1</title></circle></a>
+</svg>
+     </div>
+    </div>
+    <div class="col-md-6 dashboard-column">
+     <h3>&nbsp;</h3>
+     <p class="text-muted small">Sorted by descending CRAP (Change Risk Anti-Patterns) index.</p>
+     <div class="scrollbox">
+<table class="table">
+ <thead>
+  <tr>
+   <th>Method</th>
+   <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+   <th class="text-right">Coverage</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td><a href="UserRepository.php.html#28">App\Repository\UserRepository::upgradePassword</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserRepository.php.html#54">App\Repository\UserRepository::findWithStats</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugRepository.php.html#62">App\Repository\BugRepository::applyFiltersToList</a></td><td class="text-right">3</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugRepository.php.html#77">App\Repository\BugRepository::queryByAuthor</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugRepository.php.html#109">App\Repository\BugRepository::findAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserRepository.php.html#38">App\Repository\UserRepository::countAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserRepository.php.html#48">App\Repository\UserRepository::queryAll</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserRepository.php.html#86">App\Repository\UserRepository::findAdmins</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserRepository.php.html#94">App\Repository\UserRepository::unassignBugs</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserRepository.php.html#114">App\Repository\UserRepository::delete</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugRepository.php.html#35">App\Repository\BugRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugRepository.php.html#40">App\Repository\BugRepository::queryAll</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugRepository.php.html#98">App\Repository\BugRepository::countByCategory</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugRepository.php.html#123">App\Repository\BugRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="BugRepository.php.html#134">App\Repository\BugRepository::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryRepository.php.html#26">App\Repository\CategoryRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryRepository.php.html#36">App\Repository\CategoryRepository::queryAll</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryRepository.php.html#46">App\Repository\CategoryRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CategoryRepository.php.html#57">App\Repository\CategoryRepository::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentRepository.php.html#20">App\Repository\CommentRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentRepository.php.html#28">App\Repository\CommentRepository::findByBug</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentRepository.php.html#43">App\Repository\CommentRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="CommentRepository.php.html#54">App\Repository\CommentRepository::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagRepository.php.html#24">App\Repository\TagRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagRepository.php.html#34">App\Repository\TagRepository::queryAll</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagRepository.php.html#44">App\Repository\TagRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="TagRepository.php.html#55">App\Repository\TagRepository::delete</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="UserRepository.php.html#22">App\Repository\UserRepository::__construct</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+  <tr><td><a href="UserRepository.php.html#106">App\Repository\UserRepository::save</a></td><td class="text-right">1</td><td class="text-right">100.0%</td></tr>
+ </tbody>
+</table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 14.0.0</a> using <a href="https://www.php.net/" target="_top">PHP 8.5.6</a> and <a href="https://phpunit.de/">PHPUnit 13.1.0</a> at Wed May 20 1:07:22 UTC 2026.</small>
+    </p>
+   </footer>
+  </div>
+ </body>
+</html>

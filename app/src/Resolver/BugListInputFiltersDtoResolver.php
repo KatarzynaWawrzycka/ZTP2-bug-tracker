@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BugListInputFiltersDto resolver.
  */
@@ -6,7 +7,6 @@
 namespace App\Resolver;
 
 use App\Dto\BugListInputFiltersDto;
-use App\Entity\Enum\BugStatus;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;

@@ -51,7 +51,7 @@ final class CategoryVoter extends Voter
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [self::DELETE, self::EDIT, self::VIEW, self::CREATE])
-            && ($attribute === self::CREATE || $subject instanceof Category);
+            && (self::CREATE === $attribute || $subject instanceof Category);
     }
 
     /**

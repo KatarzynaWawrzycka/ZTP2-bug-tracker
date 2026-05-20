@@ -14,7 +14,8 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
     public function __construct(
         private RouterInterface $router,
         private RequestStack $requestStack,
-    ) {}
+    ) {
+    }
 
     public function handle(Request $request, AccessDeniedException $exception): ?RedirectResponse
     {

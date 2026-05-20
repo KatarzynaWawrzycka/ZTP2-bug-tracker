@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Bug;
-use App\Entity\Category;
 use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

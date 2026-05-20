@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/wwwroot/app/src/Controller</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=14.0.0" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=14.0.0" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/home/wwwroot/app/src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Controller</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row dashboard-row">
+    <div class="col-md-6">
+     <h3>Classes</h3>
+     <p class="text-muted small">Bubble size = executable lines. Hover for details, click to navigate.</p>
+     <div class="file-coverage-chart">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+ <style>
+  .bubble-success { fill: var(--phpunit-success-bar); opacity: 0.7; }
+  .bubble-warning { fill: var(--phpunit-warning-bar); opacity: 0.7; }
+  .bubble-danger { fill: var(--phpunit-danger-bar); opacity: 0.7; }
+  .bubble-success:hover, .bubble-warning:hover, .bubble-danger:hover { opacity: 1; stroke: var(--bs-emphasis-color); stroke-width: 1.5; }
+  .chart-grid { stroke: var(--bs-border-color); stroke-width: 0.5; stroke-dasharray: 4,4; opacity: 0.5; }
+  .chart-axis { stroke: var(--bs-border-color); stroke-width: 1; }
+  .chart-label { fill: var(--bs-body-color); font-size: 11px; font-family: var(--bs-font-sans-serif, sans-serif); }
+  .chart-title { fill: var(--bs-body-color); font-size: 12px; font-family: var(--bs-font-sans-serif, sans-serif); }
+ </style>
+ <line x1="60.0" y1="20" x2="60.0" y2="350" class="chart-grid"/>
+ <text x="60.0" y="368" text-anchor="middle" class="chart-label">0%</text>
+ <line x1="204.0" y1="20" x2="204.0" y2="350" class="chart-grid"/>
+ <text x="204.0" y="368" text-anchor="middle" class="chart-label">20%</text>
+ <line x1="348.0" y1="20" x2="348.0" y2="350" class="chart-grid"/>
+ <text x="348.0" y="368" text-anchor="middle" class="chart-label">40%</text>
+ <line x1="492.0" y1="20" x2="492.0" y2="350" class="chart-grid"/>
+ <text x="492.0" y="368" text-anchor="middle" class="chart-label">60%</text>
+ <line x1="636.0" y1="20" x2="636.0" y2="350" class="chart-grid"/>
+ <text x="636.0" y="368" text-anchor="middle" class="chart-label">80%</text>
+ <line x1="780.0" y1="20" x2="780.0" y2="350" class="chart-grid"/>
+ <text x="780.0" y="368" text-anchor="middle" class="chart-label">100%</text>
+ <line x1="60" y1="350.0" x2="780" y2="350.0" class="chart-grid"/>
+ <text x="52" y="350.0" text-anchor="end" dominant-baseline="middle" class="chart-label">0</text>
+ <line x1="60" y1="284.0" x2="780" y2="284.0" class="chart-grid"/>
+ <text x="52" y="284.0" text-anchor="end" dominant-baseline="middle" class="chart-label">5</text>
+ <line x1="60" y1="218.0" x2="780" y2="218.0" class="chart-grid"/>
+ <text x="52" y="218.0" text-anchor="end" dominant-baseline="middle" class="chart-label">10</text>
+ <line x1="60" y1="152.0" x2="780" y2="152.0" class="chart-grid"/>
+ <text x="52" y="152.0" text-anchor="end" dominant-baseline="middle" class="chart-label">15</text>
+ <line x1="60" y1="86.0" x2="780" y2="86.0" class="chart-grid"/>
+ <text x="52" y="86.0" text-anchor="end" dominant-baseline="middle" class="chart-label">20</text>
+ <line x1="60" y1="20.0" x2="780" y2="20.0" class="chart-grid"/>
+ <text x="52" y="20.0" text-anchor="end" dominant-baseline="middle" class="chart-label">25</text>
+ <line x1="60" y1="20" x2="60" y2="350" class="chart-axis"/>
+ <line x1="60" y1="350" x2="780" y2="350" class="chart-axis"/>
+ <text x="420.0" y="395" text-anchor="middle" class="chart-title">Line Coverage (%)</text>
+ <text x="15" y="185.0" text-anchor="middle" transform="rotate(-90, 15, 185.0)" class="chart-title">Cyclomatic Complexity</text>
+ <a href="BugController.php.html#35"><circle cx="60.0" cy="72.8" r="20.0" class="bubble-danger"><title>App\Controller\BugController — Coverage: 0.0% | Lines: 149 | Complexity: 21</title></circle></a>
+ <a href="CategoryController.php.html#25"><circle cx="60.0" cy="178.4" r="15.6" class="bubble-danger"><title>App\Controller\CategoryController — Coverage: 0.0% | Lines: 91 | Complexity: 13</title></circle></a>
+ <a href="TagController.php.html#25"><circle cx="60.0" cy="191.6" r="15.1" class="bubble-danger"><title>App\Controller\TagController — Coverage: 0.0% | Lines: 85 | Complexity: 12</title></circle></a>
+ <a href="UserController.php.html#16"><circle cx="60.0" cy="191.6" r="13.5" class="bubble-danger"><title>App\Controller\UserController — Coverage: 0.0% | Lines: 68 | Complexity: 12</title></circle></a>
+ <a href="CommentController.php.html#20"><circle cx="60.0" cy="231.2" r="13.0" class="bubble-danger"><title>App\Controller\CommentController — Coverage: 0.0% | Lines: 63 | Complexity: 9</title></circle></a>
+ <a href="AdminUserController.php.html#15"><circle cx="60.0" cy="218.0" r="12.3" class="bubble-danger"><title>App\Controller\AdminUserController — Coverage: 0.0% | Lines: 56 | Complexity: 10</title></circle></a>
+ <a href="AdminController.php.html#16"><circle cx="60.0" cy="244.4" r="10.2" class="bubble-danger"><title>App\Controller\AdminController — Coverage: 0.0% | Lines: 39 | Complexity: 8</title></circle></a>
+ <a href="SecurityController.php.html#22"><circle cx="60.0" cy="257.6" r="8.4" class="bubble-danger"><title>App\Controller\SecurityController — Coverage: 0.0% | Lines: 26 | Complexity: 7</title></circle></a>
+</svg>
+     </div>
+    </div>
+    <div class="col-md-6 dashboard-column">
+     <h3>&nbsp;</h3>
+     <p class="text-muted small">Sorted by descending CRAP (Change Risk Anti-Patterns) index.</p>
+     <div class="scrollbox">
+<table class="table">
+ <thead>
+  <tr>
+   <th>Class</th>
+   <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+   <th class="text-right">Coverage</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td><a href="BugController.php.html#35">App\Controller\BugController</a></td><td class="text-right">462</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CategoryController.php.html#25">App\Controller\CategoryController</a></td><td class="text-right">182</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="TagController.php.html#25">App\Controller\TagController</a></td><td class="text-right">156</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserController.php.html#16">App\Controller\UserController</a></td><td class="text-right">156</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminUserController.php.html#15">App\Controller\AdminUserController</a></td><td class="text-right">110</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CommentController.php.html#20">App\Controller\CommentController</a></td><td class="text-right">90</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminController.php.html#16">App\Controller\AdminController</a></td><td class="text-right">72</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="SecurityController.php.html#22">App\Controller\SecurityController</a></td><td class="text-right">56</td><td class="text-right">0.0%</td></tr>
+ </tbody>
+</table>
+     </div>
+    </div>
+   </div>
+   <div class="row dashboard-row">
+    <div class="col-md-6">
+     <h3>Methods</h3>
+     <p class="text-muted small">Bubble size = executable lines. Hover for details, click to navigate.</p>
+     <div class="file-coverage-chart">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+ <style>
+  .bubble-success { fill: var(--phpunit-success-bar); opacity: 0.7; }
+  .bubble-warning { fill: var(--phpunit-warning-bar); opacity: 0.7; }
+  .bubble-danger { fill: var(--phpunit-danger-bar); opacity: 0.7; }
+  .bubble-success:hover, .bubble-warning:hover, .bubble-danger:hover { opacity: 1; stroke: var(--bs-emphasis-color); stroke-width: 1.5; }
+  .chart-grid { stroke: var(--bs-border-color); stroke-width: 0.5; stroke-dasharray: 4,4; opacity: 0.5; }
+  .chart-axis { stroke: var(--bs-border-color); stroke-width: 1; }
+  .chart-label { fill: var(--bs-body-color); font-size: 11px; font-family: var(--bs-font-sans-serif, sans-serif); }
+  .chart-title { fill: var(--bs-body-color); font-size: 12px; font-family: var(--bs-font-sans-serif, sans-serif); }
+ </style>
+ <line x1="60.0" y1="20" x2="60.0" y2="350" class="chart-grid"/>
+ <text x="60.0" y="368" text-anchor="middle" class="chart-label">0%</text>
+ <line x1="204.0" y1="20" x2="204.0" y2="350" class="chart-grid"/>
+ <text x="204.0" y="368" text-anchor="middle" class="chart-label">20%</text>
+ <line x1="348.0" y1="20" x2="348.0" y2="350" class="chart-grid"/>
+ <text x="348.0" y="368" text-anchor="middle" class="chart-label">40%</text>
+ <line x1="492.0" y1="20" x2="492.0" y2="350" class="chart-grid"/>
+ <text x="492.0" y="368" text-anchor="middle" class="chart-label">60%</text>
+ <line x1="636.0" y1="20" x2="636.0" y2="350" class="chart-grid"/>
+ <text x="636.0" y="368" text-anchor="middle" class="chart-label">80%</text>
+ <line x1="780.0" y1="20" x2="780.0" y2="350" class="chart-grid"/>
+ <text x="780.0" y="368" text-anchor="middle" class="chart-label">100%</text>
+ <line x1="60" y1="350.0" x2="780" y2="350.0" class="chart-grid"/>
+ <text x="52" y="350.0" text-anchor="end" dominant-baseline="middle" class="chart-label">0</text>
+ <line x1="60" y1="240.0" x2="780" y2="240.0" class="chart-grid"/>
+ <text x="52" y="240.0" text-anchor="end" dominant-baseline="middle" class="chart-label">2</text>
+ <line x1="60" y1="130.0" x2="780" y2="130.0" class="chart-grid"/>
+ <text x="52" y="130.0" text-anchor="end" dominant-baseline="middle" class="chart-label">4</text>
+ <line x1="60" y1="20.0" x2="780" y2="20.0" class="chart-grid"/>
+ <text x="52" y="20.0" text-anchor="end" dominant-baseline="middle" class="chart-label">6</text>
+ <line x1="60" y1="20" x2="60" y2="350" class="chart-axis"/>
+ <line x1="60" y1="350" x2="780" y2="350" class="chart-axis"/>
+ <text x="420.0" y="395" text-anchor="middle" class="chart-title">Line Coverage (%)</text>
+ <text x="15" y="185.0" text-anchor="middle" transform="rotate(-90, 15, 185.0)" class="chart-title">Cyclomatic Complexity</text>
+ <a href="CommentController.php.html#32"><circle cx="60.0" cy="130.0" r="20.0" class="bubble-danger"><title>App\Controller\CommentController::edit — Coverage: 0.0% | Lines: 33 | Complexity: 4</title></circle></a>
+ <a href="BugController.php.html#74"><circle cx="60.0" cy="75.0" r="19.1" class="bubble-danger"><title>App\Controller\BugController::view — Coverage: 0.0% | Lines: 30 | Complexity: 5</title></circle></a>
+ <a href="CategoryController.php.html#169"><circle cx="60.0" cy="130.0" r="19.1" class="bubble-danger"><title>App\Controller\CategoryController::delete — Coverage: 0.0% | Lines: 30 | Complexity: 4</title></circle></a>
+ <a href="BugController.php.html#266"><circle cx="60.0" cy="130.0" r="18.7" class="bubble-danger"><title>App\Controller\BugController::assign — Coverage: 0.0% | Lines: 29 | Complexity: 4</title></circle></a>
+ <a href="CommentController.php.html#82"><circle cx="60.0" cy="130.0" r="18.7" class="bubble-danger"><title>App\Controller\CommentController::delete — Coverage: 0.0% | Lines: 29 | Complexity: 4</title></circle></a>
+ <a href="BugController.php.html#168"><circle cx="60.0" cy="185.0" r="18.4" class="bubble-danger"><title>App\Controller\BugController::edit — Coverage: 0.0% | Lines: 28 | Complexity: 3</title></circle></a>
+ <a href="CategoryController.php.html#122"><circle cx="60.0" cy="185.0" r="18.4" class="bubble-danger"><title>App\Controller\CategoryController::edit — Coverage: 0.0% | Lines: 28 | Complexity: 3</title></circle></a>
+ <a href="TagController.php.html#121"><circle cx="60.0" cy="185.0" r="18.4" class="bubble-danger"><title>App\Controller\TagController::edit — Coverage: 0.0% | Lines: 28 | Complexity: 3</title></circle></a>
+ <a href="BugController.php.html#215"><circle cx="60.0" cy="185.0" r="17.1" class="bubble-danger"><title>App\Controller\BugController::delete — Coverage: 0.0% | Lines: 24 | Complexity: 3</title></circle></a>
+ <a href="TagController.php.html#160"><circle cx="60.0" cy="185.0" r="17.1" class="bubble-danger"><title>App\Controller\TagController::delete — Coverage: 0.0% | Lines: 24 | Complexity: 3</title></circle></a>
+ <a href="AdminUserController.php.html#86"><circle cx="60.0" cy="130.0" r="16.3" class="bubble-danger"><title>App\Controller\AdminUserController::delete — Coverage: 0.0% | Lines: 22 | Complexity: 4</title></circle></a>
+ <a href="UserController.php.html#114"><circle cx="60.0" cy="130.0" r="16.0" class="bubble-danger"><title>App\Controller\UserController::delete — Coverage: 0.0% | Lines: 21 | Complexity: 4</title></circle></a>
+ <a href="BugController.php.html#129"><circle cx="60.0" cy="185.0" r="15.6" class="bubble-danger"><title>App\Controller\BugController::create — Coverage: 0.0% | Lines: 20 | Complexity: 3</title></circle></a>
+ <a href="AdminController.php.html#69"><circle cx="60.0" cy="185.0" r="14.8" class="bubble-danger"><title>App\Controller\AdminController::changePassword — Coverage: 0.0% | Lines: 18 | Complexity: 3</title></circle></a>
+ <a href="CategoryController.php.html#85"><circle cx="60.0" cy="185.0" r="14.8" class="bubble-danger"><title>App\Controller\CategoryController::create — Coverage: 0.0% | Lines: 18 | Complexity: 3</title></circle></a>
+ <a href="TagController.php.html#85"><circle cx="60.0" cy="185.0" r="14.8" class="bubble-danger"><title>App\Controller\TagController::create — Coverage: 0.0% | Lines: 18 | Complexity: 3</title></circle></a>
+ <a href="UserController.php.html#83"><circle cx="60.0" cy="185.0" r="14.8" class="bubble-danger"><title>App\Controller\UserController::changePassword — Coverage: 0.0% | Lines: 18 | Complexity: 3</title></circle></a>
+ <a href="AdminController.php.html#35"><circle cx="60.0" cy="185.0" r="14.4" class="bubble-danger"><title>App\Controller\AdminController::changeEmail — Coverage: 0.0% | Lines: 17 | Complexity: 3</title></circle></a>
+ <a href="UserController.php.html#49"><circle cx="60.0" cy="185.0" r="14.4" class="bubble-danger"><title>App\Controller\UserController::changeEmail — Coverage: 0.0% | Lines: 17 | Complexity: 3</title></circle></a>
+ <a href="SecurityController.php.html#28"><circle cx="60.0" cy="185.0" r="13.9" class="bubble-danger"><title>App\Controller\SecurityController::register — Coverage: 0.0% | Lines: 16 | Complexity: 3</title></circle></a>
+ <a href="AdminUserController.php.html#42"><circle cx="60.0" cy="240.0" r="12.6" class="bubble-danger"><title>App\Controller\AdminUserController::view — Coverage: 0.0% | Lines: 13 | Complexity: 2</title></circle></a>
+ <a href="AdminUserController.php.html#66"><circle cx="60.0" cy="240.0" r="11.5" class="bubble-danger"><title>App\Controller\AdminUserController::toggleRole — Coverage: 0.0% | Lines: 11 | Complexity: 2</title></circle></a>
+ <a href="UserController.php.html#27"><circle cx="60.0" cy="295.0" r="11.5" class="bubble-danger"><title>App\Controller\UserController::profile — Coverage: 0.0% | Lines: 11 | Complexity: 1</title></circle></a>
+ <a href="AdminUserController.php.html#26"><circle cx="60.0" cy="295.0" r="10.4" class="bubble-danger"><title>App\Controller\AdminUserController::index — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="BugController.php.html#250"><circle cx="60.0" cy="295.0" r="10.4" class="bubble-danger"><title>App\Controller\BugController::changeStatus — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="CategoryController.php.html#63"><circle cx="60.0" cy="295.0" r="10.4" class="bubble-danger"><title>App\Controller\CategoryController::view — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="TagController.php.html#63"><circle cx="60.0" cy="295.0" r="10.4" class="bubble-danger"><title>App\Controller\TagController::view — Coverage: 0.0% | Lines: 9 | Complexity: 1</title></circle></a>
+ <a href="BugController.php.html#53"><circle cx="60.0" cy="295.0" r="9.8" class="bubble-danger"><title>App\Controller\BugController::index — Coverage: 0.0% | Lines: 8 | Complexity: 1</title></circle></a>
+ <a href="SecurityController.php.html#63"><circle cx="60.0" cy="240.0" r="9.8" class="bubble-danger"><title>App\Controller\SecurityController::login — Coverage: 0.0% | Lines: 8 | Complexity: 2</title></circle></a>
+ <a href="CategoryController.php.html#45"><circle cx="60.0" cy="295.0" r="7.8" class="bubble-danger"><title>App\Controller\CategoryController::index — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="TagController.php.html#45"><circle cx="60.0" cy="295.0" r="7.8" class="bubble-danger"><title>App\Controller\TagController::index — Coverage: 0.0% | Lines: 5 | Complexity: 1</title></circle></a>
+ <a href="AdminController.php.html#27"><circle cx="60.0" cy="295.0" r="6.0" class="bubble-danger"><title>App\Controller\AdminController::index — Coverage: 0.0% | Lines: 3 | Complexity: 1</title></circle></a>
+ <a href="AdminController.php.html#20"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\AdminController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="AdminUserController.php.html#19"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\AdminUserController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="BugController.php.html#41"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\BugController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CategoryController.php.html#34"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\CategoryController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="CommentController.php.html#23"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\CommentController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="SecurityController.php.html#24"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\SecurityController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="SecurityController.php.html#85"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\SecurityController::logout — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="TagController.php.html#34"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\TagController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+ <a href="UserController.php.html#20"><circle cx="60.0" cy="295.0" r="4.0" class="bubble-danger"><title>App\Controller\UserController::__construct — Coverage: 0.0% | Lines: 1 | Complexity: 1</title></circle></a>
+</svg>
+     </div>
+    </div>
+    <div class="col-md-6 dashboard-column">
+     <h3>&nbsp;</h3>
+     <p class="text-muted small">Sorted by descending CRAP (Change Risk Anti-Patterns) index.</p>
+     <div class="scrollbox">
+<table class="table">
+ <thead>
+  <tr>
+   <th>Method</th>
+   <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+   <th class="text-right">Coverage</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td><a href="BugController.php.html#74">App\Controller\BugController::view</a></td><td class="text-right">30</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminUserController.php.html#86">App\Controller\AdminUserController::delete</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugController.php.html#266">App\Controller\BugController::assign</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CategoryController.php.html#169">App\Controller\CategoryController::delete</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CommentController.php.html#32">App\Controller\CommentController::edit</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CommentController.php.html#82">App\Controller\CommentController::delete</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserController.php.html#114">App\Controller\UserController::delete</a></td><td class="text-right">20</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminController.php.html#35">App\Controller\AdminController::changeEmail</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminController.php.html#69">App\Controller\AdminController::changePassword</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugController.php.html#129">App\Controller\BugController::create</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugController.php.html#168">App\Controller\BugController::edit</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugController.php.html#215">App\Controller\BugController::delete</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CategoryController.php.html#85">App\Controller\CategoryController::create</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CategoryController.php.html#122">App\Controller\CategoryController::edit</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="SecurityController.php.html#28">App\Controller\SecurityController::register</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="TagController.php.html#85">App\Controller\TagController::create</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="TagController.php.html#121">App\Controller\TagController::edit</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="TagController.php.html#160">App\Controller\TagController::delete</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserController.php.html#49">App\Controller\UserController::changeEmail</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserController.php.html#83">App\Controller\UserController::changePassword</a></td><td class="text-right">12</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminUserController.php.html#42">App\Controller\AdminUserController::view</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminUserController.php.html#66">App\Controller\AdminUserController::toggleRole</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="SecurityController.php.html#63">App\Controller\SecurityController::login</a></td><td class="text-right">6</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminController.php.html#20">App\Controller\AdminController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminController.php.html#27">App\Controller\AdminController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminUserController.php.html#19">App\Controller\AdminUserController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="AdminUserController.php.html#26">App\Controller\AdminUserController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugController.php.html#41">App\Controller\BugController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugController.php.html#53">App\Controller\BugController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="BugController.php.html#250">App\Controller\BugController::changeStatus</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CategoryController.php.html#34">App\Controller\CategoryController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CategoryController.php.html#45">App\Controller\CategoryController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CategoryController.php.html#63">App\Controller\CategoryController::view</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="CommentController.php.html#23">App\Controller\CommentController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="SecurityController.php.html#24">App\Controller\SecurityController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="SecurityController.php.html#85">App\Controller\SecurityController::logout</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="TagController.php.html#34">App\Controller\TagController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="TagController.php.html#45">App\Controller\TagController::index</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="TagController.php.html#63">App\Controller\TagController::view</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserController.php.html#20">App\Controller\UserController::__construct</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+  <tr><td><a href="UserController.php.html#27">App\Controller\UserController::profile</a></td><td class="text-right">2</td><td class="text-right">0.0%</td></tr>
+ </tbody>
+</table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 14.0.0</a> using <a href="https://www.php.net/" target="_top">PHP 8.5.6</a> and <a href="https://phpunit.de/">PHPUnit 13.1.0</a> at Wed May 20 1:07:22 UTC 2026.</small>
+    </p>
+   </footer>
+  </div>
+ </body>
+</html>

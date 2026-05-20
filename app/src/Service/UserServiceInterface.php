@@ -43,10 +43,6 @@ interface UserServiceInterface
 
     /**
      * Change password.
-     *
-     * @param User   $user
-     * @param string $plainPassword
-     * @return void
      */
     public function changePassword(User $user, string $plainPassword): void;
 

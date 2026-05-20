@@ -114,10 +114,11 @@
         }
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^8.6",
         "doctrine/doctrine-fixtures-bundle": "^4.3",
         "escapestudios/symfony2-coding-standard": "^3.18",
         "fakerphp/faker": "^1.24",
-        "friendsofphp/php-cs-fixer": "^3.94",
+        "friendsofphp/php-cs-fixer": "^3.95",
         "phpunit/phpunit": "^13.1",
         "rector/rector": "^2.4",
         "squizlabs/php_codesniffer": "^4.0",

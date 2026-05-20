@@ -23,13 +23,12 @@ class SecurityController extends AbstractController
 {
     public function __construct(private readonly UserServiceInterface $userService)
     {
-
     }
 
     #[Route(
-       '/register',
-       name: 'app_register',
-       methods: ['GET', 'POST']
+        '/register',
+        name: 'app_register',
+        methods: ['GET', 'POST']
     )]
     public function register(Request $request): Response
     {

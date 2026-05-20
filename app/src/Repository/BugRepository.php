@@ -3,14 +3,11 @@
 namespace App\Repository;
 
 use App\Dto\BugListFiltersDto;
-use App\Dto\BugListInputFiltersDto;
 use App\Entity\Bug;
 use App\Entity\Category;
-use App\Entity\Enum\BugStatus;
 use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -57,8 +54,8 @@ class BugRepository extends ServiceEntityRepository
     /**
      * Apply filters to paginated list.
      *
-     * @param QueryBuilder       $queryBuilder Query builder
-     * @param BugListFiltersDto  $filters      Filters
+     * @param QueryBuilder      $queryBuilder Query builder
+     * @param BugListFiltersDto $filters      Filters
      *
      * @return QueryBuilder Query builder
      */

@@ -50,7 +50,7 @@ final class TagVoter extends Voter
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [self::DELETE, self::EDIT, self::VIEW])
-            && ($attribute === self::CREATE || $subject instanceof Tag);
+            && (self::CREATE === $attribute || $subject instanceof Tag);
     }
 
     /**

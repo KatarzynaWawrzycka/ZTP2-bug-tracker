@@ -35,7 +35,8 @@ class AdminController extends AbstractController
     #[Route(
         '/change-email',
         name: 'admin_change_email',
-        methods: ['GET', 'POST'])]
+        methods: ['GET', 'POST']
+    )]
     public function changeEmail(Request $request): Response
     {
         /** @var User $user */
@@ -68,7 +69,8 @@ class AdminController extends AbstractController
     #[Route(
         '/change-password',
         name: 'admin_change_password',
-        methods: ['GET', 'POST'])]
+        methods: ['GET', 'POST']
+    )]
     public function changePassword(Request $request): Response
     {
         /** @var User $user */

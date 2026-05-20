@@ -19,16 +19,16 @@ class UserController extends AbstractController
 {
     public function __construct(private readonly UserServiceInterface $userService)
     {
-
     }
 
     /**
-     * User profile
+     * User profile.
      */
     #[Route(
         '',
         name: 'user_profile',
-        methods: ['GET'])]
+        methods: ['GET']
+    )]
     public function profile(): Response
     {
         /** @var User $user */
@@ -44,12 +44,13 @@ class UserController extends AbstractController
     }
 
     /**
-     * Change email
+     * Change email.
      */
     #[Route(
         '/change-email',
         name: 'user_change_email',
-        methods: ['GET', 'POST'])]
+        methods: ['GET', 'POST']
+    )]
     public function changeEmail(Request $request): Response
     {
         /** @var User $user */
@@ -77,12 +78,13 @@ class UserController extends AbstractController
     }
 
     /**
-     * Change password
+     * Change password.
      */
     #[Route(
         '/change-password',
         name: 'user_change_password',
-        methods: ['GET', 'POST'])]
+        methods: ['GET', 'POST']
+    )]
     public function changePassword(Request $request): Response
     {
         /** @var User $user */
@@ -112,7 +114,8 @@ class UserController extends AbstractController
     #[Route(
         '/delete',
         name: 'user_delete',
-        methods: ['GET', 'DELETE'])]
+        methods: ['GET', 'DELETE']
+    )]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(Request $request): Response
     {

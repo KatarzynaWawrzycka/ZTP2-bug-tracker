@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Bug;
 use App\Entity\Comment;
 use App\Form\Type\CommentType;
-//use App\Security\Voter\CommentVoter;
+// use App\Security\Voter\CommentVoter;
 use App\Security\Voter\CommentVoter;
 use App\Service\CommentServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +22,7 @@ class CommentController extends AbstractController
 {
     public function __construct(
         private readonly CommentServiceInterface $commentService,
-        private readonly TranslatorInterface $translator
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
