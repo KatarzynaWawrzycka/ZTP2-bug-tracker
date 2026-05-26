@@ -9,12 +9,16 @@ use App\Entity\Bug;
 use App\Entity\Category;
 use App\Entity\Enum\UserRole;
 use App\Entity\User;
+use App\Repository\BugRepository;
+use App\Repository\CategoryRepository;
 use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Knp\Component\Pager\PaginatorInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -193,6 +197,26 @@ class CategoryServiceTest extends KernelTestCase
         $result = $this->categoryService->canBeDeleted($category);
 
         // then
+        $this->assertFalse($result);
+    }
+
+    public function testCanBeDeletedReturnsFalseOnException(): void
+    {
+        $category = new Category();
+
+        $bugRepository = $this->createMock(BugRepository::class);
+        $bugRepository
+            ->method('countByCategory')
+            ->willThrowException(new \Doctrine\ORM\NoResultException());
+
+        $service = new CategoryService(
+            $this->createMock(CategoryRepository::class),
+            $this->createMock(PaginatorInterface::class),
+            $bugRepository
+        );
+
+        $result = $service->canBeDeleted($category);
+
         $this->assertFalse($result);
     }
 }

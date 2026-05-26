@@ -74,20 +74,6 @@ class BugRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
-    public function queryByAuthor(User $author): QueryBuilder
-    {
-        return $this->createQueryBuilder('bug')
-            ->select(
-                'partial bug.{id, createdAt, updatedAt, title, description, status, assignedTo}',
-                'partial category.{id, title}',
-                'partial tags.{id, title}'
-            )
-            ->join('bug.category', 'category')
-            ->leftJoin('bug.tags', 'tags')
-            ->andWhere('bug.author = :author')
-            ->setParameter('author', $author);
-    }
-
     /**
      * Count bugs by category.
      *
@@ -104,15 +90,6 @@ class BugRepository extends ServiceEntityRepository
             ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
-    }
-
-    public function findAdmins(): array
-    {
-        return $this->createQueryBuilder('user')
-            ->where('user.roles LIKE :role')
-            ->setParameter('role', '%ROLE_ADMIN%')
-            ->getQuery()
-            ->getResult();
     }
 
     /**

@@ -32,7 +32,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class BugServiceTest extends KernelTestCase
 {
     /**
-     * Big repository.
+     * Bug repository.
      */
     private ?EntityManagerInterface $entityManager;
 
@@ -328,6 +328,47 @@ class BugServiceTest extends KernelTestCase
         $bug->setAuthor($this->createUser());
         $bug->setCategory($this->createCategory());
         $bug->setStatusEnum(BugStatus::ARCHIVED);
+
+        $this->bugService->save($bug);
+
+        // when
+        $this->bugService->changeStatus($bug, BugStatus::OPEN);
+
+        // then
+        $this->assertEquals(BugStatus::OPEN, $bug->getStatusEnum());
+    }
+
+    public function testChangeStatusThrowsException(): void
+    {
+        // given
+        $bug = new Bug();
+        $bug->setTitle('Test Bug');
+        $bug->setDescription('Test Bug Description');
+        $bug->setAuthor($this->createUser());
+        $bug->setCategory($this->createCategory());
+        $bug->setStatusEnum(BugStatus::OPEN);
+
+        $this->bugService->save($bug);
+
+        // then
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage(
+            'Invalid status transition from OPEN to ARCHIVED'
+        );
+
+        // when
+        $this->bugService->changeStatus($bug, BugStatus::ARCHIVED);
+    }
+
+    public function testChangeStatusSameStatusDoesNothing(): void
+    {
+        // given
+        $bug = new Bug();
+        $bug->setTitle('Test Bug');
+        $bug->setDescription('Test Bug Description');
+        $bug->setAuthor($this->createUser());
+        $bug->setCategory($this->createCategory());
+        $bug->setStatusEnum(BugStatus::OPEN);
 
         $this->bugService->save($bug);
 

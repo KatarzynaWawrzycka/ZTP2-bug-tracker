@@ -102,7 +102,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->execute();
     }
 
-    /** * Save entity. * * @param User $user User entity */
+    /** Save entity.
+     *
+     * @param User $user User entity
+     **/
     public function save(User $user): void
     {
         $em = $this->getEntityManager();
