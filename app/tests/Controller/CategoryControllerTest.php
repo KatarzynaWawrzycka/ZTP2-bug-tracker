@@ -2,17 +2,18 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Bug;
+use App\Entity\Category;
 use App\Entity\Enum\UserRole;
-use App\Entity\Tag;
 use App\Entity\User;
-use App\Repository\TagRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class TagControllerTest extends WebTestCase
+class CategoryControllerTest extends WebTestCase
 {
-    public const TEST_ROUTE = '/tag';
+    public const TEST_ROUTE = '/category';
 
     private KernelBrowser $httpClient;
 
@@ -51,19 +52,19 @@ class TagControllerTest extends WebTestCase
         return $user;
     }
 
-    private function createTag(): Tag
+    private function createCategory(): Category
     {
         $container = static::getContainer();
 
-        $repository = $container->get(TagRepository::class);
+        $repository = $container->get(CategoryRepository::class);
 
-        $tag = new Tag();
+        $category = new Category();
 
-        $tag->setTitle('Tag '.uniqid());
+        $category->setTitle('Category '.uniqid());
 
-        $repository->save($tag);
+        $repository->save($category);
 
-        return $tag;
+        return $category;
     }
 
     /*
@@ -123,16 +124,16 @@ class TagControllerTest extends WebTestCase
     /*
      * VIEW
      */
-    public function testViewTagAnonymous(): void
+    public function testViewCategoryAnonymous(): void
     {
         // given
         $expectedStatusCode = 302;
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         // when
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE.'/'.$tag->getId()
+            self::TEST_ROUTE.'/'.$category->getId()
         );
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
@@ -142,7 +143,7 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    public function testViewTagUserForbidden(): void
+    public function testViewCategoryUserForbidden(): void
     {
         $user = $this->createUser([
             UserRole::ROLE_USER->value,
@@ -151,12 +152,12 @@ class TagControllerTest extends WebTestCase
         $this->httpClient->loginUser($user);
 
         $expectedStatusCode = 403;
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         // when
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE.'/'.$tag->getId()
+            self::TEST_ROUTE.'/'.$category->getId()
         );
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
@@ -166,7 +167,7 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    public function testViewTagAdmin(): void
+    public function testViewCategoryAdmin(): void
     {
         $admin = $this->createUser([
             UserRole::ROLE_ADMIN->value,
@@ -174,12 +175,12 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->loginUser($admin);
 
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         $expectedStatusCode = 200;
 
         // when
-        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$tag->getId());
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$category->getId());
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         // then
@@ -191,7 +192,7 @@ class TagControllerTest extends WebTestCase
     /*
      * CREATE
      */
-    public function testCreateTagAnonymous(): void
+    public function testCreateCategoryAnonymous(): void
     {
         // given
         $expectedStatusCode = 302;
@@ -209,7 +210,7 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    public function testCreateTagUserForbidden(): void
+    public function testCreateCategoryUserForbidden(): void
     {
         // given
         $user = $this->createUser([
@@ -234,7 +235,7 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    public function testCreateTagAdmin(): void
+    public function testCreateCategoryAdmin(): void
     {
         // given
         $admin = $this->createUser([
@@ -253,7 +254,7 @@ class TagControllerTest extends WebTestCase
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         $form = $crawler->selectButton('submit')->form([
-            'tag[title]' => 'New Tag '.uniqid(),
+            'category[title]' => 'New Category '.uniqid(),
         ]);
 
         $this->httpClient->submit($form);
@@ -266,16 +267,16 @@ class TagControllerTest extends WebTestCase
      * EDIT
      */
 
-    public function testEditTagAnonymous(): void
+    public function testEditCategoryAnonymous(): void
     {
         // given
         $expectedStatusCode = 302;
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         // when
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE.'/'.$tag->getId().'/edit'
+            self::TEST_ROUTE.'/'.$category->getId().'/edit'
         );
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
@@ -285,7 +286,7 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    public function testEditTagForbiddenForUser(): void
+    public function testEditCategoryForbiddenForUser(): void
     {
         // given
         $user = $this->createUser([
@@ -294,14 +295,14 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->loginUser($user);
 
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         $expectedStatusCode = 403;
 
         // when
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE.'/'.$tag->getId().'/edit'
+            self::TEST_ROUTE.'/'.$category->getId().'/edit'
         );
 
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
@@ -312,7 +313,7 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    public function testEditTagAdmin(): void
+    public function testEditCategoryAdmin(): void
     {
         // given
         $admin = $this->createUser([
@@ -321,19 +322,19 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->loginUser($admin);
 
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         $expectedStatusCode = 200;
 
         $crawler = $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE.'/'.$tag->getId().'/edit'
+            self::TEST_ROUTE.'/'.$category->getId().'/edit'
         );
 
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         $form = $crawler->selectButton('submit')->form([
-            'tag[title]' => 'Updated '.uniqid(),
+            'category[title]' => 'Updated '.uniqid(),
         ]);
 
         $this->httpClient->submit($form);
@@ -345,16 +346,16 @@ class TagControllerTest extends WebTestCase
      * DELETE
      */
 
-    public function testDeleteTagAnonymous(): void
+    public function testDeleteCategoryAnonymous(): void
     {
         // given
         $expectedStatusCode = 302;
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         // when
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE.'/'.$tag->getId().'/delete'
+            self::TEST_ROUTE.'/'.$category->getId().'/delete'
         );
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
@@ -364,7 +365,7 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    public function testDeleteTagForbiddenForUser(): void
+    public function testDeleteCategoryForbiddenForUser(): void
     {
         // given
         $user = $this->createUser([
@@ -373,14 +374,14 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->loginUser($user);
 
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         $expectedStatusCode = 403;
 
         // when
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE.'/'.$tag->getId().'/delete'
+            self::TEST_ROUTE.'/'.$category->getId().'/delete'
         );
 
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
@@ -391,7 +392,7 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    public function testDeleteTagAdmin(): void
+    public function testDeleteCategoryAdmin(): void
     {
         // given
         $admin = $this->createUser([
@@ -400,13 +401,13 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->loginUser($admin);
 
-        $tag = $this->createTag();
+        $category = $this->createCategory();
 
         $expectedStatusCode = 200;
 
         $crawler = $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE.'/'.$tag->getId().'/delete'
+            self::TEST_ROUTE.'/'.$category->getId().'/delete'
         );
 
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
@@ -416,5 +417,38 @@ class TagControllerTest extends WebTestCase
         $this->httpClient->submit($form);
 
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
+    }
+
+    public function testDeleteCategoryWithBugsAdmin(): void
+    {
+        // given
+        $admin = $this->createUser([
+            UserRole::ROLE_ADMIN->value,
+        ]);
+
+        $this->httpClient->loginUser($admin);
+
+        $category = $this->createCategory();
+
+        $bug = new Bug();
+        $bug->setTitle('Bug');
+        $bug->setDescription('Description');
+        $bug->setAuthor($admin);
+        $bug->setCategory($category);
+
+        $entityManager = static::getContainer()
+            ->get('doctrine.orm.entity_manager');
+
+        $entityManager->persist($bug);
+        $entityManager->flush();
+
+        // when
+        $this->httpClient->request(
+            'GET',
+            self::TEST_ROUTE.'/'.$category->getId().'/delete'
+        );
+
+        // then
+        $this->assertResponseRedirects(self::TEST_ROUTE);
     }
 }

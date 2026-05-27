@@ -27,14 +27,14 @@ class UserPasswordType extends AbstractType
             ],
             'invalid_message' => 'Passwords do not match.',
             'constraints' => [
-                new NotBlank([
-                    'message' => 'Password cannot be empty.',
-                ]),
-                new Length([
-                    'min' => 5,
-                    'minMessage' => 'Password must be at least 5 characters.',
-                    'max' => 100,
-                ]),
+                new NotBlank(
+                    message: 'Password cannot be empty.',
+                ),
+                new Length(
+                    min: 5,
+                    minMessage: 'Password must be at least 5 characters.',
+                    max: 100
+                ),
             ],
         ]);
     }
