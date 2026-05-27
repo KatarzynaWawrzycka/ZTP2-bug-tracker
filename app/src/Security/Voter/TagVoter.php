@@ -30,6 +30,7 @@ final class TagVoter extends Voter
      * @var string
      */
     public const DELETE = 'TAG_DELETE';
+
     public const CREATE = 'TAG_CREATE';
 
     /**
@@ -49,7 +50,7 @@ final class TagVoter extends Voter
      */
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return in_array($attribute, [self::DELETE, self::EDIT, self::VIEW], true)
+        return in_array($attribute, [self::DELETE, self::EDIT, self::VIEW, self::CREATE])
             && (self::CREATE === $attribute || $subject instanceof Tag);
     }
 

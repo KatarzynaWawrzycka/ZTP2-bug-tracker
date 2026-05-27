@@ -87,6 +87,7 @@ class TagController extends AbstractController
         name: 'tag_create',
         methods: ['GET', 'POST']
     )]
+    #[IsGranted(TagVoter::CREATE)]
     public function create(Request $request): Response
     {
         $tag = new Tag();

@@ -9,6 +9,7 @@ use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class TagControllerTest extends WebTestCase
 {
@@ -27,12 +28,77 @@ class TagControllerTest extends WebTestCase
 
     public function testIndexAnonymous(): void
     {
-        $this->httpClient->request('GET', self::TEST_ROUTE);
+        //given
+        $expectedStatusCode = 200;
 
-        $this->assertEquals(\Symfony\Component\HttpFoundation\Response::HTTP_FOUND, $this->httpClient->getResponse()->getStatusCode());
+        //when
+        $this->httpClient->request('GET', self::TEST_ROUTE);
+        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
+
+        //then
+        $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    public function testIndexUserForbidden(): void
+    public function testIndexUser(): void
+    {
+        //given
+        $user = $this->createUser([
+            UserRole::ROLE_USER->value,
+        ]);
+
+        $this->httpClient->loginUser($user);
+
+        $expectedStatusCode = 200;
+
+        //when
+        $this->httpClient->request('GET', self::TEST_ROUTE);
+        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
+
+        //then
+        $this->assertEquals($expectedStatusCode, $resultStatusCode);
+    }
+
+    public function testIndexAdmin(): void
+    {
+        //given
+        $admin = $this->createUser([
+            UserRole::ROLE_ADMIN->value,
+        ]);
+
+        $this->httpClient->loginUser($admin);
+
+        $expectedStatusCode = 200;
+
+        //when
+        $this->httpClient->request('GET', self::TEST_ROUTE);
+        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
+
+        //then
+        $this->assertEquals($expectedStatusCode, $resultStatusCode);
+    }
+
+    /*
+     * VIEW
+     */
+    public function testViewTagAnonymous(): void
+    {
+        //given
+        $expectedStatusCode = 302;
+        $tag = $this->createTag();
+
+        //when
+        $this->httpClient->request(
+            'GET',
+            self::TEST_ROUTE.'/'.$tag->getId()
+        );
+        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
+
+        //then
+        $this->assertEquals($expectedStatusCode, $resultStatusCode);
+
+        $this->assertSelectorExists('html');
+    }
+    public function testViewTagUserForbidden(): void
     {
         $user = $this->createUser([
             UserRole::ROLE_USER->value,
@@ -40,29 +106,23 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->loginUser($user);
 
-        $this->httpClient->request('GET', self::TEST_ROUTE);
+        $expectedStatusCode = 403;
+        $tag = $this->createTag();
 
-        $this->assertEquals(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN, $this->httpClient->getResponse()->getStatusCode());
-    }
+        //when
+        $this->httpClient->request(
+            'GET',
+            self::TEST_ROUTE.'/'.$tag->getId()
+        );
+        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
-    public function testIndexAdmin(): void
-    {
-        $admin = $this->createUser([UserRole::ROLE_ADMIN->value]);
-
-        $this->httpClient->loginUser($admin);
-
-        $this->httpClient->request('GET', self::TEST_ROUTE);
-
-        $this->assertEquals(\Symfony\Component\HttpFoundation\Response::HTTP_OK, $this->httpClient->getResponse()->getStatusCode());
+        //then
+        $this->assertEquals($expectedStatusCode, $resultStatusCode);
 
         $this->assertSelectorExists('html');
     }
 
-    /*
-     * SHOW
-     */
-
-    public function testShowTagAdmin(): void
+    public function testViewTagAdmin(): void
     {
         $admin = $this->createUser([
             UserRole::ROLE_ADMIN->value,
@@ -70,14 +130,14 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->loginUser($admin);
 
-        $tag = $this->createTag();
+        $expectedStatusCode = 200;
 
-        $this->httpClient->request(
-            'GET',
-            self::TEST_ROUTE.'/'.$tag->getId()
-        );
+        //when
+        $this->httpClient->request('GET', self::TEST_ROUTE);
+        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
-        $this->assertEquals(\Symfony\Component\HttpFoundation\Response::HTTP_OK, $this->httpClient->getResponse()->getStatusCode());
+        //then
+        $this->assertEquals($expectedStatusCode, $resultStatusCode);
 
         $this->assertSelectorExists('html');
     }
@@ -86,20 +146,29 @@ class TagControllerTest extends WebTestCase
      * CREATE
      */
 
-    public function testCreateTagForbiddenForUser(): void
+    public function testCreateTagUserForbidden(): void
     {
+        //given
         $user = $this->createUser([
             UserRole::ROLE_USER->value,
         ]);
 
         $this->httpClient->loginUser($user);
 
+        $expectedStatusCode = 403;
+
+        //when
         $this->httpClient->request(
             'GET',
             self::TEST_ROUTE.'/create'
         );
 
-        $this->assertEquals(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN, $this->httpClient->getResponse()->getStatusCode());
+        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
+
+        //then
+        $this->assertEquals($expectedStatusCode, $resultStatusCode);
+
+        $this->assertSelectorExists('html');
     }
 
     public function testCreateTagAdmin(): void
