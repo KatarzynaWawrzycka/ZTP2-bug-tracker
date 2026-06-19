@@ -131,6 +131,7 @@ class BugController extends AbstractController
         name: 'bug_create',
         methods: ['GET', 'POST'],
     )]
+    #[IsGranted('ROLE_USER')]
     public function create(Request $request): Response
     {
         /** @var User $user */

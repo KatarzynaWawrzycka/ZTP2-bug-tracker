@@ -91,7 +91,7 @@
         {% if bug.statusEnum.name == 'OPEN' %}
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button type="submit" class="btn btn-primary">
+            <button id="submit" name="submit" type="submit" class="btn btn-primary">
                 {{ 'action.add_comment'|trans }}
             </button>
             {{ form_end(form) }}
