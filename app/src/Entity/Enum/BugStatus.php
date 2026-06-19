@@ -11,9 +11,9 @@ enum BugStatus: int
     public function label(): string
     {
         return match ($this) {
-            self::OPEN => 'label.status_open',
-            self::CLOSED => 'label.status_closed',
-            self::ARCHIVED => 'label.status_archived',
+            self::OPEN => 'open',
+            self::CLOSED => 'closed',
+            self::ARCHIVED => 'archived',
         };
     }
 }

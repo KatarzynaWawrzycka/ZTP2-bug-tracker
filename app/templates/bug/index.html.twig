@@ -68,10 +68,16 @@
                     <td>
                         {% set status = bug.statusEnum %}
 
-                        {% if status %}
-                            {{ status.label|trans }}
+                        {% set status = bug.statusEnum %}
+
+                        {% if status == constant('App\\Entity\\Enum\\BugStatus::OPEN') %}
+                            {{ 'open'|trans }}
+                        {% elseif status == constant('App\\Entity\\Enum\\BugStatus::CLOSED') %}
+                            {{ 'closed'|trans }}
+                        {% elseif status == constant('App\\Entity\\Enum\\BugStatus::ARCHIVED') %}
+                            {{ 'archived'|trans }}
                         {% else %}
-                            <span class="text-muted">{{ status.unknown|trans }}</span>
+                            <span class="text-muted">{{ 'unknown'|trans }}</span>
                         {% endif %}
                     </td>
                     <td>{{ bug.assignedTo ? bug.assignedTo.email : 'Unassigned'|trans }}</td>

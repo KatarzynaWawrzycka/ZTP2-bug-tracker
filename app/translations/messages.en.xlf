@@ -198,6 +198,214 @@
                 <source>label.author</source>
                 <target>Author</target>
             </trans-unit>
+            <trans-unit id="title.register">
+                <source>title.register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="action.register">
+                <source>action.register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="label.bugs">
+                <source>label.bugs</source>
+                <target>Bugs</target>
+            </trans-unit>
+            <trans-unit id="label.categories">
+                <source>label.categories</source>
+                <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="label.admin_panel">
+                <source>label.admin_panel</source>
+                <target>Admin panel</target>
+            </trans-unit>
+            <trans-unit id="label.my_account">
+                <source>label.my_account</source>
+                <target>My account</target>
+            </trans-unit>
+            <trans-unit id="label.logout">
+                <source>label.logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="label.login">
+                <source>label.login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="label.status">
+                <source>label.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="label.assigned_to">
+                <source>label.assigned_to</source>
+                <target>Assigned to</target>
+            </trans-unit>
+            <trans-unit id="Unassigned">
+                <source>Unassigned</source>
+                <target>Unassigned</target>
+            </trans-unit>
+            <trans-unit id="bug_unassigned">
+                <source>bug_unassigned</source>
+                <target>Bug is unassigned</target>
+            </trans-unit>
+            <trans-unit id="action.reassign_bug">
+                <source>action.reassign_bug</source>
+                <target>Reassign bug</target>
+            </trans-unit>
+            <trans-unit id="action.assign_bug">
+                <source>action.assign_bug</source>
+                <target>Assign bug</target>
+            </trans-unit>
+            <trans-unit id="title.status_actions">
+                <source>title.status_actions</source>
+                <target>Status actions</target>
+            </trans-unit>
+            <trans-unit id="label.close_bug">
+                <source>label.close_bug</source>
+                <target>Close bug</target>
+            </trans-unit>
+            <trans-unit id="label.reopen_bug">
+                <source>label.reopen_bug</source>
+                <target>Reopen bug</target>
+            </trans-unit>
+            <trans-unit id="label.archive_bug">
+                <source>label.archive_bug</source>
+                <target>Archive bug</target>
+            </trans-unit>
+            <trans-unit id="label.comments">
+                <source>label.comments</source>
+                <target>Comments</target>
+            </trans-unit>
+            <trans-unit id="action.add_comment">
+                <source>action.add_comment</source>
+                <target>Add comment</target>
+            </trans-unit>
+            <trans-unit id="message.no_comments">
+                <source>message.no_comments</source>
+                <target>No comments</target>
+            </trans-unit>
+            <trans-unit id="title.assign_bug">
+                <source>title.assign_bug</source>
+                <target>Assign bug</target>
+            </trans-unit>
+            <trans-unit id="title.admin_panel">
+                <source>title.admin_panel</source>
+                <target>Admin panel</target>
+            </trans-unit>
+            <trans-unit id="title.admin_account">
+                <source>title.admin_account</source>
+                <target>Admin account</target>
+            </trans-unit>
+            <trans-unit id="label.roles">
+                <source>label.roles</source>
+                <target>Roles</target>
+            </trans-unit>
+            <trans-unit id="action.change_email">
+                <source>action.change_email</source>
+                <target>Change email</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="title.admin_management">
+                <source>title.admin_management</source>
+                <target>Management</target>
+            </trans-unit>
+            <trans-unit id="action.view_users">
+                <source>action.view_users</source>
+                <target>View users</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="action.change">
+                <source>action.change</source>
+                <target>Change</target>
+            </trans-unit>
+            <trans-unit id="title.change_email">
+                <source>title.change_email</source>
+                <target>Change email</target>
+            </trans-unit>
+            <trans-unit id="title.user_list">
+                <source>title.user_list</source>
+                <target>User list</target>
+            </trans-unit>
+            <trans-unit id="action.remove_admin">
+                <source>action.remove_admin</source>
+                <target>Remove admin</target>
+            </trans-unit>
+            <trans-unit id="action.make_admin">
+                <source>action.make_admin</source>
+                <target>Make admin</target>
+            </trans-unit>
+            <trans-unit id="title.user_details">
+                <source>title.user_details</source>
+                <target>User details</target>
+            </trans-unit>
+            <trans-unit id="title.user_info">
+                <source>title.user_info</source>
+                <target>User info</target>
+            </trans-unit>
+            <trans-unit id="title.user_stats">
+                <source>title.user_stats</source>
+                <target>User stats</target>
+            </trans-unit>
+            <trans-unit id="label.bugs_count">
+                <source>label.bugs_count</source>
+                <target>Bugs count</target>
+            </trans-unit>
+            <trans-unit id="label.comments_count">
+                <source>label.comments_count</source>
+                <target>Comments count</target>
+            </trans-unit>
+            <trans-unit id="title.user_actions">
+                <source>title.user_actions</source>
+                <target>User actions</target>
+            </trans-unit>
+            <trans-unit id="title.user_delete">
+                <source>title.user_delete</source>
+                <target>Delete user</target>
+            </trans-unit>
+            <trans-unit id="message.user_delete_warning">
+                <source>message.user_delete_warning</source>
+                <target>User deletion warning</target>
+            </trans-unit>
+            <trans-unit id="message.user_cannot_be_deleted">
+                <source>message.user_cannot_be_deleted</source>
+                <target>User cannot be deleted</target>
+            </trans-unit>
+            <trans-unit id="title.comment_edit">
+                <source>title.comment_edit</source>
+                <target>Edit comment</target>
+            </trans-unit>
+            <trans-unit id="title.comment_delete">
+                <source>title.comment_delete</source>
+                <target>Delete comment</target>
+            </trans-unit>
+            <trans-unit id="title.user_profile">
+                <source>title.user_profile</source>
+                <target>User profile</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="open">
+                <source>open</source>
+                <target>Open</target>
+            </trans-unit>
+            <trans-unit id="closed">
+                <source>closed</source>
+                <target>Closed</target>
+            </trans-unit>
+            <trans-unit id="archived">
+                <source>archived</source>
+                <target>Archived</target>
+            </trans-unit>
+            <trans-unit id="unknown">
+                <source>unknown</source>
+                <target>Unknown</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

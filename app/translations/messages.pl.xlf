@@ -170,7 +170,6 @@
                 <source>title.tag_delete</source>
                 <target>Usuń tag</target>
             </trans-unit>
-
             <trans-unit id="title.login">
                 <source>title.login</source>
                 <target>Zaloguj się</target>
@@ -198,6 +197,214 @@
             <trans-unit id="label.author">
                 <source>label.author</source>
                 <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="title.register">
+                <source>title.register</source>
+                <target>Zarejestruj się</target>
+            </trans-unit>
+            <trans-unit id="action.register">
+                <source>action.register</source>
+                <target>Zarejestruj się</target>
+            </trans-unit>
+            <trans-unit id="label.bugs">
+                <source>label.bugs</source>
+                <target>Zgłoszenia</target>
+            </trans-unit>
+            <trans-unit id="label.categories">
+                <source>label.categories</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="label.admin_panel">
+                <source>label.admin_panel</source>
+                <target>Panel administratora</target>
+            </trans-unit>
+            <trans-unit id="label.my_account">
+                <source>label.my_account</source>
+                <target>Moje konto</target>
+            </trans-unit>
+            <trans-unit id="label.logout">
+                <source>label.logout</source>
+                <target>Wyloguj się</target>
+            </trans-unit>
+            <trans-unit id="label.login">
+                <source>label.login</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
+            <trans-unit id="label.status">
+                <source>label.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="label.assigned_to">
+                <source>label.assigned_to</source>
+                <target>Przypisano do</target>
+            </trans-unit>
+            <trans-unit id="Unassigned">
+                <source>Unassigned</source>
+                <target>Nieprzypisano</target>
+            </trans-unit>
+            <trans-unit id="bug_unassigned">
+                <source>bug_unassigned</source>
+                <target>Zgłoszenie nie jest przypisane</target>
+            </trans-unit>
+            <trans-unit id="action.reassign_bug">
+                <source>action.reassign_bug</source>
+                <target>Zmień przypisanie</target>
+            </trans-unit>
+            <trans-unit id="action.assign_bug">
+                <source>action.assign_bug</source>
+                <target>Przypisz zgłoszenie</target>
+            </trans-unit>
+            <trans-unit id="title.status_actions">
+                <source>title.status_actions</source>
+                <target>Zmiana statusu</target>
+            </trans-unit>
+            <trans-unit id="label.close_bug">
+                <source>label.close_bug</source>
+                <target>Zamknij zgłoszenie</target>
+            </trans-unit>
+            <trans-unit id="label.reopen_bug">
+                <source>label.reopen_bug</source>
+                <target>Otwórz zgłoszenie</target>
+            </trans-unit>
+            <trans-unit id="label.archive_bug">
+                <source>label.archive_bug</source>
+                <target>Zarchiwizuj zgłoszenie</target>
+            </trans-unit>
+            <trans-unit id="label.comments">
+                <source>label.comments</source>
+                <target>Komentarze</target>
+            </trans-unit>
+            <trans-unit id="action.add_comment">
+                <source>action.add_comment</source>
+                <target>Dodaj komentarz</target>
+            </trans-unit>
+            <trans-unit id="message.no_comments">
+                <source>message.no_comments</source>
+                <target>Nie ma komentarzy</target>
+            </trans-unit>
+            <trans-unit id="title.assign_bug">
+                <source>title.assign_bug</source>
+                <target>Przypisz zgłoszenie</target>
+            </trans-unit>
+            <trans-unit id="title.admin_panel">
+                <source>title.admin_panel</source>
+                <target>Panel administratora</target>
+            </trans-unit>
+            <trans-unit id="title.admin_account">
+                <source>title.admin_account</source>
+                <target>Konto administratora</target>
+            </trans-unit>
+            <trans-unit id="label.roles">
+                <source>label.roles</source>
+                <target>Rola</target>
+            </trans-unit>
+            <trans-unit id="action.change_email">
+                <source>action.change_email</source>
+                <target>Zmień email</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="title.admin_management">
+                <source>title.admin_management</source>
+                <target>Zarządzaj użytkownikami</target>
+            </trans-unit>
+            <trans-unit id="action.view_users">
+                <source>action.view_users</source>
+                <target>Lista użytkowników</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="action.change">
+                <source>action.change</source>
+                <target>Zmień</target>
+            </trans-unit>
+            <trans-unit id="title.change_email">
+                <source>title.change_email</source>
+                <target>Zmień email</target>
+            </trans-unit>
+            <trans-unit id="title.user_list">
+                <source>title.user_list</source>
+                <target>Lista użytkowników</target>
+            </trans-unit>
+            <trans-unit id="action.remove_admin">
+                <source>action.remove_admin</source>
+                <target>Odbierz rolę administratora</target>
+            </trans-unit>
+            <trans-unit id="action.make_admin">
+                <source>action.make_admin</source>
+                <target>Nadaj rolę administratora</target>
+            </trans-unit>
+            <trans-unit id="title.user_details">
+                <source>title.user_details</source>
+                <target>Szczegóły</target>
+            </trans-unit>
+            <trans-unit id="title.user_info">
+                <source>title.user_info</source>
+                <target>Informacje</target>
+            </trans-unit>
+            <trans-unit id="title.user_stats">
+                <source>title.user_stats</source>
+                <target>Statystyki</target>
+            </trans-unit>
+            <trans-unit id="label.bugs_count">
+                <source>label.bugs_count</source>
+                <target>Liczba zgłoszeń</target>
+            </trans-unit>
+            <trans-unit id="label.comments_count">
+                <source>label.comments_count</source>
+                <target>Liczba komentarzy</target>
+            </trans-unit>
+            <trans-unit id="title.user_actions">
+                <source>title.user_actions</source>
+                <target>Opcje</target>
+            </trans-unit>
+            <trans-unit id="title.user_delete">
+                <source>title.user_delete</source>
+                <target>Usuń użytkownika</target>
+            </trans-unit>
+            <trans-unit id="message.user_delete_warning">
+                <source>message.user_delete_warning</source>
+                <target>Usuwasz użytkownika</target>
+            </trans-unit>
+            <trans-unit id="message.user_cannot_be_deleted">
+                <source>message.user_cannot_be_deleted</source>
+                <target>Użytkownik nie może być usunięty</target>
+            </trans-unit>
+            <trans-unit id="title.comment_edit">
+                <source>title.comment_edit</source>
+                <target>Edytuj komentarz</target>
+            </trans-unit>
+            <trans-unit id="title.comment_delete">
+                <source>title.comment_delete</source>
+                <target>Usuń komentarz</target>
+            </trans-unit>
+            <trans-unit id="title.user_profile">
+                <source>title.user_profile</source>
+                <target>Konto użytkownika</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>Rola</target>
+            </trans-unit>
+            <trans-unit id="open">
+                <source>open</source>
+                <target>Otwarte</target>
+            </trans-unit>
+            <trans-unit id="closed">
+                <source>closed</source>
+                <target>Zamknięte</target>
+            </trans-unit>
+            <trans-unit id="archived">
+                <source>archived</source>
+                <target>Zarchiwizowane</target>
+            </trans-unit>
+            <trans-unit id="unknown">
+                <source>unknown</source>
+                <target>Status nieznany</target>
             </trans-unit>
         </body>
     </file>

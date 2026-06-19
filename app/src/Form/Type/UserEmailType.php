@@ -17,12 +17,8 @@ class UserEmailType extends AbstractType
             'label' => 'Email',
             'mapped' => false,
             'constraints' => [
-                new NotBlank(
-                    message: 'Email cannot be empty.',
-                ),
-                new Email(
-                    message: 'Please enter a valid email address.',
-                ),
+                new NotBlank,
+                new Email,
             ],
             'attr' => [
                 'autocomplete' => 'email',

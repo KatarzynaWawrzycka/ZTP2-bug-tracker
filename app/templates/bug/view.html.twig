@@ -22,6 +22,16 @@
             <dd>{{  bug.description }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  bug.category.title }}</dd>
+            <dt>{{ 'label.tags'|trans }}</dt>
+            <dd>
+                {% if bug.tags is defined and bug.tags|length %}
+                    {% for tag in bug.tags %}
+                            {{ tag.title }}
+                    {% endfor %}
+                {% else %}
+                    &nbsp;
+                {% endif %}
+            </dd>
             <dt>{{ 'label.assigned_to'|trans }}</dt>
             <dd>
                 {{ bug.assignedTo ? bug.assignedTo.email : ('bug_unassigned'|trans) }}
@@ -44,7 +54,7 @@
             {% endif %}
 
             <dt>{{ 'label.status'|trans }}</dt>
-            <dd>{{  bug.statusEnum.name }}</dd>
+            <dd>{{ bug.statusEnum.label()|trans }}</dd>
         </dl>
 
         {% if is_granted('ROLE_ADMIN') %}
