@@ -146,8 +146,6 @@ class AdminUserControllerTest extends WebTestCase
 
     /**
      * Test view user details by admin - exception for invalid user id.
-     *
-     * @throws Exception
      */
     public function testViewUserNotFound(): void
     {
@@ -155,10 +153,11 @@ class AdminUserControllerTest extends WebTestCase
         $admin = $this->createUser([UserRole::ROLE_ADMIN->value]);
         $this->httpClient->loginUser($admin);
 
-        $container = static::getContainer();
+        $userService = $this->createStub(UserServiceInterface::class);
 
-        $userService = $this->createMock(UserServiceInterface::class);
-        $userService->method('findWithStats')->willReturn([]);
+        $userService
+            ->method('findWithStats')
+            ->willReturn([]);
 
         self::getContainer()->set(
             UserServiceInterface::class,
@@ -168,11 +167,20 @@ class AdminUserControllerTest extends WebTestCase
         $expectedStatusCode = 404;
 
         // when
-        $this->httpClient->request('GET', self::TEST_ROUTE.'/999999');
-        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
+        $this->httpClient->request(
+            'GET',
+            self::TEST_ROUTE.'/999999'
+        );
+
+        $resultStatusCode = $this->httpClient
+            ->getResponse()
+            ->getStatusCode();
 
         // then
-        $this->assertEquals($expectedStatusCode, $resultStatusCode);
+        $this->assertEquals(
+            $expectedStatusCode,
+            $resultStatusCode
+        );
     }
 
     /**
@@ -326,9 +334,7 @@ class AdminUserControllerTest extends WebTestCase
     }
 
     /**
-     * Test delete user by admin - exception.
-     *
-     * @throws Exception
+     * Test delete user by admin when service throws LogicException.
      */
     public function testDeleteUserLogicException(): void
     {
@@ -338,7 +344,7 @@ class AdminUserControllerTest extends WebTestCase
 
         $targetUser = $this->createUser([UserRole::ROLE_USER->value]);
 
-        $userService = $this->createMock(UserServiceInterface::class);
+        $userService = $this->createStub(UserServiceInterface::class);
 
         $userService
             ->method('delete')
@@ -361,10 +367,15 @@ class AdminUserControllerTest extends WebTestCase
 
         $this->httpClient->submit($form);
 
-        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
+        $resultStatusCode = $this->httpClient
+            ->getResponse()
+            ->getStatusCode();
 
         // then
-        $this->assertEquals($expectedStatusCode, $resultStatusCode);
+        $this->assertEquals(
+            $expectedStatusCode,
+            $resultStatusCode
+        );
     }
 
     /**

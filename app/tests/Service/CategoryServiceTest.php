@@ -210,21 +210,19 @@ class CategoryServiceTest extends KernelTestCase
 
     /**
      * Test that canBeDeleted returns false when repository throws exception.
-     *
-     * @throws NoResultException
      */
     public function testCanBeDeletedReturnsFalseOnException(): void
     {
         $category = new Category();
 
-        $bugRepository = $this->createMock(BugRepository::class);
+        $bugRepository = $this->createStub(BugRepository::class);
         $bugRepository
             ->method('countByCategory')
             ->willThrowException(new NoResultException());
 
         $service = new CategoryService(
-            $this->createMock(CategoryRepository::class),
-            $this->createMock(PaginatorInterface::class),
+            $this->createStub(CategoryRepository::class),
+            $this->createStub(PaginatorInterface::class),
             $bugRepository
         );
 
