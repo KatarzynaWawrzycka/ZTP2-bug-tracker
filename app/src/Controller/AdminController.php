@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Admin Controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -13,18 +17,33 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class AdminController.
+ */
 #[Route('/admin')]
 #[IsGranted('ROLE_ADMIN')]
 class AdminController extends AbstractController
 {
+    /**
+     * Constructor.
+     *
+     * @param UserServiceInterface $userService User Service Interface
+     * @param TranslatorInterface  $translator  Translator   Interface
+     */
     public function __construct(private readonly UserServiceInterface $userService, private readonly TranslatorInterface $translator)
     {
     }
 
     /**
      * Admin dashboard.
+     *
+     * @return Response HTTP response
      */
-    #[Route('', name: 'admin_index', methods: ['GET'])]
+    #[Route(
+        '',
+        name: 'admin_index',
+        methods: ['GET']
+    )]
     public function index(): Response
     {
         return $this->render('admin/index.html.twig', [
@@ -32,6 +51,13 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * Change email action.
+     *
+     * @param Request $request Request
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/change-email',
         name: 'admin_change_email',
@@ -64,7 +90,11 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Change password (current admin).
+     * Change password action (current admin).
+     *
+     * @param Request $request Request
+     *
+     * @return Response HTTP response
      */
     #[Route(
         '/change-password',

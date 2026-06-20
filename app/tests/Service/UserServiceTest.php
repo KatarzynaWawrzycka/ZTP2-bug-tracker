@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User service tests.
  */
@@ -38,80 +39,6 @@ class UserServiceTest extends KernelTestCase
      * User service.
      */
     private ?UserServiceInterface $userService;
-
-    /**
-     * Create user helper.
-     */
-    private function createUser(): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-
-        $repo = $container->get(UserRepository::class);
-
-        $user = new User();
-        $user->setEmail('user'.uniqid().'@example.com');
-        $user->setRoles([UserRole::ROLE_USER->value]);
-
-        $user->setPassword($passwordHasher->hashPassword($user, 'password'));
-
-        $repo->save($user);
-
-        return $user;
-    }
-
-    /**
-     * Create category helper.
-     */
-    private function createCategory(): Category
-    {
-        $repo = static::getContainer()
-            ->get(CategoryRepository::class);
-
-        $category = new Category();
-        $category->setTitle('Category '.uniqid());
-
-        $repo->save($category);
-
-        return $category;
-    }
-
-    /**
-     * Create bug helper.
-     */
-    private function createBug(): Bug
-    {
-        $repo = static::getContainer()
-            ->get(BugRepository::class);
-
-        $bug = new Bug();
-        $bug->setTitle('Bug Title'.uniqid());
-        $bug->setAuthor($this->createUser());
-        $bug->setDescription('Bug Description');
-        $bug->setCategory($this->createCategory());
-
-        $repo->save($bug);
-
-        return $bug;
-    }
-
-    /**
-     * Create comment helper.
-     */
-    private function createComment(): Comment
-    {
-        $repo = static::getContainer()
-            ->get(CommentRepository::class);
-
-        $comment = new Comment();
-        $comment->setAuthor($this->createUser());
-        $comment->setContent('Comment Content');
-
-        $repo->save($comment);
-
-        return $comment;
-    }
 
     /**
      * Set up test.
@@ -217,6 +144,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertEquals($expectedResultSize, $result->count());
     }
 
+    /**
+     * Test get user details.
+     */
     public function testGetUserDetails(): void
     {
         // given
@@ -237,6 +167,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertEquals($expectedUser, $resultUser);
     }
 
+    /**
+     * Test count admins.
+     */
     public function testCountAdminsOne(): void
     {
         // given
@@ -253,6 +186,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertSame(1, $result);
     }
 
+    /**
+     * Test count admin when there's none.
+     */
     public function testCountAdminsZero(): void
     {
         $result = $this->userService->countAdmins();
@@ -260,6 +196,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertSame(0, $result);
     }
 
+    /**
+     * Test find user stats.
+     */
     public function testFindWithStats(): void
     {
         // given
@@ -295,6 +234,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertSame($user->getId(), $result['user']->getId());
     }
 
+    /**
+     * Test find stats when there's no user.
+     */
     public function testFindWithStatsNotFound(): void
     {
         $result = $this->userService->findWithStats(999999);
@@ -302,6 +244,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertSame([], $result);
     }
 
+    /**
+     * Test find the number of admins.
+     */
     public function testFindAdmins(): void
     {
         // given
@@ -327,6 +272,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertSame($admin->getId(), $result[0]->getId());
     }
 
+    /**
+     * Test toggle admin role - add an admin.
+     */
     public function testToggleAdminRoleAddAdmin(): void
     {
         // given
@@ -343,6 +291,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertContains('ROLE_ADMIN', $user->getRoles());
     }
 
+    /**
+     * Test toggle admin role - remove an admin.
+     */
     public function testToggleAdminRoleRemoveAdminSuccess(): void
     {
         // given
@@ -363,6 +314,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertNotContains('ROLE_ADMIN', $admin1->getRoles());
     }
 
+    /**
+     * Test toggle admin role - exception for the last admin.
+     */
     public function testToggleAdminRoleLastAdminThrowsException(): void
     {
         // given
@@ -382,6 +336,9 @@ class UserServiceTest extends KernelTestCase
         $this->userService->toggleAdminRole($admin);
     }
 
+    /**
+     * Test change password.
+     */
     public function testChangePassword(): void
     {
         // given
@@ -398,6 +355,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertNotEquals($newPassword, $user->getPassword());
     }
 
+    /**
+     * Test change email.
+     */
     public function testChangeEmail(): void
     {
         // given
@@ -411,6 +371,9 @@ class UserServiceTest extends KernelTestCase
         $this->assertSame($newEmail, $user->getEmail());
     }
 
+    /**
+     * Test register new user.
+     */
     public function testRegister(): void
     {
         // given
@@ -425,5 +388,87 @@ class UserServiceTest extends KernelTestCase
         // then
         $this->assertContains('ROLE_USER', $user->getRoles());
         $this->assertNotSame($plainPassword, $user->getPassword());
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @return User $user User entity
+     */
+    private function createUser(): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+
+        $repo = $container->get(UserRepository::class);
+
+        $user = new User();
+        $user->setEmail('user'.uniqid().'@example.com');
+        $user->setRoles([UserRole::ROLE_USER->value]);
+
+        $user->setPassword($passwordHasher->hashPassword($user, 'password'));
+
+        $repo->save($user);
+
+        return $user;
+    }
+
+    /**
+     * Create category helper.
+     *
+     * @return Category $category Category entity
+     */
+    private function createCategory(): Category
+    {
+        $repo = static::getContainer()
+            ->get(CategoryRepository::class);
+
+        $category = new Category();
+        $category->setTitle('Category '.uniqid());
+
+        $repo->save($category);
+
+        return $category;
+    }
+
+    /**
+     * Create bug helper.
+     *
+     * @return Bug $bug Bug entity
+     */
+    private function createBug(): Bug
+    {
+        $repo = static::getContainer()
+            ->get(BugRepository::class);
+
+        $bug = new Bug();
+        $bug->setTitle('Bug Title'.uniqid());
+        $bug->setAuthor($this->createUser());
+        $bug->setDescription('Bug Description');
+        $bug->setCategory($this->createCategory());
+
+        $repo->save($bug);
+
+        return $bug;
+    }
+
+    /**
+     * Create comment helper.
+     *
+     * @return Comment $comment Comment entity
+     */
+    private function createComment(): Comment
+    {
+        $repo = static::getContainer()
+            ->get(CommentRepository::class);
+
+        $comment = new Comment();
+        $comment->setAuthor($this->createUser());
+        $comment->setContent('Comment Content');
+
+        $repo->save($comment);
+
+        return $comment;
     }
 }

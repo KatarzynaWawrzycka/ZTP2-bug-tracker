@@ -37,6 +37,11 @@ class BugController extends AbstractController
 {
     /**
      * Constructor.
+     *
+     * @param BugServiceInterface     $bugService     Bug Service Interface
+     * @param TranslatorInterface     $translator     Translator Interface
+     * @param CommentServiceInterface $commentService Comment Service Interface
+     * @param UserServiceInterface    $userService    User Service Interface
      */
     public function __construct(private readonly BugServiceInterface $bugService, private readonly TranslatorInterface $translator, private readonly CommentServiceInterface $commentService, private readonly UserServiceInterface $userService)
     {
@@ -67,7 +72,8 @@ class BugController extends AbstractController
     /**
      * View action.
      *
-     * @param Bug $bug Bug entity
+     * @param Bug     $bug     Bug entity
+     * @param Request $request Request
      *
      * @return Response HTTP response
      */
@@ -248,6 +254,14 @@ class BugController extends AbstractController
         );
     }
 
+    /**
+     * Change status action.
+     *
+     * @param Bug    $bug    Bug entity
+     * @param string $status New status
+     *
+     * @return Response HTTP Response
+     */
     #[Route(
         '/{id}/status/{status}',
         name: 'bug_change_status',
@@ -264,6 +278,14 @@ class BugController extends AbstractController
         return $this->redirectToRoute('bug_view', ['id' => $bug->getId()]);
     }
 
+    /**
+     * Assign bug action.
+     *
+     * @param Bug     $bug     Bug entity
+     * @param Request $request Request
+     *
+     * @return Response HTTP Response
+     */
     #[Route(
         '/{id}/assign',
         name: 'bug_assign',

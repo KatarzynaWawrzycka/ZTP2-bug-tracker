@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User Controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -13,16 +17,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+/**
+ * Class UserController.
+ */
 #[Route('/user')]
 #[IsGranted('IS_AUTHENTICATED_FULLY')]
 class UserController extends AbstractController
 {
+    /**
+     * Constructor.
+     *
+     * @param UserServiceInterface $userService User Service Interface
+     */
     public function __construct(private readonly UserServiceInterface $userService)
     {
     }
 
     /**
      * User profile.
+     *
+     * @return Response HTTP response
      */
     #[Route(
         '',
@@ -44,7 +58,11 @@ class UserController extends AbstractController
     }
 
     /**
-     * Change email.
+     * Change email action.
+     *
+     * @param Request $request Request
+     *
+     * @return Response Response
      */
     #[Route(
         '/change-email',
@@ -78,7 +96,11 @@ class UserController extends AbstractController
     }
 
     /**
-     * Change password.
+     * Change password action.
+     *
+     * @param Request $request Request
+     *
+     * @return Response HTTP Response
      */
     #[Route(
         '/change-password',
@@ -111,6 +133,13 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete action.
+     *
+     * @param Request $request Request
+     *
+     * @return Response Response
+     */
     #[Route(
         '/delete',
         name: 'user_delete',

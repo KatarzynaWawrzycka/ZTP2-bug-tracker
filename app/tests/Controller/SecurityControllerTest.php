@@ -1,49 +1,35 @@
 <?php
 
+/**
+ * Security Controller Test.
+ */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Enum\UserRole;
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class SecurityControllerTest.
+ */
 class SecurityControllerTest extends WebTestCase
 {
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test.
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
-    /*
-     * HELPERS
+    /**
+     * Test registration page.
      */
-
-    private function createUser(array $roles): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-        $userRepository = $container->get(\App\Repository\UserRepository::class);
-
-        $user = new User();
-        $user->setEmail('user' . uniqid() . '@example.com');
-        $user->setRoles($roles);
-
-        $user->setPassword(
-            $passwordHasher->hashPassword($user, 'password')
-        );
-
-        $userRepository->save($user);
-
-        return $user;
-    }
-
-    /*
-     * REGISTER
-     */
-
     public function testRegisterPage(): void
     {
         // given
@@ -57,6 +43,9 @@ class SecurityControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test registration process.
+     */
     public function testRegisterUser(): void
     {
         // given
@@ -66,7 +55,7 @@ class SecurityControllerTest extends WebTestCase
         $crawler = $this->httpClient->request('GET', '/register');
 
         $form = $crawler->selectButton('submit')->form([
-            'registration[email]' => 'test' . uniqid() . '@example.com',
+            'registration[email]' => 'test'.uniqid().'@example.com',
             'registration[plainPassword][first]' => 'password123',
             'registration[plainPassword][second]' => 'password123',
         ]);
@@ -79,6 +68,9 @@ class SecurityControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test register process - password mismatch/.
+     */
     public function testRegisterPasswordMismatch(): void
     {
         // given
@@ -88,7 +80,7 @@ class SecurityControllerTest extends WebTestCase
         $crawler = $this->httpClient->request('GET', '/register');
 
         $form = $crawler->selectButton('submit')->form([
-            'registration[email]' => 'test' . uniqid() . '@example.com',
+            'registration[email]' => 'test'.uniqid().'@example.com',
             'registration[plainPassword][first]' => 'password123',
             'registration[plainPassword][second]' => 'different',
         ]);
@@ -101,10 +93,9 @@ class SecurityControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * LOGIN
+    /**
+     * Test login page.
      */
-
     public function testLoginPage(): void
     {
         // given
@@ -118,6 +109,9 @@ class SecurityControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test redirection after logging in.
+     */
     public function testLoginRedirectIfLogged(): void
     {
         // given
@@ -134,10 +128,9 @@ class SecurityControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * LOGOUT
+    /**
+     * Test logout.
      */
-
     public function testLogout(): void
     {
         // given
@@ -152,5 +145,32 @@ class SecurityControllerTest extends WebTestCase
 
         // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @param array $roles User roles
+     *
+     * @return User User entity
+     */
+    private function createUser(array $roles): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+        $userRepository = $container->get(UserRepository::class);
+
+        $user = new User();
+        $user->setEmail('user'.uniqid().'@example.com');
+        $user->setRoles($roles);
+
+        $user->setPassword(
+            $passwordHasher->hashPassword($user, 'password')
+        );
+
+        $userRepository->save($user);
+
+        return $user;
     }
 }

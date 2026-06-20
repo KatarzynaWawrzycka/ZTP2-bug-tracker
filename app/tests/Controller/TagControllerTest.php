@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Tag Controller Test.
+ */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Enum\UserRole;
@@ -10,64 +14,25 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class TagControllerTest.
+ */
 class TagControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/tag';
 
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test.
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
-    /*
-     * HELPERS
-     */
-
-    private function createUser(array $roles): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-
-        $userRepository = $container->get(UserRepository::class);
-
-        $user = new User();
-
-        $user->setEmail('user'.uniqid().'@example.com');
-
-        $user->setRoles($roles);
-
-        $user->setPassword(
-            $passwordHasher->hashPassword(
-                $user,
-                'password'
-            )
-        );
-
-        $userRepository->save($user);
-
-        return $user;
-    }
-
-    private function createTag(): Tag
-    {
-        $container = static::getContainer();
-
-        $repository = $container->get(TagRepository::class);
-
-        $tag = new Tag();
-
-        $tag->setTitle('Tag '.uniqid());
-
-        $repository->save($tag);
-
-        return $tag;
-    }
-
-    /*
-     * INDEX
+    /**
+     * Test view tag list by anonymous user.
      */
     public function testIndexAnonymous(): void
     {
@@ -82,6 +47,9 @@ class TagControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test view tag list by user.
+     */
     public function testIndexUser(): void
     {
         // given
@@ -101,6 +69,9 @@ class TagControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test view tag list by admin.
+     */
     public function testIndexAdmin(): void
     {
         // given
@@ -120,8 +91,8 @@ class TagControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * VIEW
+    /**
+     * Test view tag details by anonymous user.
      */
     public function testViewTagAnonymous(): void
     {
@@ -142,6 +113,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test view tag details by user.
+     */
     public function testViewTagUserForbidden(): void
     {
         $user = $this->createUser([
@@ -166,6 +140,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test view tag details by admin.
+     */
     public function testViewTagAdmin(): void
     {
         $admin = $this->createUser([
@@ -188,8 +165,8 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    /*
-     * CREATE
+    /**
+     * Test create tag by anonymous user.
      */
     public function testCreateTagAnonymous(): void
     {
@@ -209,6 +186,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test create tag by user.
+     */
     public function testCreateTagUserForbidden(): void
     {
         // given
@@ -234,6 +214,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test create tag by admin.
+     */
     public function testCreateTagAdmin(): void
     {
         // given
@@ -262,10 +245,9 @@ class TagControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * EDIT
+    /**
+     * Test edit tag by anonymous user.
      */
-
     public function testEditTagAnonymous(): void
     {
         // given
@@ -285,6 +267,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test edit tag by user.
+     */
     public function testEditTagForbiddenForUser(): void
     {
         // given
@@ -312,6 +297,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test edit tag by admin.
+     */
     public function testEditTagAdmin(): void
     {
         // given
@@ -341,10 +329,9 @@ class TagControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * DELETE
+    /**
+     * Test delete tag by anonymous user.
      */
-
     public function testDeleteTagAnonymous(): void
     {
         // given
@@ -364,6 +351,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test delete tag by user.
+     */
     public function testDeleteTagForbiddenForUser(): void
     {
         // given
@@ -391,6 +381,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test delete tag by admin.
+     */
     public function testDeleteTagAdmin(): void
     {
         // given
@@ -416,5 +409,58 @@ class TagControllerTest extends WebTestCase
         $this->httpClient->submit($form);
 
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @param array $roles user roles
+     *
+     * @return User User entity
+     */
+    private function createUser(array $roles): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+
+        $userRepository = $container->get(UserRepository::class);
+
+        $user = new User();
+
+        $user->setEmail('user'.uniqid().'@example.com');
+
+        $user->setRoles($roles);
+
+        $user->setPassword(
+            $passwordHasher->hashPassword(
+                $user,
+                'password'
+            )
+        );
+
+        $userRepository->save($user);
+
+        return $user;
+    }
+
+    /**
+     * Create tag helper.
+     *
+     * @return Tag Tag entity
+     */
+    private function createTag(): Tag
+    {
+        $container = static::getContainer();
+
+        $repository = $container->get(TagRepository::class);
+
+        $tag = new Tag();
+
+        $tag->setTitle('Tag '.uniqid());
+
+        $repository->save($tag);
+
+        return $tag;
     }
 }

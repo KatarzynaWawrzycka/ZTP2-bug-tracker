@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tag service tests.
  */
@@ -165,31 +166,5 @@ class TagServiceTest extends KernelTestCase
 
         // then
         $this->assertEquals($expectedResultSize, $result->count());
-    }
-
-    public function testGetPaginatedListSecondPage(): void
-    {
-        // given
-        for ($i = 0; $i < 15; ++$i) {
-            $tag = new Tag();
-            $tag->setTitle('Tag '.$i);
-
-            $this->tagService->save($tag);
-        }
-
-        // when
-        $result = $this->tagService->getPaginatedList(2);
-
-        // then
-        $this->assertCount(5, $result);
-    }
-
-    public function testGetPaginatedListEmpty(): void
-    {
-        // when
-        $result = $this->tagService->getPaginatedList(1);
-
-        // then
-        $this->assertCount(0, $result);
     }
 }

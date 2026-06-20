@@ -158,6 +158,14 @@ class TagController extends AbstractController
         );
     }
 
+    /**
+     * Delete action.
+     *
+     * @param Request $request Request
+     * @param Tag     $tag     Tag entity
+     *
+     * @return Response Response
+     */
     #[Route(
         '/{id}/delete',
         name: 'tag_delete',

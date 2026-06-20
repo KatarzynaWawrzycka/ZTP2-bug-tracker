@@ -1,11 +1,14 @@
 <?php
 
+/**
+ * User Controller Test.
+ */
+
 namespace App\Tests\Controller;
 
 use App\Entity\User;
 use App\Entity\Enum\UserRole;
 use App\Repository\UserRepository;
-use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -18,41 +21,16 @@ class UserControllerTest extends WebTestCase
 
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test.
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
-    /*
-     * HELPERS
-     */
-
     /**
-     * Create user helper.
-     */
-    private function createUser(array $roles): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-        $userRepository = $container->get(UserRepository::class);
-
-        $user = new User();
-
-        $user->setEmail('user' . uniqid() . '@example.com');
-        $user->setRoles($roles);
-
-        $user->setPassword(
-            $passwordHasher->hashPassword($user, 'password')
-        );
-
-        $userRepository->save($user);
-
-        return $user;
-    }
-
-    /*
-     * PROFILE
+     * Test view account details by anonymous user.
      */
     public function testProfileAnonymous(): void
     {
@@ -67,6 +45,9 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test view account details by user.
+     */
     public function testProfileUser(): void
     {
         // given
@@ -86,6 +67,9 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test view account details by admin.
+     */
     public function testProfileAdmin(): void
     {
         // given
@@ -105,8 +89,8 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * CHANGE EMAIL
+    /**
+     * Test change email by anonymous user.
      */
     public function testChangeEmailAnonymous(): void
     {
@@ -114,13 +98,16 @@ class UserControllerTest extends WebTestCase
         $expectedStatusCode = 302;
 
         // when
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/change-email');
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/change-email');
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test change email form by user.
+     */
     public function testChangeEmailUserGet(): void
     {
         // given
@@ -133,13 +120,16 @@ class UserControllerTest extends WebTestCase
         $expectedStatusCode = 200;
 
         // when
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/change-email');
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/change-email');
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test change email form by admin.
+     */
     public function testChangeEmailAdminGet(): void
     {
         // given
@@ -152,13 +142,16 @@ class UserControllerTest extends WebTestCase
         $expectedStatusCode = 200;
 
         // when
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/change-email');
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/change-email');
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test change email submission by user.
+     */
     public function testChangeEmailUserPost(): void
     {
         // given
@@ -169,10 +162,10 @@ class UserControllerTest extends WebTestCase
         $this->httpClient->loginUser($user);
 
         // when
-        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE . '/change-email');
+        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE.'/change-email');
 
         $form = $crawler->filter('form')->form([
-            'user_email[email]' => 'new' . uniqid() . '@example.com',
+            'user_email[email]' => 'new'.uniqid().'@example.com',
         ]);
 
         $this->httpClient->submit($form);
@@ -181,6 +174,9 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(302, $this->httpClient->getResponse()->getStatusCode());
     }
 
+    /**
+     * Test change email submission by admin.
+     */
     public function testChangeEmailAdminPost(): void
     {
         // given
@@ -191,10 +187,10 @@ class UserControllerTest extends WebTestCase
         $this->httpClient->loginUser($user);
 
         // when
-        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE . '/change-email');
+        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE.'/change-email');
 
         $form = $crawler->filter('form')->form([
-            'user_email[email]' => 'new' . uniqid() . '@example.com',
+            'user_email[email]' => 'new'.uniqid().'@example.com',
         ]);
 
         $this->httpClient->submit($form);
@@ -203,8 +199,8 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(302, $this->httpClient->getResponse()->getStatusCode());
     }
 
-    /*
-     * CHANGE PASSWORD
+    /**
+     * Test change password by anonymous user.
      */
     public function testChangePasswordlAnonymous(): void
     {
@@ -212,13 +208,16 @@ class UserControllerTest extends WebTestCase
         $expectedStatusCode = 302;
 
         // when
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/change-password');
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/change-password');
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test change password form for user.
+     */
     public function testChangePasswordUserGet(): void
     {
         // given
@@ -237,6 +236,9 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(200, $statusCode);
     }
 
+    /**
+     * Test change password form for user.
+     */
     public function testChangePasswordAdminGet(): void
     {
         // given
@@ -255,7 +257,10 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(200, $statusCode);
     }
 
-    public function testChangePasswordtUserPos(): void
+    /**
+     * Test change password submission for user.
+     */
+    public function testChangePasswordUserPost(): void
     {
         // given
         $user = $this->createUser([
@@ -280,6 +285,9 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(302, $statusCode);
     }
 
+    /**
+     * Test change password submission for admin.
+     */
     public function testChangePasswordAdminPost(): void
     {
         // given
@@ -305,8 +313,8 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(302, $statusCode);
     }
 
-    /*
-     * DELETE ACCOUNT
+    /**
+     * Test delete user page for user.
      */
     public function testDeleteUserGet(): void
     {
@@ -326,6 +334,9 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(200, $statusCode);
     }
 
+    /**
+     * Test delete user page for admin.
+     */
     public function testDeleteAdminGet(): void
     {
         // given
@@ -344,6 +355,9 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals(200, $statusCode);
     }
 
+    /**
+     * Test delete user submission for user.
+     */
     public function testDeleteUserPost(): void
     {
         // given
@@ -367,6 +381,9 @@ class UserControllerTest extends WebTestCase
         $this->assertStringContainsString('/login', $this->httpClient->getResponse()->headers->get('Location') ?? '');
     }
 
+    /**
+     * Test delete user submission for admin.
+     */
     public function testDeleteAdminPost(): void
     {
         // given
@@ -387,5 +404,33 @@ class UserControllerTest extends WebTestCase
 
         // then
         $this->assertEquals(302, $statusCode);
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @param array $roles User roles
+     *
+     * @return User User entity
+     */
+    private function createUser(array $roles): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+        $userRepository = $container->get(UserRepository::class);
+
+        $user = new User();
+
+        $user->setEmail('user'.uniqid().'@example.com');
+        $user->setRoles($roles);
+
+        $user->setPassword(
+            $passwordHasher->hashPassword($user, 'password')
+        );
+
+        $userRepository->save($user);
+
+        return $user;
     }
 }

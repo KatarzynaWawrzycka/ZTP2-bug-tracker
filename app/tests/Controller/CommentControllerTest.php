@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment controller tests.
+ */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Bug;
@@ -14,85 +18,24 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class CommentControllerTest.
+ */
 class CommentControllerTest extends WebTestCase
 {
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test.
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
-    /*
-     * HELPERS
+    /**
+     * Test edit comment by anonymous user.
      */
-
-    private function createUser(array $roles): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-
-        $userRepository = $container->get(UserRepository::class);
-
-        $user = new User();
-        $user->setEmail('user'.uniqid().'@example.com');
-        $user->setRoles($roles);
-        $user->setPassword(
-            $passwordHasher->hashPassword(
-                $user,
-                'password'
-            )
-        );
-
-        $userRepository->save($user);
-
-        return $user;
-    }
-
-    private function createBug(User $author): Bug
-    {
-        $container = static::getContainer();
-
-        $bugRepository = $container->get(BugRepository::class);
-        $categoryRepository = $container->get(CategoryRepository::class);
-
-        $category = new Category();
-        $category->setTitle('Category '.uniqid());
-
-        $categoryRepository->save($category);
-
-        $bug = new Bug();
-        $bug->setTitle('Bug '.uniqid());
-        $bug->setDescription('Description');
-        $bug->setAuthor($author);
-        $bug->setCategory($category);
-
-        $bugRepository->save($bug);
-
-        return $bug;
-    }
-
-    private function createComment(User $author, Bug $bug): Comment
-    {
-        $repository = static::getContainer()
-            ->get(CommentRepository::class);
-
-        $comment = new Comment();
-
-        $comment->setContent('Comment '.uniqid());
-        $comment->setAuthor($author);
-        $comment->setBug($bug);
-
-        $repository->save($comment);
-
-        return $comment;
-    }
-
-    /*
-     * EDIT
-     */
-
     public function testEditCommentAnonymous(): void
     {
         // given
@@ -122,6 +65,9 @@ class CommentControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test edit comment by user - not author.
+     */
     public function testEditCommentForbiddenForUser(): void
     {
         // given
@@ -157,6 +103,9 @@ class CommentControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test edit comment by user - author.
+     */
     public function testEditOwnCommentUser(): void
     {
         // given
@@ -192,6 +141,9 @@ class CommentControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test edit comment by admin.
+     */
     public function testEditCommentAdmin(): void
     {
         // given
@@ -231,6 +183,9 @@ class CommentControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test edit comment with invalid bug.
+     */
     public function testEditCommentWithInvalidBug(): void
     {
         // given
@@ -265,6 +220,9 @@ class CommentControllerTest extends WebTestCase
      * DELETE
      */
 
+    /**
+     * Test delete comment by anonymous user.
+     */
     public function testDeleteCommentAnonymous(): void
     {
         // given
@@ -294,6 +252,9 @@ class CommentControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test delete comment by user - not author.
+     */
     public function testDeleteCommentForbiddenForUser(): void
     {
         // given
@@ -329,6 +290,9 @@ class CommentControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test delete comment by user - author.
+     */
     public function testDeleteOwnCommentUser(): void
     {
         // given
@@ -362,6 +326,9 @@ class CommentControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test delete comment by admin.
+     */
     public function testDeleteCommentAdmin(): void
     {
         // given
@@ -399,6 +366,9 @@ class CommentControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test delete comment with invalid bug.
+     */
     public function testDeleteCommentWithInvalidBug(): void
     {
         // given
@@ -427,5 +397,89 @@ class CommentControllerTest extends WebTestCase
 
         // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @param array $roles User roles
+     *
+     * @return User User entity
+     */
+    private function createUser(array $roles): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+
+        $userRepository = $container->get(UserRepository::class);
+
+        $user = new User();
+        $user->setEmail('user'.uniqid().'@example.com');
+        $user->setRoles($roles);
+        $user->setPassword(
+            $passwordHasher->hashPassword(
+                $user,
+                'password'
+            )
+        );
+
+        $userRepository->save($user);
+
+        return $user;
+    }
+
+    /**
+     * Create bug helper.
+     *
+     * @param User $author User
+     *
+     * @return Bug Bug entity
+     */
+    private function createBug(User $author): Bug
+    {
+        $container = static::getContainer();
+
+        $bugRepository = $container->get(BugRepository::class);
+        $categoryRepository = $container->get(CategoryRepository::class);
+
+        $category = new Category();
+        $category->setTitle('Category '.uniqid());
+
+        $categoryRepository->save($category);
+
+        $bug = new Bug();
+        $bug->setTitle('Bug '.uniqid());
+        $bug->setDescription('Description');
+        $bug->setAuthor($author);
+        $bug->setCategory($category);
+
+        $bugRepository->save($bug);
+
+        return $bug;
+    }
+
+    /**
+     * Create comment helper.
+     *
+     * @param User $author User
+     * @param Bug  $bug    Bug
+     *
+     * @return Comment Comment entity
+     */
+    private function createComment(User $author, Bug $bug): Comment
+    {
+        $repository = static::getContainer()
+            ->get(CommentRepository::class);
+
+        $comment = new Comment();
+
+        $comment->setContent('Comment '.uniqid());
+        $comment->setAuthor($author);
+        $comment->setBug($bug);
+
+        $repository->save($comment);
+
+        return $comment;
     }
 }

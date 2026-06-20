@@ -10,7 +10,7 @@ use App\Entity\Category;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Interface TagServiceInterface.
+ * Interface CategoryServiceInterface.
  */
 interface CategoryServiceInterface
 {
@@ -32,6 +32,8 @@ interface CategoryServiceInterface
 
     /**
      * Delete entity.
+     *
+     * @param Category $category Category entity
      */
     public function delete(Category $category): void;
 

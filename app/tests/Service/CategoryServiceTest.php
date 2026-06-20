@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Category service tests.
  */
 
 namespace App\Tests\Service;
 
+use Doctrine\ORM\NoResultException;
 use App\Entity\Bug;
 use App\Entity\Category;
 use App\Entity\Enum\UserRole;
@@ -15,10 +17,10 @@ use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\PaginatorInterface;
+use PHPUnit\Framework\MockObject\Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -154,6 +156,9 @@ class CategoryServiceTest extends KernelTestCase
         $this->assertEquals($expectedResultSize, $result->count());
     }
 
+    /**
+     * Test can an empty category be deleted.
+     */
     public function testCanBeDeletedTrue(): void
     {
         // given
@@ -170,6 +175,9 @@ class CategoryServiceTest extends KernelTestCase
         $this->assertTrue($result);
     }
 
+    /**
+     * Test can a category containing bugs be deleted.
+     */
     public function testCanBeDeletedFalse(): void
     {
         // given
@@ -177,7 +185,7 @@ class CategoryServiceTest extends KernelTestCase
         $category->setTitle('Test Category');
 
         $user = new User();
-        $user ->setEmail('user'.uniqid().'@example.com');
+        $user->setEmail('user'.uniqid().'@example.com');
         $user->setPassword('password');
         $user->setRoles([UserRole::ROLE_USER->value]);
 
@@ -200,6 +208,11 @@ class CategoryServiceTest extends KernelTestCase
         $this->assertFalse($result);
     }
 
+    /**
+     * Test that canBeDeleted returns false when repository throws exception.
+     *
+     * @throws NoResultException
+     */
     public function testCanBeDeletedReturnsFalseOnException(): void
     {
         $category = new Category();
@@ -207,7 +220,7 @@ class CategoryServiceTest extends KernelTestCase
         $bugRepository = $this->createMock(BugRepository::class);
         $bugRepository
             ->method('countByCategory')
-            ->willThrowException(new \Doctrine\ORM\NoResultException());
+            ->willThrowException(new NoResultException());
 
         $service = new CategoryService(
             $this->createMock(CategoryRepository::class),

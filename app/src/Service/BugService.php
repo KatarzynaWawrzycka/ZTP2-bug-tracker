@@ -68,6 +68,12 @@ class BugService implements BugServiceInterface
         );
     }
 
+    /**
+     * Change bug status.
+     *
+     * @param Bug       $bug          Bug entity
+     * @param BugStatus $targetStatus New status
+     */
     public function changeStatus(Bug $bug, BugStatus $targetStatus): void
     {
         $current = $bug->getStatusEnum();
@@ -100,6 +106,12 @@ class BugService implements BugServiceInterface
         $this->bugRepository->save($bug);
     }
 
+    /**
+     * Assign bug to admin.
+     *
+     * @param Bug       $bug  Bug entity
+     * @param User|null $user User entity
+     */
     public function assign(Bug $bug, ?User $user): void
     {
         $bug->setAssignedTo($user);

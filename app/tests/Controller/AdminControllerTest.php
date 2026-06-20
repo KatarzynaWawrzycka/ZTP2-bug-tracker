@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Admin Controller Test.
+ */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Enum\UserRole;
@@ -8,51 +12,26 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class AdminControllerTest.
+ */
 class AdminControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/admin';
 
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test.
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
-    /*
-     * HELPERS
+    /**
+     * Test admin panel view for anonymous user.
      */
-
-    private function createUser(array $roles): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-
-        $userRepository = $container->get(UserRepository::class);
-
-        $user = new User();
-
-        $user->setEmail('user'.uniqid().'@example.com');
-
-        $user->setRoles($roles);
-
-        $user->setPassword(
-            $passwordHasher->hashPassword(
-                $user,
-                'password'
-            )
-        );
-
-        $userRepository->save($user);
-
-        return $user;
-    }
-
-    /*
-     * INDEX
-     */
-
     public function testAdminIndexAnonymous(): void
     {
         // given
@@ -66,6 +45,9 @@ class AdminControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test view admin panel for user.
+     */
     public function testAdminIndexUserForbidden(): void
     {
         // given
@@ -85,6 +67,9 @@ class AdminControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test view admin panel for admin.
+     */
     public function testAdminIndexAdmin(): void
     {
         // given
@@ -104,10 +89,9 @@ class AdminControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * CHANGE EMAIL
+    /**
+     * Test change admin email for anonymous user.
      */
-
     public function testChangeEmailAnonymous(): void
     {
         // given
@@ -121,6 +105,9 @@ class AdminControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test change admin email for user.
+     */
     public function testChangeEmailUserForbidden(): void
     {
         // given
@@ -140,6 +127,9 @@ class AdminControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test change admin email for admin.
+     */
     public function testChangeEmailAdmin(): void
     {
         // given
@@ -165,10 +155,9 @@ class AdminControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * CHANGE PASSWORD
+    /**
+     * Test change admin password for anonymous user.
      */
-
     public function testChangePasswordAnonymous(): void
     {
         // given
@@ -182,6 +171,9 @@ class AdminControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test change admin password for user.
+     */
     public function testChangePasswordUserForbidden(): void
     {
         // given
@@ -201,6 +193,9 @@ class AdminControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test change admin password for admin.
+     */
     public function testChangePasswordAdmin(): void
     {
         // given
@@ -225,5 +220,38 @@ class AdminControllerTest extends WebTestCase
 
         // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @param array $roles User roles
+     *
+     * @return User User entity
+     */
+    private function createUser(array $roles): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+
+        $userRepository = $container->get(UserRepository::class);
+
+        $user = new User();
+
+        $user->setEmail('user'.uniqid().'@example.com');
+
+        $user->setRoles($roles);
+
+        $user->setPassword(
+            $passwordHasher->hashPassword(
+                $user,
+                'password'
+            )
+        );
+
+        $userRepository->save($user);
+
+        return $user;
     }
 }

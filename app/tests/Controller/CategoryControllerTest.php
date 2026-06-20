@@ -1,5 +1,9 @@
 <?php
 
+/**
+ *  Category Controller Test.
+ */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Bug;
@@ -11,64 +15,25 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class CategoryControllerTest.
+ */
 class CategoryControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/category';
 
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test.
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
-    /*
-     * HELPERS
-     */
-
-    private function createUser(array $roles): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-
-        $userRepository = $container->get(UserRepository::class);
-
-        $user = new User();
-
-        $user->setEmail('user'.uniqid().'@example.com');
-
-        $user->setRoles($roles);
-
-        $user->setPassword(
-            $passwordHasher->hashPassword(
-                $user,
-                'password'
-            )
-        );
-
-        $userRepository->save($user);
-
-        return $user;
-    }
-
-    private function createCategory(): Category
-    {
-        $container = static::getContainer();
-
-        $repository = $container->get(CategoryRepository::class);
-
-        $category = new Category();
-
-        $category->setTitle('Category '.uniqid());
-
-        $repository->save($category);
-
-        return $category;
-    }
-
-    /*
-     * INDEX
+    /**
+     * Test view category list by anonymous user.
      */
     public function testIndexAnonymous(): void
     {
@@ -83,6 +48,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test view category list by user.
+     */
     public function testIndexUser(): void
     {
         // given
@@ -102,6 +70,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test view category list by admin.
+     */
     public function testIndexAdmin(): void
     {
         // given
@@ -121,8 +92,8 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * VIEW
+    /**
+     * Test view category details by anonymous user.
      */
     public function testViewCategoryAnonymous(): void
     {
@@ -143,6 +114,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test view category details by user.
+     */
     public function testViewCategoryUserForbidden(): void
     {
         $user = $this->createUser([
@@ -167,6 +141,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test view category details by admin.
+     */
     public function testViewCategoryAdmin(): void
     {
         $admin = $this->createUser([
@@ -189,8 +166,8 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    /*
-     * CREATE
+    /**
+     * Test create category by anonymous user.
      */
     public function testCreateCategoryAnonymous(): void
     {
@@ -210,6 +187,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test create category by user.
+     */
     public function testCreateCategoryUserForbidden(): void
     {
         // given
@@ -235,6 +215,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test create category by admin.
+     */
     public function testCreateCategoryAdmin(): void
     {
         // given
@@ -263,10 +246,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * EDIT
+    /**
+     * Test edit category by anonymous user.
      */
-
     public function testEditCategoryAnonymous(): void
     {
         // given
@@ -286,6 +268,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test edit category by user.
+     */
     public function testEditCategoryForbiddenForUser(): void
     {
         // given
@@ -313,6 +298,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test edit category by admin.
+     */
     public function testEditCategoryAdmin(): void
     {
         // given
@@ -342,10 +330,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-    /*
-     * DELETE
+    /**
+     * Test delete category by anonymous user.
      */
-
     public function testDeleteCategoryAnonymous(): void
     {
         // given
@@ -365,6 +352,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test delete category by user.
+     */
     public function testDeleteCategoryForbiddenForUser(): void
     {
         // given
@@ -392,6 +382,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test delete category by admin.
+     */
     public function testDeleteCategoryAdmin(): void
     {
         // given
@@ -419,6 +412,9 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test delete category by admin - category contains bugs.
+     */
     public function testDeleteCategoryWithBugsAdmin(): void
     {
         // given
@@ -450,5 +446,58 @@ class CategoryControllerTest extends WebTestCase
 
         // then
         $this->assertResponseRedirects(self::TEST_ROUTE);
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @param array $roles User roles
+     *
+     * @return User User entity
+     */
+    private function createUser(array $roles): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+
+        $userRepository = $container->get(UserRepository::class);
+
+        $user = new User();
+
+        $user->setEmail('user'.uniqid().'@example.com');
+
+        $user->setRoles($roles);
+
+        $user->setPassword(
+            $passwordHasher->hashPassword(
+                $user,
+                'password'
+            )
+        );
+
+        $userRepository->save($user);
+
+        return $user;
+    }
+
+    /**
+     * Create category helper.
+     *
+     * @return Category Category entity
+     */
+    private function createCategory(): Category
+    {
+        $container = static::getContainer();
+
+        $repository = $container->get(CategoryRepository::class);
+
+        $category = new Category();
+
+        $category->setTitle('Category '.uniqid());
+
+        $repository->save($category);
+
+        return $category;
     }
 }

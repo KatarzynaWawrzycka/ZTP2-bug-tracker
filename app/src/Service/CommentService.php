@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment Service.
+ */
+
 namespace App\Service;
 
 use App\Entity\Comment;

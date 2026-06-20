@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Comment service tests.
  */
@@ -49,63 +50,6 @@ class CommentServiceTest extends KernelTestCase
         $container = static::getContainer();
         $this->entityManager = $container->get('doctrine.orm.entity_manager');
         $this->commentService = $container->get(CommentService::class);
-    }
-
-    /**
-     * Create user helper.
-     */
-    private function createUser(): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-
-        $repo = $container->get(UserRepository::class);
-
-        $user = new User();
-        $user->setEmail('user'.uniqid().'@example.com');
-        $user->setRoles([UserRole::ROLE_USER->value]);
-
-        $user->setPassword($passwordHasher->hashPassword($user, 'password'));
-
-        $repo->save($user);
-
-        return $user;
-    }
-
-    /**
-     * Create category helper.
-     */
-    private function createCategory(): Category
-    {
-        $repo = static::getContainer()
-            ->get(CategoryRepository::class);
-
-        $category = new Category();
-        $category->setTitle('Category '.uniqid());
-
-        $repo->save($category);
-
-        return $category;
-    }
-
-    /**
-     * Create bug helper.
-     */
-    private function createBug(): Bug
-    {
-        $repo = static::getContainer()
-            ->get(BugRepository::class);
-
-        $bug = new Bug();
-        $bug->setTitle('Bug Title'.uniqid());
-        $bug->setAuthor($this->createUser());
-        $bug->setDescription('Bug Description');
-        $bug->setCategory($this->createCategory());
-
-        $repo->save($bug);
-
-        return $bug;
     }
 
     /**
@@ -188,5 +132,68 @@ class CommentServiceTest extends KernelTestCase
         // then
         $this->assertCount(1, $result);
         $this->assertEquals('Test Comment Content', $result[0]->getContent());
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @return User $user User entity
+     */
+    private function createUser(): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+
+        $repo = $container->get(UserRepository::class);
+
+        $user = new User();
+        $user->setEmail('user'.uniqid().'@example.com');
+        $user->setRoles([UserRole::ROLE_USER->value]);
+
+        $user->setPassword($passwordHasher->hashPassword($user, 'password'));
+
+        $repo->save($user);
+
+        return $user;
+    }
+
+    /**
+     * Create category helper.
+     *
+     * @return Category $category Category entity
+     */
+    private function createCategory(): Category
+    {
+        $repo = static::getContainer()
+            ->get(CategoryRepository::class);
+
+        $category = new Category();
+        $category->setTitle('Category '.uniqid());
+
+        $repo->save($category);
+
+        return $category;
+    }
+
+    /**
+     * Create bug helper.
+     *
+     * @return Bug $bug Bug entity
+     */
+    private function createBug(): Bug
+    {
+        $repo = static::getContainer()
+            ->get(BugRepository::class);
+
+        $bug = new Bug();
+        $bug->setTitle('Bug Title'.uniqid());
+        $bug->setAuthor($this->createUser());
+        $bug->setDescription('Bug Description');
+        $bug->setCategory($this->createCategory());
+
+        $repo->save($bug);
+
+        return $bug;
     }
 }

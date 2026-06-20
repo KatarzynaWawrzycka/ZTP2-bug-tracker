@@ -21,10 +21,22 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class SecurityController extends AbstractController
 {
+    /**
+     * Constructor.
+     *
+     * @param UserServiceInterface $userService User Service Interface
+     */
     public function __construct(private readonly UserServiceInterface $userService)
     {
     }
 
+    /**
+     * Register action.
+     *
+     * @param Request $request Request
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/register',
         name: 'app_register',

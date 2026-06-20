@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Admin User Controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -12,16 +16,29 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class AdminUserController.
+ */
 #[Route('/admin/users')]
 #[IsGranted('ROLE_ADMIN')]
 class AdminUserController extends AbstractController
 {
+    /**
+     * Constructor.
+     *
+     * @param UserServiceInterface $userService User Service Interface
+     * @param TranslatorInterface  $translator  Translator Interface
+     */
     public function __construct(private readonly UserServiceInterface $userService, private readonly TranslatorInterface $translator)
     {
     }
 
     /**
-     * List all users.
+     * List all users action.
+     *
+     * @param Request $request Request
+     *
+     * @return Response HTTP Response
      */
     #[Route(
         '',
@@ -39,6 +56,13 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+    /**
+     * View action.
+     *
+     * @param int $id User id
+     *
+     * @return Response HTTP Response
+     */
     #[Route(
         '/{id}',
         name: 'admin_user_view',
@@ -61,7 +85,11 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * Toggle ROLE_ADMIN.
+     * Toggle ROLE_ADMIN action.
+     *
+     * @param User $user User entity
+     *
+     * @return Response HTTP Response
      */
     #[Route(
         '/{id}/toggle-role',
@@ -83,6 +111,14 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete action.
+     *
+     * @param Request $request Request
+     * @param User    $user    User entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}/delete',
         name: 'admin_user_delete',

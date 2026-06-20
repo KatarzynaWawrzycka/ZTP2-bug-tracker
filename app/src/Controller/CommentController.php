@@ -1,11 +1,14 @@
 <?php
 
+/**
+ * Comment Controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Bug;
 use App\Entity\Comment;
 use App\Form\Type\CommentType;
-// use App\Security\Voter\CommentVoter;
 use App\Security\Voter\CommentVoter;
 use App\Service\CommentServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,17 +20,30 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 
+/**
+ * Class CommentController.
+ */
 #[Route('/bug/{bugId}/comment')]
 class CommentController extends AbstractController
 {
-    public function __construct(
-        private readonly CommentServiceInterface $commentService,
-        private readonly TranslatorInterface $translator,
-    ) {
+    /**
+     * Constructor.
+     *
+     * @param CommentServiceInterface $commentService Comment Service Interface
+     * @param TranslatorInterface     $translator     Translator Interface
+     */
+    public function __construct(private readonly CommentServiceInterface $commentService, private readonly TranslatorInterface $translator)
+    {
     }
 
     /**
      * Edit action.
+     *
+     * @param Bug     $bug     Bug entity
+     * @param Comment $comment Comment entity
+     * @param Request $request Request
+     *
+     * @return Response HTTP response
      */
     #[Route(
         '/{id}/edit',
@@ -78,6 +94,12 @@ class CommentController extends AbstractController
 
     /**
      * Delete action.
+     *
+     * @param Bug     $bug     Bug entity
+     * @param Comment $comment Comment entity
+     * @param Request $request Request
+     *
+     * @return Response HTTP response
      */
     #[Route(
         '/{id}/delete',

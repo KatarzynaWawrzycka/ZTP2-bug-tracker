@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Registration Type.
+ */
+
 namespace App\Form\Type;
 
 use App\Entity\User;
@@ -11,8 +15,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class RegistrationType.
+ */
 class RegistrationType extends AbstractType
 {
+    /**
+     * Build form.
+     *
+     * @param FormBuilderInterface $builder Form Builder Interface
+     * @param array                $options Array
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -32,10 +45,7 @@ class RegistrationType extends AbstractType
                     'label' => 'Password',
                     'constraints' => [
                         new Assert\NotBlank(),
-                        new Assert\Length([
-                            'min' => 6,
-                            'max' => 64,
-                        ]),
+                        new Assert\Length(min: 6, max: 64),
                     ],
                 ],
                 'second_options' => [
@@ -44,6 +54,11 @@ class RegistrationType extends AbstractType
             ]);
     }
 
+    /**
+     * Configure options.
+     *
+     * @param OptionsResolver $resolver Options Resolver
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

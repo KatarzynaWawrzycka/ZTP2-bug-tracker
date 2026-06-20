@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Bug service tests.
  */
 
 namespace App\Tests\Service;
 
-use App\Dto\BugListFiltersDto;
 use App\Dto\BugListInputFiltersDto;
 use App\Entity\Bug;
 use App\Entity\Category;
@@ -52,60 +52,6 @@ class BugServiceTest extends KernelTestCase
         $container = static::getContainer();
         $this->entityManager = $container->get('doctrine.orm.entity_manager');
         $this->bugService = $container->get(BugService::class);
-    }
-
-    /**
-     * Create user helper.
-     */
-    private function createUser(): User
-    {
-        $container = static::getContainer();
-
-        $passwordHasher = $container->get('security.password_hasher');
-
-        $repo = $container->get(UserRepository::class);
-
-        $user = new User();
-        $user->setEmail('user'.uniqid().'@example.com');
-        $user->setRoles([UserRole::ROLE_USER->value]);
-
-        $user->setPassword($passwordHasher->hashPassword($user, 'password'));
-
-        $repo->save($user);
-
-        return $user;
-    }
-
-    /**
-     * Create category helper.
-     */
-    private function createCategory(): Category
-    {
-        $repo = static::getContainer()
-            ->get(CategoryRepository::class);
-
-        $category = new Category();
-        $category->setTitle('Category '.uniqid());
-
-        $repo->save($category);
-
-        return $category;
-    }
-
-    /**
-     * Create tag helper.
-     */
-    private function createTag(): Tag
-    {
-        $repo = static::getContainer()
-            ->get(TagRepository::class);
-
-        $tag = new Tag();
-        $tag->setTitle('Tag '.uniqid());
-
-        $repo->save($tag);
-
-        return $tag;
     }
 
     /**
@@ -170,12 +116,15 @@ class BugServiceTest extends KernelTestCase
         $this->assertNull($resultBug);
     }
 
+    /**
+     * Test get paginated list without filters.
+     */
     public function testGetPaginatedListWithoutFilters(): void
     {
         // given
         $page = 1;
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $bug = new Bug();
             $bug->setTitle('Bug '.$i);
             $bug->setDescription('desc');
@@ -194,6 +143,9 @@ class BugServiceTest extends KernelTestCase
         $this->assertCount(10, $result);
     }
 
+    /**
+     * Test get paginated list with category filter.
+     */
     public function testGetPaginatedListWithCategoryFilter(): void
     {
         // given
@@ -227,6 +179,9 @@ class BugServiceTest extends KernelTestCase
         $this->assertSame('Bug 1', $result[0]->getTitle());
     }
 
+    /**
+     * Test get paginated list with tag filter.
+     */
     public function testGetPaginatedListWithTagFilter(): void
     {
         // given
@@ -262,9 +217,12 @@ class BugServiceTest extends KernelTestCase
         $this->assertSame('Bug 1', $result[0]->getTitle());
     }
 
+    /**
+     * Test change status from open to closed.
+     */
     public function testChangeStatusFromOpenToClosed(): void
     {
-        //given
+        // given
         $bug = new Bug();
         $bug->setTitle('Test Bug');
         $bug->setDescription('Test Bug Description');
@@ -281,6 +239,9 @@ class BugServiceTest extends KernelTestCase
         $this->assertEquals(BugStatus::CLOSED, $bug->getStatusEnum());
     }
 
+    /**
+     * Test change status from closed to open.
+     */
     public function testChangeStatusFromClosedToOpen(): void
     {
         // given
@@ -300,6 +261,9 @@ class BugServiceTest extends KernelTestCase
         $this->assertEquals(BugStatus::OPEN, $bug->getStatusEnum());
     }
 
+    /**
+     * Test change status from closed to archived.
+     */
     public function testChangeStatusFromClosedToArchived(): void
     {
         // given
@@ -319,6 +283,9 @@ class BugServiceTest extends KernelTestCase
         $this->assertEquals(BugStatus::ARCHIVED, $bug->getStatusEnum());
     }
 
+    /**
+     * Test change status from archived to open.
+     */
     public function testChangeStatusFromArchivedToOpen(): void
     {
         // given
@@ -338,6 +305,9 @@ class BugServiceTest extends KernelTestCase
         $this->assertEquals(BugStatus::OPEN, $bug->getStatusEnum());
     }
 
+    /**
+     * Test change status with invalid transition.
+     */
     public function testChangeStatusThrowsException(): void
     {
         // given
@@ -360,6 +330,9 @@ class BugServiceTest extends KernelTestCase
         $this->bugService->changeStatus($bug, BugStatus::ARCHIVED);
     }
 
+    /**
+     * Test change status to the same status.
+     */
     public function testChangeStatusSameStatusDoesNothing(): void
     {
         // given
@@ -379,6 +352,9 @@ class BugServiceTest extends KernelTestCase
         $this->assertEquals(BugStatus::OPEN, $bug->getStatusEnum());
     }
 
+    /**
+     * Test assign bug.
+     */
     public function testAssign(): void
     {
         // given
@@ -401,6 +377,9 @@ class BugServiceTest extends KernelTestCase
         $this->assertEquals($userToAssign, $bug->getAssignedTo());
     }
 
+    /**
+     * Test unassign bug.
+     */
     public function testUnassign(): void
     {
         // given
@@ -422,7 +401,10 @@ class BugServiceTest extends KernelTestCase
         $this->assertNull($bug->getAssignedTo());
     }
 
-    public function testChangeAassignTo(): void
+    /**
+     * Test change assigned user.
+     */
+    public function testChangeAssignTo(): void
     {
         // given
         $userAssigned = $this->createUser();
@@ -442,5 +424,65 @@ class BugServiceTest extends KernelTestCase
 
         // then
         $this->assertEquals($userToAssign, $bug->getAssignedTo());
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @return User $user User entity
+     */
+    private function createUser(): User
+    {
+        $container = static::getContainer();
+
+        $passwordHasher = $container->get('security.password_hasher');
+
+        $repo = $container->get(UserRepository::class);
+
+        $user = new User();
+        $user->setEmail('user'.uniqid().'@example.com');
+        $user->setRoles([UserRole::ROLE_USER->value]);
+
+        $user->setPassword($passwordHasher->hashPassword($user, 'password'));
+
+        $repo->save($user);
+
+        return $user;
+    }
+
+    /**
+     * Create category helper.
+     *
+     * @return Category $category Category entity
+     */
+    private function createCategory(): Category
+    {
+        $repo = static::getContainer()
+            ->get(CategoryRepository::class);
+
+        $category = new Category();
+        $category->setTitle('Category '.uniqid());
+
+        $repo->save($category);
+
+        return $category;
+    }
+
+    /**
+     * Create tag helper.
+     *
+     * @return Tag $tag Tag entity
+     */
+    private function createTag(): Tag
+    {
+        $repo = static::getContainer()
+            ->get(TagRepository::class);
+
+        $tag = new Tag();
+        $tag->setTitle('Tag '.uniqid());
+
+        $repo->save($tag);
+
+        return $tag;
     }
 }

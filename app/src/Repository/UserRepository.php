@@ -19,12 +19,22 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 /** * @extends ServiceEntityRepository<User> */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
 
-    /** * Used to upgrade (rehash) the user's password automatically over time. */
+    /**
+     * Used to upgrade (rehash) the user's password automatically over time.
+     *
+     * @param PasswordAuthenticatedUserInterface $user              User
+     * @param string                             $newHashedPassword New password
+     */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
         if (!$user instanceof User) {
@@ -35,6 +45,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+    /**
+     * Count admins.
+     *
+     * @return int Admin count
+     */
     public function countAdmins(): int
     {
         return (int) $this->createQueryBuilder('user')
@@ -45,12 +60,24 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getSingleScalarResult();
     }
 
+    /**
+     * Query all users.
+     *
+     * @return QueryBuilder Query
+     */
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('user')
             ->orderBy('user.id', 'ASC');
     }
 
+    /**
+     * FInd user stats.
+     *
+     * @param int $id User id
+     *
+     * @return array Stats
+     */
     public function findWithStats(int $id): array
     {
         $user = $this->createQueryBuilder('user')
@@ -83,6 +110,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return ['user' => $user, 'bugCount' => (int) $bugCount, 'commentCount' => (int) $commentCount];
     }
 
+    /**
+     * Find admins.
+     *
+     * @return array Admins
+     */
     public function findAdmins(): array
     {
         return $this->createQueryBuilder('user')
@@ -91,6 +123,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()->getResult();
     }
 
+    /**
+     * Unassign bug.
+     *
+     * @param User $user User to remove
+     */
     public function unassignBugs(User $user): void
     {
         $this->getEntityManager()->createQuery(
@@ -102,7 +139,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->execute();
     }
 
-    /** Save entity.
+    /**
+     * Save entity.
      *
      * @param User $user User entity
      **/
@@ -113,7 +151,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $em->flush();
     }
 
-    /** * Delete entity. * * @param User $user User entity */
+    /**
+     * Delete entity.
+     *
+     * @param User $user User entity
+     */
     public function delete(User $user): void
     {
         $em = $this->getEntityManager();

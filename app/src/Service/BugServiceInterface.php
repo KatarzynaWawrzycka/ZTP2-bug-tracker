@@ -20,14 +20,27 @@ interface BugServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int                    $page    Page number
+     * @param BugListInputFiltersDto $filters Filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page, BugListInputFiltersDto $filters): PaginationInterface;
 
+    /**
+     * Change bug status.
+     *
+     * @param Bug       $bug          Bug entity
+     * @param BugStatus $targetStatus New status
+     */
     public function changeStatus(Bug $bug, BugStatus $targetStatus): void;
 
+    /**
+     * Assign bug to admin.
+     *
+     * @param Bug       $bug  Bug entity
+     * @param User|null $user User entity
+     */
     public function assign(Bug $bug, ?User $user): void;
 
     /**

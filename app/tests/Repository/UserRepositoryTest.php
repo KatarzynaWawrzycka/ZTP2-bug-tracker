@@ -9,6 +9,7 @@ namespace App\Tests\Repository;
 use App\Entity\Enum\UserRole;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use PHPUnit\Framework\MockObject\Exception;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -33,6 +34,9 @@ class UserRepositoryTest extends KernelTestCase
         $this->userRepository = $container->get(UserRepository::class);
     }
 
+    /**
+     * Test upgrade password.
+     */
     public function testUpgradePassword(): void
     {
         // given
@@ -54,6 +58,11 @@ class UserRepositoryTest extends KernelTestCase
         $this->assertSame($newPassword, $updatedUser->getPassword());
     }
 
+    /**
+     * Test upgrade password with exception.
+     *
+     * @throws Exception
+     */
     public function testUpgradePasswordThrowsException(): void
     {
         // given
@@ -74,5 +83,4 @@ class UserRepositoryTest extends KernelTestCase
             'new_hashed_password'
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bug controller tests.
  */
@@ -12,13 +13,14 @@ use App\Entity\Enum\BugStatus;
 use App\Entity\Enum\UserRole;
 use App\Entity\User;
 use App\Repository\BugRepository;
-use App\Repository\CategoryRepository;
 use App\Repository\CommentRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class BugControllerTest.
+ */
 class BugControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/bug';
@@ -33,99 +35,9 @@ class BugControllerTest extends WebTestCase
         $this->httpClient = static::createClient();
     }
 
-
-    /*
-     * HELPERS
-     */
-
-
     /**
-     * Create user helper.
+     * Test view bug list by anonymous user.
      */
-    private function createUser(array $roles): User
-    {
-        $em = static::getContainer()->get(EntityManagerInterface::class);
-
-        $passwordHasher = static::getContainer()->get('security.password_hasher');
-
-        $user = new User();
-        $user->setEmail('user'.uniqid().'@example.com');
-        $user->setRoles($roles);
-        $user->setPassword(
-            $passwordHasher->hashPassword($user, 'password')
-        );
-
-        $em->persist($user);
-        $em->flush();
-
-        return $user;
-    }
-
-
-    /**
-     * Create category helper.
-     */
-    private function createCategory(): Category
-    {
-        $em = static::getContainer()->get(EntityManagerInterface::class);
-
-        $category = new Category();
-        $category->setTitle('Category ' . uniqid());
-
-        $em->persist($category);
-        $em->flush();
-
-        return $category;
-    }
-
-
-    /**
-     * Create bug helper.
-     */
-    private function createBug(User $author): Bug
-    {
-        $repository = static::getContainer()
-            ->get(BugRepository::class);
-
-        $bug = new Bug();
-
-        $bug->setTitle('Bug '.uniqid());
-        $bug->setDescription('Description');
-        $bug->setAuthor($author);
-        $bug->setCategory($this->createCategory());
-        $bug->setStatusEnum(BugStatus::OPEN);
-
-        $repository->save($bug);
-
-        return $bug;
-    }
-
-
-    /**
-     * Create comment helper.
-     */
-    private function createComment(Bug $bug, User $author): Comment
-    {
-        $repository = static::getContainer()
-            ->get(CommentRepository::class);
-
-        $comment = new Comment();
-
-        $comment->setContent('Comment '.uniqid());
-        $comment->setAuthor($author);
-        $comment->setBug($bug);
-
-        $repository->save($comment);
-
-        return $comment;
-    }
-
-
-    /*
-     * INDEX
-     */
-
-
     public function testIndexAnonymous(): void
     {
         // given
@@ -145,6 +57,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test view bug list by user.
+     */
     public function testIndexUser(): void
     {
         // given
@@ -170,6 +85,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test view bug list by admin.
+     */
     public function testIndexAdmin(): void
     {
         // given
@@ -195,9 +113,8 @@ class BugControllerTest extends WebTestCase
         );
     }
 
-
-    /*
-     * VIEW
+    /**
+     * Test view bug by anonymous user.
      */
     public function testViewBugAnonymous(): void
     {
@@ -229,7 +146,9 @@ class BugControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-
+    /**
+     * Test view bug by user.
+     */
     public function testViewBugUser(): void
     {
         // given
@@ -264,6 +183,9 @@ class BugControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
+    /**
+     * Test ad comment by user.
+     */
     public function testViewBugAddCommentSuccess(): void
     {
         $user = $this->createUser([UserRole::ROLE_USER->value]);
@@ -273,11 +195,11 @@ class BugControllerTest extends WebTestCase
 
         $crawler = $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId()
+            self::TEST_ROUTE.'/'.$bug->getId()
         );
 
         $form = $crawler->filter('form')->form([
-            'comment[content]' => 'Test comment ' . uniqid(),
+            'comment[content]' => 'Test comment '.uniqid(),
         ]);
 
         $this->httpClient->submit($form);
@@ -288,6 +210,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test view bug by admin.
+     */
     public function testViewBugAdmin(): void
     {
         // given
@@ -325,8 +250,8 @@ class BugControllerTest extends WebTestCase
         $this->assertSelectorExists('html');
     }
 
-    /*
-     * CREATE
+    /**
+     * Test create bug by anonymous user.
      */
     public function testCreateBugAnonymous(): void
     {
@@ -334,13 +259,16 @@ class BugControllerTest extends WebTestCase
         $expectedStatusCode = 302;
 
         // when
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/create');
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
+    /**
+     * Test create bug by user.
+     */
     public function testCreateBugUser(): void
     {
         // given
@@ -353,10 +281,10 @@ class BugControllerTest extends WebTestCase
         $category = $this->createCategory();
 
         // when
-        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE . '/create');
+        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
 
         $form = $crawler->selectButton('submit')->form([
-            'bug[title]' => 'Test bug ' . uniqid(),
+            'bug[title]' => 'Test bug '.uniqid(),
             'bug[description]' => 'Test bug description',
             'bug[category]' => (string) $category->getId(),
         ]);
@@ -369,6 +297,9 @@ class BugControllerTest extends WebTestCase
         $this->assertEquals(302, $resultStatusCode);
     }
 
+    /**
+     * Test create bug by admin.
+     */
     public function testCreateBugAdmin(): void
     {
         // given
@@ -381,10 +312,10 @@ class BugControllerTest extends WebTestCase
         $category = $this->createCategory();
 
         // when
-        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE . '/create');
+        $crawler = $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
 
         $form = $crawler->selectButton('submit')->form([
-            'bug[title]' => 'Test bug ' . uniqid(),
+            'bug[title]' => 'Test bug '.uniqid(),
             'bug[description]' => 'Test bug description',
             'bug[category]' => (string) $category->getId(),
         ]);
@@ -397,8 +328,8 @@ class BugControllerTest extends WebTestCase
         $this->assertEquals(302, $resultStatusCode);
     }
 
-    /*
-     * EDIT
+    /**
+     * Test edit bug by anonymous user.
      */
     public function testEditBugAnonymous(): void
     {
@@ -408,7 +339,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/edit'
+            self::TEST_ROUTE.'/'.$bug->getId().'/edit'
         );
 
         $this->assertEquals(
@@ -417,6 +348,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test edit bug by user - author.
+     */
     public function testEditBugUserAuthor(): void
     {
         $user = $this->createUser([UserRole::ROLE_USER->value]);
@@ -426,7 +360,7 @@ class BugControllerTest extends WebTestCase
 
         $crawler = $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/edit'
+            self::TEST_ROUTE.'/'.$bug->getId().'/edit'
         );
 
         $form = $crawler->selectButton('submit')->form([
@@ -443,6 +377,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test edit bug by user - not author.
+     */
     public function testEditBugUserForbidden(): void
     {
         $user = $this->createUser([UserRole::ROLE_USER->value]);
@@ -454,7 +391,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/edit'
+            self::TEST_ROUTE.'/'.$bug->getId().'/edit'
         );
 
         $this->assertEquals(
@@ -463,6 +400,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test edit bug by admin.
+     */
     public function testEditBugAdmin(): void
     {
         $admin = $this->createUser([UserRole::ROLE_ADMIN->value]);
@@ -473,7 +413,7 @@ class BugControllerTest extends WebTestCase
 
         $crawler = $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/edit'
+            self::TEST_ROUTE.'/'.$bug->getId().'/edit'
         );
 
         $form = $crawler->selectButton('submit')->form([
@@ -490,8 +430,8 @@ class BugControllerTest extends WebTestCase
         );
     }
 
-    /*
-     * DELETE
+    /**
+     * Test delete bug by an anonymous user.
      */
     public function testDeleteBugAnonymous(): void
     {
@@ -501,7 +441,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/delete'
+            self::TEST_ROUTE.'/'.$bug->getId().'/delete'
         );
 
         $this->assertEquals(
@@ -510,6 +450,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test delete bug by user - author.
+     */
     public function testDeleteBugUserAuthor(): void
     {
         $user = $this->createUser([UserRole::ROLE_USER->value]);
@@ -519,7 +462,7 @@ class BugControllerTest extends WebTestCase
 
         $crawler = $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/delete'
+            self::TEST_ROUTE.'/'.$bug->getId().'/delete'
         );
 
         $form = $crawler->selectButton('submit')->form();
@@ -532,6 +475,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test delete bug by user - not author.
+     */
     public function testDeleteBugUserForbidden(): void
     {
         $user = $this->createUser([UserRole::ROLE_USER->value]);
@@ -542,7 +488,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/delete'
+            self::TEST_ROUTE.'/'.$bug->getId().'/delete'
         );
 
         $this->assertEquals(
@@ -551,6 +497,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test delete bug by admin.
+     */
     public function testDeleteBugAdmin(): void
     {
         $admin = $this->createUser([UserRole::ROLE_ADMIN->value]);
@@ -561,7 +510,7 @@ class BugControllerTest extends WebTestCase
 
         $crawler = $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/delete'
+            self::TEST_ROUTE.'/'.$bug->getId().'/delete'
         );
 
         $form = $crawler->selectButton('submit')->form();
@@ -574,8 +523,8 @@ class BugControllerTest extends WebTestCase
         );
     }
 
-    /*
-     * CHANGE STATUS
+    /**
+     * Test change status by an anonymous user.
      */
     public function testChangeStatusAnonymous(): void
     {
@@ -585,7 +534,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'POST',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/status/' . BugStatus::OPEN->value
+            self::TEST_ROUTE.'/'.$bug->getId().'/status/'.BugStatus::OPEN->value
         );
 
         $this->assertEquals(
@@ -594,6 +543,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test change bug status by user.
+     */
     public function testChangeStatusUserForbidden(): void
     {
         $user = $this->createUser([UserRole::ROLE_USER->value]);
@@ -603,7 +555,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'POST',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/status/' . BugStatus::OPEN->value
+            self::TEST_ROUTE.'/'.$bug->getId().'/status/'.BugStatus::OPEN->value
         );
 
         $this->assertEquals(
@@ -612,6 +564,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test change bug status by admin.
+     */
     public function testChangeStatusAdmin(): void
     {
         $admin = $this->createUser([UserRole::ROLE_ADMIN->value]);
@@ -621,7 +576,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'POST',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/status/' . BugStatus::CLOSED->value
+            self::TEST_ROUTE.'/'.$bug->getId().'/status/'.BugStatus::CLOSED->value
         );
 
         $this->assertEquals(
@@ -630,8 +585,8 @@ class BugControllerTest extends WebTestCase
         );
     }
 
-    /*
-     * ASSIGN
+    /**
+     * Test assign bug to an admin by an annonymus user.
      */
     public function testAssignAnonymous(): void
     {
@@ -641,7 +596,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/assign'
+            self::TEST_ROUTE.'/'.$bug->getId().'/assign'
         );
 
         $this->assertEquals(
@@ -650,6 +605,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test assign bug to an admin by user.
+     */
     public function testAssignUserForbidden(): void
     {
         $user = $this->createUser([UserRole::ROLE_USER->value]);
@@ -659,7 +617,7 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/assign'
+            self::TEST_ROUTE.'/'.$bug->getId().'/assign'
         );
 
         $this->assertEquals(
@@ -668,6 +626,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test assign bug to an admin by admin.
+     */
     public function testAssignAdminSuccess(): void
     {
         $admin = $this->createUser([UserRole::ROLE_ADMIN->value]);
@@ -679,7 +640,7 @@ class BugControllerTest extends WebTestCase
 
         $crawler = $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/assign'
+            self::TEST_ROUTE.'/'.$bug->getId().'/assign'
         );
 
         $form = $crawler->selectButton('submit')->form([
@@ -694,6 +655,9 @@ class BugControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Test assign admin to a closed bug.
+     */
     public function testAssignAdminNotOpenBug(): void
     {
         $admin = $this->createUser([UserRole::ROLE_ADMIN->value]);
@@ -705,12 +669,105 @@ class BugControllerTest extends WebTestCase
 
         $this->httpClient->request(
             'GET',
-            self::TEST_ROUTE . '/' . $bug->getId() . '/assign'
+            self::TEST_ROUTE.'/'.$bug->getId().'/assign'
         );
 
         $this->assertEquals(
             302,
             $this->httpClient->getResponse()->getStatusCode()
         );
+    }
+
+    /**
+     * Create user helper.
+     *
+     * @param array $roles User roles
+     *
+     * @return User $user User entity
+     */
+    private function createUser(array $roles): User
+    {
+        $em = static::getContainer()->get(EntityManagerInterface::class);
+
+        $passwordHasher = static::getContainer()->get('security.password_hasher');
+
+        $user = new User();
+        $user->setEmail('user'.uniqid().'@example.com');
+        $user->setRoles($roles);
+        $user->setPassword(
+            $passwordHasher->hashPassword($user, 'password')
+        );
+
+        $em->persist($user);
+        $em->flush();
+
+        return $user;
+    }
+
+    /**
+     * Create category helper.
+     *
+     * @return Category $category Category entity
+     */
+    private function createCategory(): Category
+    {
+        $em = static::getContainer()->get(EntityManagerInterface::class);
+
+        $category = new Category();
+        $category->setTitle('Category '.uniqid());
+
+        $em->persist($category);
+        $em->flush();
+
+        return $category;
+    }
+
+    /**
+     * Create bug helper.
+     *
+     * @param User $author User entity
+     *
+     * @return Bug $bug Bug entity
+     */
+    private function createBug(User $author): Bug
+    {
+        $repository = static::getContainer()
+            ->get(BugRepository::class);
+
+        $bug = new Bug();
+
+        $bug->setTitle('Bug '.uniqid());
+        $bug->setDescription('Description');
+        $bug->setAuthor($author);
+        $bug->setCategory($this->createCategory());
+        $bug->setStatusEnum(BugStatus::OPEN);
+
+        $repository->save($bug);
+
+        return $bug;
+    }
+
+    /**
+     * Create comment helper.
+     *
+     * @param Bug  $bug    Bug entity
+     * @param User $author USer entity
+     *
+     * @return Comment $comment Comment entity
+     */
+    private function createComment(Bug $bug, User $author): Comment
+    {
+        $repository = static::getContainer()
+            ->get(CommentRepository::class);
+
+        $comment = new Comment();
+
+        $comment->setContent('Comment '.uniqid());
+        $comment->setAuthor($author);
+        $comment->setBug($bug);
+
+        $repository->save($comment);
+
+        return $comment;
     }
 }

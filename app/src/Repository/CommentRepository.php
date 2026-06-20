@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment Repository.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Bug;
@@ -8,7 +12,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Comment>
+ * Class CommentRepository.
  */
 class CommentRepository extends ServiceEntityRepository
 {
@@ -24,6 +28,10 @@ class CommentRepository extends ServiceEntityRepository
 
     /**
      * Find all comment assigned to bug.
+     *
+     * @param Bug $bug Bug entity
+     *
+     * @return array Comments assigned to bug
      */
     public function findByBug(Bug $bug): array
     {
